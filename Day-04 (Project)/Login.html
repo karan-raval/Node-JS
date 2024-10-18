@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <style>
+        *{
+            background-color: #F5F5F5;
+        }
+        form {
+            width: 400px;
+            height: 430px;
+            margin-top: 100px;
+            margin-left: 40%;
+            background-color: white;
+            box-shadow: 0 0 2.1875rem rgba(90, 97, 105, .07), 0 0 1.40625rem rgba(90, 97, 105, .07), 0 0 .53125rem rgba(90, 97, 105, .09), 0 0 .1875rem rgba(90, 97, 105, .07);
+        }
+        input{
+            width: 320px;
+            height: 40px;
+            border-radius: 20px;
+            border: 0.5px solid gray;
+            margin-left:10%;
+        }
+        input:hover{
+            border: 0.5px solid red;
+
+        }
+        button {
+            margin-left: 0%;
+            width: 320px;
+            height: 36px;
+            background-color: #EA5455;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            margin-left:10%;
+
+        }
+        button:hover{
+            background-color: white;
+            color: #EA5455;
+            border: 0.5px solid red;
+        }
+        img{
+            width: 120px;
+            height: 36px;
+            margin-left: 30%;
+            background-color: white;
+        }
+        ::-webkit-input-placeholder {
+            padding-left: 15px; 
+
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <br>
+        <img src="https://student.rnwmultimedia.com/assets/images/logo-white.png" alt="logo-white.png">
+        <br><br>
+        <input type="text" class="pl" placeholder="Enter Your Name" name="name"> <br><br>
+            <input type="email" placeholder="Enter Your Email" name="email"><br><br>
+            <input type="tel" placeholder="Enter Your phone Number" name="tell" id="te"> <br><br>
+            <input type="password" placeholder="Enter Your Mpin" name="password" id="password"> <br><br>
+            <input type="password" placeholder="Re-enter Mpin" name="passwordagain"> <br> <br>
+            <button type="button">Submit</button>
+    </form>
+</body>
+</html>
