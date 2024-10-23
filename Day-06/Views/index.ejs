@@ -279,23 +279,7 @@
     </style>
   </head>
   <body>
-    <!-- <div class="container">
-        <form action="/home" method="POST">
-        <div class="search-container">
-          <input
-            type="text"
-            placeholder="Type A Dish Name Here.."
-            id="user-inp"
-          />
-          <input type="text" placeholder="description" name="description">
-          <input type="text" placeholder="instroctions" name="instroctions">
-          <input type="text" placeholder="image url" name="imgurl">
-          <input type="text" placeholder="Calories" name="calories">
-          <input type="text" placeholder="time of recipe" name="password">
-          <button id="search-btn" type="submit">Search</button>
-        </div>
-    </form>]
-    </div></div> -->
+   
     <div class="container">
       <div class="meal-wrapper">
         <div class="meal-search">
@@ -310,14 +294,13 @@
               type="text"
               class="search-control"
               placeholder="Enter an ingredient"
-              id="search-input"
+              name="ingredient"
             />
             <input
               type="text"
               class="search-control"
               placeholder="description"
               name="description"
-              id="search-input"
             />
             <input
               type="text"
@@ -325,12 +308,7 @@
               placeholder="instroctions"
               name="instroctions"
             />
-            <input
-              type="text"
-              class="search-control"
-              placeholder="image url"
-              name="imgurl"
-            />
+            
             <input
               type="text"
               class="search-control"
@@ -340,8 +318,14 @@
             <input
               type="text"
               class="search-control"
-              placeholder="time of recipe"
-              name="password"
+              placeholder="time of prepration"
+              name="time-of-prepration"
+            />
+            <input
+              type="text"
+              class="search-control"
+              placeholder="image url"
+              name="imgurl"
             />
             <button type="submit" class="search-btn btn" id="search-btn">Submit</button>
           </div>

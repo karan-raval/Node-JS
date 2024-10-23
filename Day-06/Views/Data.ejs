@@ -11,7 +11,18 @@
    
 
     <%  data.map((el)=>{  %>
-          <h1><%= el.username  %> - <%= el.password %> - <%= el.email %></h1>
+        <div class = "meal-item">
+            <div class = "meal-img">
+                <img src = <%="${meal.recipe.image}" alt = "food">
+            </div>
+            <div class = "meal-name">
+                <h3 value=${meal.recipe.label}><%=${meal.recipe.label}</h3>
+                <a href = "#" class = "recipe-btn">Get Recipe</a>
+            </div>
+        </div>
+</div>
+          <h1><%= el.ingredient  %> - <%= el.description %> - <%= el.instroctions %></h1>
+          <h1><%= el.Calories  %> - <%= el.time-of-prepration %> - <%= el.imgurl %></h1>
           <button>Edit</button>
           <button>Delete</button>
     <% })   %>
