@@ -339,30 +339,56 @@ body{
   </div>
   </body>
   <script>
-    // const searchBtn = document.getElementById("search-btn");
-// const mealList = document.getElementById("meal");
-// const mealDetailsContent = document.querySelector(".meal-details");
-searchBtn.addEventListener("click", getMealList);
-// mealList.addEventListener("click", getMealRecipe);
-
-function getMealList() {
-  let searchInputTxt = document.getElementById("search-input").value;
-  if (searchInputTxt == "") {
-    Swal.fire({
-      position: "top-end",
-      icon: "error",
-      title: "Please Enter Recipe Name",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  } else {
-    fetch(
-      `https://api.edamam.com/search?q=${searchInputTxt}&app_id=a56a38ea&app_key=5e4279147e5b09e1e9470abc0fba0401`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        let html = "";
-        if (data.more == false) {
+    const searchBtn = document.getElementById("search-btn");
+    const mealList = document.getElementById("meal");
+    const mealDetailsContent = document.querySelector(".meal-details");
+  
+    // Static data to replace API data
+    const staticMealsData = [
+      {
+        label: "Salad",
+        image: "salad.jpg",
+        calories: 150,
+        ingredientLines: ["Lettuce", "Tomato", "Cucumber", "Dressing"],
+        url: "https://example.com/salad-recipe",
+      },
+      {
+        label: "Spaghetti",
+        image: "spaghetti.jpg",
+        calories: 400,
+        ingredientLines: ["Pasta", "Tomato Sauce", "Parmesan"],
+        url: "https://example.com/spaghetti-recipe",
+      },
+      {
+        label: "Pizza",
+        image: "pizza.jpg",
+        calories: 800,
+        ingredientLines: ["Dough", "Tomato Sauce", "Cheese", "Pepperoni"],
+        url: "https://example.com/pizza-recipe",
+      },
+    ];
+  
+    // searchBtn.addEventListener("click", getMealList);
+    // mealList.addEventListener("click", getMealRecipe);
+  
+    function getMealList() {
+      let searchInputTxt = document.getElementById("search-input").value.toLowerCase();
+      let html = "";
+  
+      if (searchInputTxt == "") {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Please Enter Recipe Name",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        const filteredMeals = staticMealsData.filter((meal) =>
+          meal.label.toLowerCase().includes(searchInputTxt)
+        );
+  
+        if (filteredMeals.length === 0) {
           Swal.fire({
             position: "top-end",
             icon: "error",
@@ -370,87 +396,88 @@ function getMealList() {
             showConfirmButton: false,
             timer: 1500,
           });
-        }else if (data.hits) {
-          data.hits.forEach((meal) => {
+        } else {
+          filteredMeals.forEach((meal) => {
             html += `<div class = "meal-item">
-                        <div class = "meal-img">
-                            <img src = "${meal.recipe.image}" alt = "food">
-                        </div>
-                        <div class = "meal-name">
-                            <h3 value=${meal.recipe.label}>${meal.recipe.label}</h3>
-                            <a href = "#" class = "recipe-btn">Get Recipe</a>
-                        </div>
-                    </div>
-            </div>`;
+                          <div class = "meal-img">
+                              <img src = "${meal.image}" alt = "food">
+                          </div>
+                          <div class = "meal-name">
+                              <h3 value=${meal.label}>${meal.label}</h3>
+                              <a href = "#" class = "recipe-btn">Get Recipe</a>
+                          </div>
+                      </div>
+              </div>`;
           });
           mealList.innerHTML = html;
           mealList.classList.remove("notFound");
-        } 
-      });
-  }
-}
-
-
-
-function mealRecipeModal(meal) {
-  let html = `
-  <button type = "button" class = "btn recipe-close-btn" onclick=rc() >
-          <i class = "fas fa-times"></i>
+        }
+      }
+    }
+  
+    function getMealRecipe(e) {
+      e.preventDefault();
+      let mealItem = e.target.parentElement.getElementsByTagName("h3")[0].innerHTML;
+  
+      const selectedMeal = staticMealsData.find(
+        (meal) => meal.label === mealItem
+      );
+  
+      if (selectedMeal) {
+        mealRecipeModal(selectedMeal);
+      }
+    }
+  
+    function mealRecipeModal(meal) {
+      let html = `
+        <button type="button" class="btn recipe-close-btn" onclick="rc()">
+          <i class="fas fa-times"></i>
         </button>
-        <div class = "meal-details-content">
-    <h2 class = "recipe-title">${meal.hits[0].recipe.label}</h2>
-    <p class = "recipe-category">Calories=${meal.hits[0].recipe.calories}</p>
-<div class = "recipe-instruct">
-    <h3>Instructions:</h3>
-    <p><span>${meal.hits[0].recipe.ingredientLines
-      .map((ing) => `<li class="ing">${ing}</li>`)
-      .join("")}</span></p>
-</div>
-<div class = "recipe-meal-img">
-    <img src = "${meal.hits[0].recipe.image}" alt = "">
-</div>
-<div class = "recipe-link">
-    <a href = "${meal.hits[0].recipe.url}" target = "_blank">Watch Video</a>
-</div>
- </div>
-    `;
-  mealDetailsContent.innerHTML = html;
-  mealDetailsContent.classList.add("showRecipe");
-}
-
-function rc() {
-  mealDetailsContent.classList.remove("showRecipe");
-}
-
-
-
-function bydefault()
-{
-  fetch(
-    `https://api.edamam.com/search?q=salad&app_id=a56a38ea&app_key=5e4279147e5b09e1e9470abc0fba0401`
-  )
-    .then((response) => response.json())
-    .then((data) => {
+        <div class="meal-details-content">
+          <h2 class="recipe-title">${meal.label}</h2>
+          <p class="recipe-category">Calories: ${meal.calories}</p>
+          <div class="recipe-instruct">
+            <h3>Ingredients:</h3>
+            <p><ul>${meal.ingredientLines
+              .map((ing) => `<li class="ing">${ing}</li>`)
+              .join("")}</ul></p>
+          </div>
+          <div class="recipe-meal-img">
+            <img src="${meal.image}" alt="${meal.label}">
+          </div>
+          <div class="recipe-link">
+            <a href="${meal.url}" target="_blank">Watch Video</a>
+          </div>
+        </div>
+      `;
+      mealDetailsContent.innerHTML = html;
+      mealDetailsContent.classList.add("showRecipe");
+    }
+  
+    function rc() {
+      mealDetailsContent.classList.remove("showRecipe");
+    }
+  
+    // Function to display default meals (like on initial page load)
+    function bydefault() {
       let html = "";
-      if (data.hits) {
-        data.hits.forEach((meal) => {
-          html += `<div class = "meal-item">
-                      <div class = "meal-img">
-                          <img src = "${meal.recipe.image}" alt = "food">
-                      </div>
-                      <div class = "meal-name">
-                          <h3 value=${meal.recipe.label}>${meal.recipe.label}</h3>
-                          <a href = "#" class = "recipe-btn">Get Recipe</a>
-                      </div>
-                  </div>
-          </div>`;
-        })
-        mealList.innerHTML = html;
-        mealList.classList.remove("notFound");
-}
-})
-}
-
-bydefault()
+      staticMealsData.forEach((meal) => {
+        html += `<div class = "meal-item">
+                        <div class = "meal-img">
+                            <img src = "${meal.image}" alt = "food">
+                        </div>
+                        <div class = "meal-name">
+                            <h3 value=${meal.label}>${meal.label}</h3>
+                            <a href = "#" class = "recipe-btn">Get Recipe</a>
+                        </div>
+                    </div>`;
+      });
+      mealList.innerHTML = html;
+      mealList.classList.remove("notFound");
+    }
+  
+    // Call bydefault function to show meals initially
+    bydefault();
   </script>
+  
 </html>
