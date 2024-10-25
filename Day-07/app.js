@@ -12,7 +12,6 @@ app.get("/",(req,res)=>{
     res.render("index.ejs")
 })
 
-
 app.post("/",(req,res)=>{
     arr.push({...req.body,id : arr.length+1 + Date.now()})
     console.log(arr)
