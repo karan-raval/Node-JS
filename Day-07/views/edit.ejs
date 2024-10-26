@@ -337,15 +337,13 @@
         position: relative;
       }
     </style>
-    
   </head>
   <body>
-    <!-- <form action="/edit/<%= data[0].id %>" method="post"> -->
-      <!-- <input
+    <!-- <form > -->
+    <!-- <input
         type="text"
         placeholder="Blog Heading"
         name="heading"
-        value="<%= data[0].heading %>"
       />
       <input
         type="text"
@@ -353,13 +351,9 @@
         name="des"
         value="<%= data[0].des %>"
       /> -->
-      
-      <!-- <input type="submit" /> -->
+
+    <!-- <input type="submit" /> -->
     <!-- </form> -->
-
-
-
-
 
     <div class="container">
       <div class="meal-wrapper">
@@ -369,7 +363,7 @@
             Real food doesn't have ingredients, real food is ingredients.<br />
             <cite>- Jamie Oliver</cite>
           </blockquote>
-          <form action="/home" method="POST">
+          <form action="/edit/<%= data[0].id %>" method="post">
             <div class="meal-search-box">
               <div class="col-3">
                 <input
@@ -447,6 +441,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
