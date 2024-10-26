@@ -5,441 +5,346 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>edit</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
-
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      :root {
-        --tenne-tawny: #d65108;
-        --tenne-tawny-dark: #b54507;
-      }
+      html,
       body {
-        font-weight: 300;
-        font-size: 1.05rem;
-        line-height: 1.6;
-        font-family: "Poppins", sans-serif;
+        height: 10vh;
       }
 
-      /*  */
-      .btn {
-        font-family: inherit;
-        cursor: pointer;
-        outline: 0;
-        font-size: 1.05rem;
+      .bg {
+        position: absolute;
+        /* height: 100vh; */
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: radial-gradient(
+            circle at 30% 86%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 8%,
+            transparent 8%,
+            transparent 92%
+          ),
+          radial-gradient(
+            circle at 55% 100%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 8%,
+            transparent 8%,
+            transparent 92%
+          ),
+          radial-gradient(
+            circle at 40% 75%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 6%,
+            transparent 6%,
+            transparent 94%
+          ),
+          radial-gradient(
+            circle at 7% 99%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 6%,
+            transparent 6%,
+            transparent 94%
+          ),
+          radial-gradient(
+            circle at 69% 76%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 6%,
+            transparent 6%,
+            transparent 94%
+          ),
+          radial-gradient(
+            circle at 2% 35%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 6%,
+            transparent 6%,
+            transparent 94%
+          ),
+          radial-gradient(
+            circle at 14% 48%,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.03) 6%,
+            transparent 6%,
+            transparent 94%
+          ),
+          radial-gradient(
+            circle at 28% 87%,
+            rgba(255, 255, 255, 0.04) 0%,
+            rgba(255, 255, 255, 0.04) 4%,
+            transparent 4%,
+            transparent 96%
+          ),
+          radial-gradient(
+            circle at 65% 14%,
+            rgba(255, 255, 255, 0.04) 0%,
+            rgba(255, 255, 255, 0.04) 4%,
+            transparent 4%,
+            transparent 96%
+          ),
+          radial-gradient(
+            circle at 51% 36%,
+            rgba(255, 255, 255, 0.04) 0%,
+            rgba(255, 255, 255, 0.04) 4%,
+            transparent 4%,
+            transparent 96%
+          ),
+          radial-gradient(
+            circle at 6% 93%,
+            rgba(255, 255, 255, 0.04) 0%,
+            rgba(255, 255, 255, 0.04) 4%,
+            transparent 4%,
+            transparent 96%
+          ),
+          linear-gradient(135deg, rgb(23, 233, 173), rgb(29, 24, 208));
       }
-      .text {
-        opacity: 0.8;
+
+      body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
       }
-      .title {
-        font-size: 2rem;
+
+      .form-signin {
+        width: 100%;
+        max-width: 330px;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+      }
+
+      .form-signin h1 {
+        margin-top: 0px;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+      }
+
+      .form-signin form {
+        padding: 15px;
+      }
+
+      .form-signin .btn {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+        color: #fff; 
+      }
+
+      .form-signin .btn:hover,
+      .form-signin .btn:focus {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+      }
+
+      .form-signin .form-control:focus {
+        border-color: #ced4da;
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-signin .copyright {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .form-signin .form-control {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .form-signin .form-check {
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .form-signin .form-check label {
+        font-size: 0.9em;
+      }
+
+      .form-signin .form-check input {
+        margin-right: 0.5em;
+      }
+
+      .form-signin .form-check input:checked {
+        background-color: #9ce060;
+        border-color: #81c63f;
+      }
+
+      .form-signin .form-floating:focus-within {
+        z-index: 2;
+      }
+
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      /* Glassmorphism effect */
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Additional styles (if applicable) */
+      .form-signin .form-control {
+        color: #000; /* Ensures text visibility */
+      }
+
+      .form-signin .form-check input[type="checkbox"] {
+        border-radius: 3px;
+        outline: none;
+      }
+
+      .form-signin .btn {
+        padding: 10px 20px;
+        border-radius: 3px;
+        transition: background 0.3s ease;
+      }
+
+      .form-signin .form-floating {
+        position: relative;
         margin-bottom: 1rem;
       }
 
-      /*  */
-      .container {
-        min-height: 100vh;
-      }
-      .meal-wrapper {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-        background: #fff;
-        text-align: center;
-      }
-      .meal-search {
-        margin: 2rem 0;
-      }
-      .meal-search cite {
-        font-size: 1rem;
-      }
-      .meal-search-box {
-        margin-top: 50px;
-        margin-left: 30%;
-        /* border: 1px solid black; */
-        align-items: stretch;
-      }
-      .search-control,
-      .search-btn {
-        width: 100%;
-      }
-      .search-control {
-        /* padding: 0 1rem; */
-        font-size: 1.1rem;
-        font-family: inherit;
-        outline: 0;
-        border: 1px solid var(--tenne-tawny);
-        color: var(--tenne-tawny);
-        /* border-radius: 2rem; */
-        padding: 10px;
-      }
-      .effect-7 {
-        border: 1px solid var(--tenne-tawny);
-        padding: 7px 14px 9px;
-        transition: 0.4s;
-      }
-
-      .effect-7 ~ .focus-border:before,
-      .effect-7 ~ .focus-border:after {
-        content: "";
+      .form-signin .form-floating label {
         position: absolute;
         top: 0;
-        left: 40%;
-        width: 0;
-        height: 2px;
-        background-color: #6933ff;
-        transition: 0.4s;
-      }
-
-      .effect-7 ~ .focus-border:after {
-        top: auto;
-        bottom: 0;
-      }
-
-      .effect-7 ~ .focus-border i:before,
-      .effect-7 ~ .focus-border i:after {
-        content: "";
-        position: absolute;
-        top: 50%;
         left: 0;
-        width: 2px;
-        height: 0;
-        background-color: #6933ff;
-        transition: 0.6s;
-        border-radius: 2rem;
+        padding: 0.75rem;
+        pointer-events: none;
+        color: #6c757d;
       }
 
-      .effect-7 ~ .focus-border i:after {
-        left: auto;
-        right: 0;
-        border-radius: 2rem;
-      }
-
-      .effect-7:focus ~ .focus-border:before,
-      .effect-7:focus ~ .focus-border:after {
-        left: 0;
-        width: 100%;
-        transition: 0.4s;
-        border-radius: 2rem;
-      }
-
-      .effect-7:focus ~ .focus-border i:before,
-      .effect-7:focus ~ .focus-border i:after {
-        top: 0;
-        height: 100%;
-        border-radius: 2rem;
-
-        transition: 0.6s;
-      }
-      .search-control::placeholder {
-        color: var(--tenne-tawny);
-      }
-      .search-btn {
-        width: 250px;
-        height: 45px;
-        font-size: 1.8rem;
-        background: var(--tenne-tawny);
-        color: #fff;
-        border: none;
-        border-radius: 2rem;
-        transition: all 0.4s linear;
-      }
-      .search-btn:hover {
-        background: var(--tenne-tawny-dark);
-      }
-      .meal-result {
-        margin-top: 4rem;
-      }
-      #meal {
-        margin: 2.4rem 0;
-      }
-      .meal-item {
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
-        margin: 2rem 0;
-      }
-      .meal-img img {
-        width: 100%;
-        height: 200px;
-        display: block;
-      }
-      .meal-name {
-        padding: 1.5rem 0.5rem;
-      }
-      .meal-name h3 {
-        font-size: 1.4rem;
-      }
-      .recipe-btn {
-        text-decoration: none;
-        color: #fff;
-        background: var(--tenne-tawny);
-        font-weight: 500;
-        font-size: 1.1rem;
-        padding: 0.75rem 0;
-        display: block;
-        width: 175px;
-        margin: 1rem auto;
-        border-radius: 2rem;
-        transition: all 0.4s linear;
-        -webkit-transition: all 0.4s linear;
-      }
-      .recipe-btn:hover {
-        background: var(--tenne-tawny-dark);
-      }
-
-      .meal-details {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff;
-        background: var(--tenne-tawny);
-        border-radius: 1rem;
-        width: 90%;
-        height: 90%;
-        overflow-y: scroll;
-        display: none;
-        padding: 2rem 0;
-      }
-      .meal-details::-webkit-scrollbar {
-        width: 10px;
-      }
-      .meal-details::-webkit-scrollbar-thumb {
-        background: #f0f0f0;
-        border-radius: 2rem;
-      }
-
-      /* js related */
-      .showRecipe {
-        display: block;
-      }
-
-      .meal-details-content {
-        margin: 2rem;
-      }
-      .meal-details-content p:not(.recipe-category) {
-        padding: 1rem 0;
-      }
-      .recipe-close-btn {
-        position: absolute;
-        right: 2rem;
-        top: 2rem;
-        font-size: 1.8rem;
-        background: #fff;
-        border: none;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.9;
-      }
-      .recipe-title {
-        letter-spacing: 1px;
-        padding-bottom: 1rem;
-      }
-      .recipe-category {
-        background: #fff;
-        font-weight: 600;
-        color: var(--tenne-tawny);
-        display: inline-block;
-        padding: 0.2rem 0.5rem;
-        border-radius: 0.3rem;
-      }
-      .recipe-category {
-        background: #fff;
-        font-weight: 600;
-        color: var(--tenne-tawny);
-        display: inline-block;
-        padding: 0.2rem 0.5rem;
-        border-radius: 0.3rem;
-      }
-      .recipe-instruct {
-        padding: 1rem 0;
-      }
-      .recipe-meal-img img {
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        margin: 0 auto;
-        display: block;
-      }
-      .recipe-link {
-        margin: 1.4rem 0;
-      }
-      .recipe-link a {
-        color: #fff;
-        font-size: 1.2rem;
-        font-weight: 700;
-        transition: all 0.4s linear;
-      }
-      .recipe-link a:hover {
-        opacity: 0.8;
-      }
-
-      /*  */
-      .notFound {
-        grid-template-columns: 1fr !important;
-        color: var(--tenne-tawny);
-        font-size: 1.8rem;
-        font-weight: 600;
-        width: 100%;
-      }
-
-      /* Media Queries */
-      @media screen and (min-width: 600px) {
-        .meal-search-box {
-          width: 540px;
-          /* margin-left: auto; */
-          /* margin-right: auto; */
-        }
-      }
-
-      @media screen and (min-width: 768px) {
-        #meal {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2rem;
-        }
-        .meal-item {
-          margin: 0;
-        }
-        .meal-details {
-          width: 700px;
-        }
-      }
-
-      @media screen and (min-width: 992px) {
-        #meal {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      .ing {
-        padding: 10px 20px;
-        /* border: 2px solid #ff6e00; */
-        color: #f8f6f4;
-        font-family: sans-serif;
-        border-radius: 100px;
-        width: auto;
-      }
-      blockquote {
-        color: red;
-        font-weight: 400;
-      }
-      .col-3 {
-        /* float: left; */
-        margin: 1rem;
-        position: relative;
+      .form-signin .form-floating input {
+        padding: 1rem;
+        border-radius: 0.25rem;
       }
     </style>
   </head>
   <body>
-    <!-- <form > -->
-    <!-- <input
-        type="text"
-        placeholder="Blog Heading"
-        name="heading"
-      />
-      <input
-        type="text"
-        placeholder="Blog Desc"
-        name="des"
-        value="<%= data[0].des %>"
-      /> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
 
-    <!-- <input type="submit" /> -->
-    <!-- </form> -->
+    <div class="bg"></div>
 
-    <div class="container">
-      <div class="meal-wrapper">
-        <div class="meal-search">
-          <h2 class="title">Add Your Recipe</h2>
-          <blockquote>
-            Real food doesn't have ingredients, real food is ingredients.<br />
-            <cite>- Jamie Oliver</cite>
-          </blockquote>
-          <form action="/edit/<%= data[0].id %>" method="post">
-            <div class="meal-search-box">
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="Enter Recipe Name"
-                  name="ingredient"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
+    <main class="form-signin">
+      <h1 class="h3">Add Your Blog Details</h1>
 
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="description"
-                  name="description"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="instroctions"
-                  name="instroctions"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="Calories"
-                  name="calories"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="time of prepration"
-                  name="time-of-prepration"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="search-control effect-7"
-                  placeholder="image url"
-                  name="imgurl"
-                />
-                <span class="focus-border">
-                  <i></i>
-                </span>
-              </div>
-
-              <button type="submit" class="search-btn btn" id="search-btn">
-                Submit
-              </button>
-            </div>
-          </form>
+      <form action="/edit/<%= data[0].id %>" method="post">
+        <div class="form-floating">
+          <input
+            type="tel"
+            placeholder="Blog date"
+            name="date"
+            class="form-control"
+            id="floatingInput"
+            required
+            value="<%= data[0].date %>"
+          />
+          <label for="floatingInput">Blog date</label>
         </div>
-      </div>
-    </div>
+        <div class="form-floating">
+          <input
+            type="tel"
+            placeholder="Blog month"
+            name="month"
+            class="form-control"
+            id="floatingPassword"
+            value="<%= data[0].month %>"
+            required
+          />
+          <label for="floatingPassword">Blog month</label>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            placeholder="Blog Heading"
+            name="heading"
+            class="form-control"
+            id="floatingPassword"
+            value="<%= data[0].heading %>"
+            required
+          />
+          <label for="floatingPassword">Blog Heading</label>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            placeholder="Blog Desc"
+            name="des"
+            class="form-control"
+            id="floatingPassword"
+            value="<%= data[0].des %>"
+            required
+          />
+          <label for="floatingPassword">Blog Description</label>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="text"
+            placeholder="Blog Image URL"
+            name="imgurl"
+            class="form-control"
+            id="floatingPassword"
+            value="<%= data[0].imgurl %>"
+            required
+          />
+          <label for="floatingPassword">Blog Image URL</label>
+        </div>
+
+        <div class="checkbox mb-3">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="1"
+              name="remember_me"
+              id="rememberMeSwitch"
+            />
+            <label class="form-check-label" for="rememberMeSwitch">
+              Remember me</label
+            >
+          </div>
+        </div>
+        <button class="w-100 btn btn-lg" type="submit">Update Your Blog</button>
+      </form>
+    </main>
+
   </body>
 </html>
