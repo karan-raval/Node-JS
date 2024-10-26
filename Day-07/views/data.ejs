@@ -9,9 +9,6 @@
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
     <style>
-  @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
-
-  @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
 
 html {
   position: relative;
@@ -116,6 +113,17 @@ a:hover {
 .news-slider__item {
   width: 400px;
   flex-shrink: 0;
+}
+.dbtn{
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+}
+.dbtn:hover{
+  color: #fff;
+  background-color: black;
 }
 
 @media screen and (max-width: 992px) {
@@ -365,7 +373,7 @@ a:hover {
                     
                      <% arr.map((el)=>{ %>
           <div class="news-slider__item swiper-slide">
-            <a href="#" class="news__item">
+            <a  class="news__item">
               <div class="news-date">
                 <span class="news-date__title">  <%= el.date %></span>
                 <span class="news-date__txt"><%= el.month %></span>
@@ -382,9 +390,11 @@ a:hover {
                 alt="news"
                 />
             </div>
-              <a href="/data/<%= el.id %>">Delete</a>
-    <a href="/edit/<%= el.id %>">Edit</a>
-        </a>
+          </a>
+          <br>
+          <br>
+          <a class="dbtn" href="/data/<%= el.id %>">Delete Your Blog</a>
+          <a class="dbtn" href="/edit/<%= el.id %>">Edit Your Blog</a>
     </div>
     <%})%> 
     
