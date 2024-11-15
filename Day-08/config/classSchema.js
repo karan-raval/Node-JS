@@ -6,7 +6,7 @@ const studentSchema = mongoose.Schema({
     grid:Number,
 })
 
-const studentSchema = mongoose.model("studentData",studentSchema)
+const StudentModel = mongoose.model("studentData",studentSchema)
 
-module.exports = studentSchema
+module.exports = StudentModel
 
