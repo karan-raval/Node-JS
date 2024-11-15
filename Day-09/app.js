@@ -39,6 +39,18 @@ app.get("/editBook/:id",async(req,res)=>{
     res.render("editForm.ejs",{data : data})
 })
 
+app.post("/editBook/:id",(req,res)=>{
+    let a = req.params.id;
+    arr = arr.map((el)=>{
+        if(el.id == a){
+            return {...el,...req.body}
+        }else{
+            return el;
+        }
+    })
+    res.redirect("/data")
+})
+
 
 
 
