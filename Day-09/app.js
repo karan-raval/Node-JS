@@ -41,7 +41,7 @@ app.get("/editBook/:id",async(req,res)=>{
 
 app.post("/editBook/:id",(req,res)=>{
     let a = req.params.id;
-    arr = arr.map((el)=>{
+    Books = Books.map((el)=>{
         if(el.id == a){
             return {...el,...req.body}
         }else{
@@ -52,9 +52,7 @@ app.post("/editBook/:id",(req,res)=>{
 })
 
 
-
-
 app.listen(1834,()=>{
     connect()
-    console.log("Server is Running in 1834 !!!")
+    console.log("Server is Running in 1834")
 })
