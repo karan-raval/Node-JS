@@ -14,12 +14,12 @@ app.get("/",async(req,res)=>{
 
 app.post("/addBook",async(req,res)=>{
      let a = await BookModel.create(req.body)
-     res.send({msg : "Book Added Successfully" , data : a})
+    //  res.send({data : a})
+    // res.redirect('/allbook')
 })
 
 
-
-app.listen(8080,()=>{
+app.listen(1234,()=>{
     connect()
-    console.log("Server is running at port 8080")
+    console.log("Server is running at port 1234")
 })
