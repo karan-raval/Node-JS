@@ -39,16 +39,10 @@ app.get("/editBook/:id",async(req,res)=>{
     res.render("editForm.ejs",{data : data})
 })
 
-app.post("/editBook/:id",(req,res)=>{
-    let a = req.params.id;
-    Books = Books.map((el)=>{
-        if(el.id == a){
-            return {...el,...req.body}
-        }else{
-            return el;
-        }
-    })
-    res.redirect("/data")
+app.post("/editBook/:id",async(req,res)=>{
+    const {id} = req.params
+    await BookModel.findByIdAndUpdate(id,req.body)
+    res.redirect("/")
 })
 
 
