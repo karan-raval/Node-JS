@@ -28,7 +28,6 @@ const Addbooks = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // Navigate only when the response is successful
         navigate("/allbooks");
       } else {
         console.error("Failed to add book:", result.message);
