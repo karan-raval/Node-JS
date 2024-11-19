@@ -13,7 +13,7 @@ app.get("/", async (req, res) => {
 
 app.post("/addBook", async (req, res) => {
   let a = await BookModel.create(req.body);
-  //  res.send({data : a})
+   res.send({data : a})
   // res.redirect('/allbook')
 });
 
