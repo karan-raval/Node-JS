@@ -1,6 +1,6 @@
 import React from 'react'
 
-const allbooks = () => {
+const Allbooks = () => {
   return (
     <>
         
@@ -8,4 +8,4 @@ const allbooks = () => {
   )
 }
 
-export default allbooks
+export default Allbooks
