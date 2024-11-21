@@ -1,7 +1,7 @@
 const mongoose =require('mongoose')
 
 const connect = async()=>{
-    await mongoose.connect("mongodb://localhost:27017/karan/BookStore")
+    await mongoose.connect("mongodb://localhost:27017/karan")
     console.log("Database is connected successfully !!!")
 }
 

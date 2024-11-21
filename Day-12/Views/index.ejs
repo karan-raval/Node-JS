@@ -9,6 +9,7 @@
     <h1>All Books</h1>
     <a href="/addBook">Add Book</a>
      <% Books.map((el)=>{ %>
+        <img src="/assets/<%= el.image %>" alt="<%= el.name %>" width="250px" height="250px">
            <h1>BookName :-<%= el.bookName %></h1>
            <p>Description :-<%= el.des %></p>
               <h3>Author :-<%= el.author %></h3>
