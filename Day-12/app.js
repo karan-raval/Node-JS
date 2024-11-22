@@ -56,7 +56,7 @@ app.get("/deleteBook/:id",async(req,res)=>{
      }
   }
  await BookModel.findByIdAndDelete(id)
-  res.redirect("/books")
+  res.redirect("/")
 })
 
 app.get("/editBook/:id",async(req,res)=>{
