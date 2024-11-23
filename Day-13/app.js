@@ -1,6 +1,7 @@
 const express = require("express");
-const app = express();
 const connect = require("./config/server");
+const BookRouter=require('./Routes/bookRoutes')
+const app = express();
 
 app.set("view engine",'ejs')
 app.use(express.urlencoded({extended:true}))
