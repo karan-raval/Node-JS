@@ -3,7 +3,7 @@ const express = require("express")
 const multer = require("multer")
 const path = require("path")
 const fs = require("fs")
-const BookModel = require("../model/BookSchema")
+const BookModel = require("../Model/BookSchema")
 const addBook = require("../Controller/BookController")
 
 const BookRouter = express.Router()
