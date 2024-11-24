@@ -14,7 +14,10 @@
       width="250px"
       height="250px"
     />
-    <h1><%= el.bookname %> - <%= el.authorname %></h1>
+    <h3>Book Name : <%= el.bookname %></h3>
+    <h3>Author Name : <%= el.authorname %></h3>
+    <h3>Price : <%= el.price %> </h3>
+    <h3>Description  :  <%= el.description %> </h3>
     <a href="/delete/<%= el._id %>">Delete</a><br />
     <a href="/edit/<%= el._id %>">Edit</a><br />
     <% }) %>
