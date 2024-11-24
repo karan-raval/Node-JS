@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>All Books</h1>
-     <%data.map((el)=>{ %>
-          <img src="/assets/<%= el.image %>" alt="<%= el.name %>" width="250px" height="250px">
-          <h1><%= el.name %> - <%= el.author %></h1>
-          <a href="/delete/<%= el._id %>">Delete</a><br>
-          <a href="/edit/<%= el._id %>">Edit</a><br>
-     <% }) %>
-</body>
+    <%data.map((el)=>{ %>
+    <img
+      src="/assets/<%= el.image %>"
+      alt="<%= el.name %>"
+      width="250px"
+      height="250px"
+    />
+    <h1><%= el.name %> - <%= el.author %></h1>
+    <a href="/delete/<%= el._id %>">Delete</a><br />
+    <a href="/edit/<%= el._id %>">Edit</a><br />
+    <% }) %>
+  </body>
 </html>
