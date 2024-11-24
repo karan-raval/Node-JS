@@ -9,27 +9,34 @@
     <h1>Edit Book</h1>
     <img src="/assets/<%= data.image %>" alt="" width="250px" />
     <form
-      action="/edit/<%= data._id %>"
+      action="book/edit/<%= data._id %>"
       method="post"
       enctype="multipart/form-data"
     >
       <input
         type="text"
-        placeholder="Name"
-        name="name"
-        value="<%= data.name %>"
+        placeholder="Book Name"
+        name="bookname"
+        value="<%= data.bookname %>"
       />
       <input
         type="text"
-        placeholder="author"
-        name="author"
-        value="<%= data.author %>"
+        placeholder="Author Name"
+        name="authorname"
+        value="<%= data.authorname %>"
       />
+     
+    <input
+    type="text"
+    placeholder="price"
+    name="price"
+    value="<%= data.price %>"
+  />
       <input
         type="file"
-        placeholder="Book Image"
-        name="image"
-        value="<%= data.image %>"
+        placeholder="description"
+        name="description"
+        value="<%= data.description %>"
       />
       <input type="submit" />
     </form>

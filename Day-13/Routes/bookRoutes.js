@@ -36,13 +36,13 @@ BookRouter.get("/delete/:id",async(req,res)=>{
     const {id} = req.params
     const data = await BookModel.findById(id);
     if(data.image){
-       const image_path = path.join(__dirname,"/public/assets", data.image) 
+       const image_path = path.join(__dirname,"../public/assets", data.image) 
        if(fs.existsSync(image_path)){
          fs.unlinkSync(image_path)
        }
     }
    await BookModel.findByIdAndDelete(id)
-    res.redirect("/books")
+    res.redirect("/book/books")
 })
 
 BookRouter.get("/edit/:id",async(req,res)=>{
@@ -55,7 +55,7 @@ BookRouter.post("/edit/:id",Data.single("image"),async(req,res)=>{
     const {id} = req.params
     const data = await BookModel.findById(id);
     if(data.image){
-        let image_path = path.join(__dirname,"/public/assets",data.image)
+        let image_path = path.join(__dirname,"../public/assets",data.image)
         if(fs.existsSync(image_path)){
             fs.unlinkSync(image_path)
         }
@@ -64,7 +64,7 @@ BookRouter.post("/edit/:id",Data.single("image"),async(req,res)=>{
         ...req.body,
         image : req.file.filename
      })
-    res.redirect("/books")
+    res.redirect("/book/books")
 })
 
 
