@@ -5,41 +5,42 @@ const App = () => {
   
 
   return (
-    <div class="wrapper">
-    <div class="search-block">
-        <a href="/">
-            <h1>TheMovieDB</h1>
-        </a>
-        <form id="search-form">
-            <input type="text" id="query" placeholder="Search movies..." />
-            <button class="btn" type="submit">Search</button>
-        </form>
-        <div class="col">
-          <div class="card">
-            <a class="card-media" href="./img-01.jpeg">
-              <img src="${movie.poster_path}" alt="PUBG Mobile" width="100%" />
-            </a>
-
-            <div class="card-content">
-              <div class="card-cont-header">
-                <div class="cont-left">
-                  <h3 style={{fontWeight: 600}}>$movie.original_title</h3>
-                  <span style={{color: '#12efec'}}>$movie.release_date</span>
-                </div>
-                <div class="cont-right">
-                  <a href="${movie.poster_path}" target="_blank" class="btn">See image</a>
-                </div>
-              </div>
-
-              <div class="describe">
-                $movie.overview
-              </div>
+    <>
+    <div class="form-container">
+        <h2>Add Movie Details</h2>
+        <form>
+            <div class="form-group">
+                <label for="movieName">Movie Name</label>
+                <input type="text" id="movieName" name="movieName" required/>
             </div>
-          </div>
-        </div>
+
+            <div class="form-group">
+                <label for="imdbRating">IMDB Rating</label>
+                <input type="number" id="imdbRating" name="imdbRating" min="0" max="10" step="0.1" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Select Genre</option>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="releaseYear">Release Year</label>
+                <input type="number" id="releaseYear" name="releaseYear" min="1900" max="2024" required/>
+            </div>
+
+            <button type="submit">Add Movie</button>
+        </form>
     </div>
-    <div class="row" id="root"></div>
-</div>
+    </>
   );
 };
 
