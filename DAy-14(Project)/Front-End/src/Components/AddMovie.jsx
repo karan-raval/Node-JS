@@ -6,23 +6,44 @@ const AddMovie = () => {
         imdbRating:'',
         genre:'',
         releaseYear:'',
-        poster:''
+        poster:null
     })
 
     const handleChange=(e)=>{
         let { name, value } = e.target;
-    setstate({ ...state, [name]: value });
+        if(name == "poster"){
+            setstate({ ...state, [name]: e.target.files[0] });
+        }else{
+            setstate({ ...state, [name]: value });
+        }
     }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-console.log(state)
+        console.log(state)
+        let formData = new FormData();
+        formData.append("movieName", state.movieName);
+        formData.append("imdbRating", state.imdbRating);
+        formData.append("genre", state.genre);
+        formData.append("releaseYear", state.releaseYear);
+        formData.append("poster", state.poster);
+        fetch(`http://localhost:3344/addmovie`,{
+            method : "POST",
+            body : formData
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
   return (
     <div>
   <div className="form-container">
         <h2>Add Movie Details</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} method='post' action='/addmovie'  encType="multipart/form-data">
             <div className="form-group">
                 <label>Movie Name</label>
                 <input type="text" id="movieName" name="movieName" value={state.movieName} onChange={handleChange} required/>
@@ -30,7 +51,7 @@ console.log(state)
 
             <div className="form-group">
                 <label>Poster</label>
-                <input type="file" id="movieName" name="poster" value={state.poster} onChange={handleChange} required/>
+                <input type="file" id="movieName" name="poster"  onChange={handleChange} required/>
             </div>
 
             <div className="form-group">

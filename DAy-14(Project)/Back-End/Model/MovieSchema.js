@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const MovieSchema = mongoose.Schema({
-  moviename: { type: String },
-  poster: { type: String },
-  imdbrating: { type: String },
-  Gener: { type: String },
-  Year: { type: String },
+  movieName: { type: String },
+  image: { type: String },
+  imdbRating: { type: String },
+  genre: { type: String },
+  releaseYear: { type: String },
 });
 const MovieModel = mongoose.model("movie", MovieSchema);
 

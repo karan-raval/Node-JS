@@ -3,11 +3,9 @@ import "./App.css";
 import AddMovie from "./Components/AddMovie";
 
 const App = () => {
-  
-
   return (
     <>
-  <AddMovie/>
+      <AddMovie />
     </>
   );
 };
