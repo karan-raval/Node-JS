@@ -2,7 +2,6 @@ const express = require("express");
 const connet = require("./config/server");
 const cors = require("cors");
 const MovieRouter = require("./Routes/MovieRoutes");
-const MovieModel = require("./Model/MovieSchema");
 const app = express();
 
 app.use(express.json());

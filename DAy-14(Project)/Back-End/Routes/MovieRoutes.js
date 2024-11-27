@@ -26,10 +26,20 @@ MovieRouter.post("/addmovie", Data.single("poster"), async (req, res) => {
       image: req.file ? req.file.filename : null,
     };
     let data = await MovieModel.create(movieData);
-    console.log(data);
+    // console.log(data);
     res.status(200).send({ msg: "Data Added successfully", data: data });
+    res.redirect('/allmovie')
   } catch (error) {
     res.status(401).send({ msg: error.message });
+  }
+});
+
+MovieRouter.get("/allmovie", async (req, res) => {
+  try {
+    let data = await MovieModel.find();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(401).send({ msg: error.message});
   }
 });
 

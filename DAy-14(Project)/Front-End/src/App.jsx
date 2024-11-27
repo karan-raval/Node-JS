@@ -1,11 +1,11 @@
 // import { useEffect, useState } from "react";
+import MainRoutes from "../Routes/MainRoutes";
 import "./App.css";
-import AddMovie from "./Components/AddMovie";
 
 const App = () => {
   return (
     <>
-      <AddMovie />
+      <MainRoutes />
     </>
   );
 };
