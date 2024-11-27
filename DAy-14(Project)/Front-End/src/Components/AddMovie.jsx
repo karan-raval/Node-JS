@@ -5,36 +5,42 @@ const AddMovie = () => {
         movieName:'',
         imdbRating:'',
         genre:'',
-        releaseYear:''
+        releaseYear:'',
+        poster:''
     })
 
-    const handleChange=()=>{
-        
+    const handleChange=(e)=>{
+        let { name, value } = e.target;
+    setstate({ ...state, [name]: value });
     }
 
     const handleSubmit=(e)=>{
-        e.preventDefult()
-        // setstate()
-
+        e.preventDefault();
+console.log(state)
     }
   return (
     <div>
-  <div class="form-container">
+  <div className="form-container">
         <h2>Add Movie Details</h2>
         <form onSubmit={handleSubmit}>
-            <div class="form-group">
-                <label for="movieName">Movie Name</label>
-                <input type="text" id="movieName" name="movieName" required/>
+            <div className="form-group">
+                <label>Movie Name</label>
+                <input type="text" id="movieName" name="movieName" value={state.movieName} onChange={handleChange} required/>
             </div>
 
-            <div class="form-group">
-                <label for="imdbRating">IMDB Rating</label>
-                <input type="number" id="imdbRating" name="imdbRating" min="0" max="10" step="0.1" required/>
+            <div className="form-group">
+                <label>Poster</label>
+                <input type="file" id="movieName" name="poster" value={state.poster} onChange={handleChange} required/>
             </div>
 
-            <div class="form-group">
-                <label for="genre">Genre</label>
-                <select id="genre" name="genre" required>
+            <div className="form-group">
+                <label >IMDB Rating</label>
+                <input type="number" id="imdbRating" name="imdbRating" value={state.imdbRating} onChange={handleChange} min="0" max="10" step="0.1" required/>
+            </div>
+
+            <div className="form-group">
+                <label >Genre</label>
+                <select id="genre" name="genre" value={state.genre} onChange={handleChange} required>
                     <option value="">Select Genre</option>
                     <option value="action">Action</option>
                     <option value="comedy">Comedy</option>
@@ -45,9 +51,9 @@ const AddMovie = () => {
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="releaseYear">Release Year</label>
-                <input type="number" id="releaseYear" name="releaseYear" min="1900" max="2024" required/>
+            <div className="form-group">
+                <label>Release Year</label>
+                <input type="number" onChange={handleChange} value={state.releaseYear} id="releaseYear" name="releaseYear" min="1900" max="2024" required/>
             </div>
 
             <button type="submit">Add Movie</button>

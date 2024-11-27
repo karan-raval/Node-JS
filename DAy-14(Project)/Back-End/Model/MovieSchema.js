@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const MovieSchema = mongoose.Schema({
-  type: { type: String },
   moviename: { type: String },
+  poster: { type: String },
   imdbrating: { type: String },
   Gener: { type: String },
   Year: { type: String },
