@@ -1,6 +1,6 @@
 import React from "react";
 import AddMovie from "../Components/AddMovie";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "../Components/HomePage";
 const MainRoutes = () => {
   return (
