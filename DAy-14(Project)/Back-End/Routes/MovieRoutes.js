@@ -28,7 +28,7 @@ MovieRouter.post("/addmovie", Data.single("poster"), async (req, res) => {
     let data = await MovieModel.create(movieData);
     // console.log(data);
     res.status(200).send({ msg: "Data Added successfully", data: data });
-    res.redirect('/allmovie')
+    // res.redirect('/allmovie')
   } catch (error) {
     res.status(401).send({ msg: error.message });
   }

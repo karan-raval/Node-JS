@@ -18,7 +18,7 @@ const AddMovie = () => {
         }
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
         console.log(state)
         let formData = new FormData();
@@ -27,18 +27,30 @@ const AddMovie = () => {
         formData.append("genre", state.genre);
         formData.append("releaseYear", state.releaseYear);
         formData.append("poster", state.poster);
-        fetch(`http://localhost:3344/addmovie`,{
+        const response=await fetch(`http://localhost:3344/addmovie`,{
             method : "POST",
             body : formData
         })
         .then((res)=>res.json())
         .then((res)=>{
-            console.log(res)
+            
         })
         .catch((err)=>{
             console.log(err)
         })
-    }
+
+        const result = await response.json();
+
+        if (response.ok) {
+          navigate("/allbooks");
+        } else {
+          console.error("Failed to add book:", result.message);
+        }
+      } catch (error) {
+        console.error("Error during submission:", error);
+      }
+      
+    };
   return (
     <div>
   <div className="form-container">
