@@ -10,7 +10,7 @@ const MainRoutes = () => {
       <Routes>
         <Route path="/addmovie" element={<AddMovie />}></Route>
         <Route path="/allmovie" element={<HomePage />}></Route>
-        <Route path="/editmovie" element={<Editmovie />}></Route>
+        <Route path="/editmovie/:id" element={<Editmovie />}></Route>
       </Routes>
     </>
   );

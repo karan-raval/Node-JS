@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../assets/Homepage.css";
+import { Link } from "react-router-dom";
 
 
 const HomePage = () => {
@@ -74,7 +75,7 @@ const HomePage = () => {
                       </div>
                     </div>
                     <div className="describe" style={{ color: "#12efec" }}>Gener : {el.genre}</div>
-                    <div className="btns"><span className="btn1" onClick={() => handleDelete(el._id)}>Delete</span> <a onClick={() => handleEdit(el._id)} className="btn1" href={`/editBook/${el._id}`}>Edit</a></div>
+                    <div className="btns"><span className="btn1" onClick={() => handleDelete(el._id)}>Delete</span> <Link to={`/editMovie/${el._id}`} className="btn1">Edit</Link></div>
                   </div>
                 </div>
               </div>

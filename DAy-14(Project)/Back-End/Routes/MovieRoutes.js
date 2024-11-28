@@ -45,17 +45,71 @@ MovieRouter.get("/allmovie", async (req, res) => {
 });
 
 
-MovieRouter.delete("/deletemovie/:id",async(req,res)=>{
-  const {id} = req.params
-  const data = await MovieModel.findById(id);
-  if(data.image){
-     const image_path = path.join(__dirname,"/public/assets", data.image) 
-     if(fs.existsSync(image_path)){
-       fs.unlinkSync(image_path)
-     }
+MovieRouter.delete("/deletemovie/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await MovieModel.findById(id);
+    
+    if (data.image) {
+      const image_path = path.join(__dirname, "../public/assets", data.image);
+      console.log("Attempting to delete image at:", image_path);
+      
+      if (fs.existsSync(image_path)) {
+        fs.unlinkSync(image_path);
+      }
+    }
+    
+    await MovieModel.findByIdAndDelete(id);
+    res.status(200).send({ msg: "Data Deleted Successfully" });
+  } catch (error) {
+    console.error("Delete error:", error);
+    res.status(500).send({ msg: error.message });
   }
- await MovieModel.findByIdAndDelete(id)
- res.status(200).send({msg:"Data Deleted Successfully"})
-})
+});
+
+MovieRouter.put("/editmovie/:id", Data.single("poster"), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const oldMovie = await MovieModel.findById(id);
+    
+    // Prepare updated movie data
+    const movieData = {
+      movieName: req.body.movieName,
+      imdbRating: req.body.imdbRating,
+      type: req.body.type,
+      genre: req.body.genre,
+      releaseYear: req.body.releaseYear,
+    };
+
+    // Handle image update
+    if (req.file) {
+      // Delete old image if it exists
+      if (oldMovie.image) {
+        const oldImagePath = path.join(__dirname, "../public/assets", oldMovie.image);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
+      }
+      // Add new image
+      movieData.image = req.file.filename;
+    }
+
+    // Update the movie
+    const updatedMovie = await MovieModel.findByIdAndUpdate(
+      id,
+      movieData,
+      { new: true } // This option returns the updated document
+    );
+
+    res.status(200).send({ 
+      msg: "Movie Updated Successfully", 
+      data: updatedMovie 
+    });
+
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).send({ msg: error.message });
+  }
+});
 
 module.exports = MovieRouter;

@@ -1,7 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const editmovie = () => {
-    const [state, setState] = useState({});
+const EditMovie = () => {
+    const { id } = useParams(); // Get the movie ID from URL
+    const [state, setState] = useState({
+        movieName: '',
+        imdbRating: '',
+        type: '',
+        genre: '',
+        releaseYear: '',
+        poster: null,
+    });
+
+    // Add useEffect to fetch movie data
+    useEffect(() => {
+        console.log("Movie ID:", id);
+
+        const fetchMovie = async () => {
+            try {
+                const response = await fetch(`http://localhost:3344/allmovie/${id}`);
+                console.log("Response status:", response.status);
+                
+                if (!response.ok) {
+                    throw new Error('Movie not found');
+                }
+                
+                const data = await response.json();
+                console.log("Movie data:", data);
+                
+                setState({
+                    movieName: data.movieName || '',
+                    imdbRating: data.imdbRating || '',
+                    type: data.type || '',
+                    genre: data.genre || '',
+                    releaseYear: data.releaseYear || '',
+                    poster: null
+                });
+            } catch (error) {
+                console.error("Error fetching movie:", error);
+            }
+        };
+
+        if (id) {
+            fetchMovie();
+        }
+    }, [id]);
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'poster') {
+            setState({ ...state, [name]: e.target.files[0] });
+        } else {
+            setState({ ...state, [name]: value });
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append("movieName", state.movieName);
+        formData.append("imdbRating", state.imdbRating);
+        formData.append("type", state.type);
+        formData.append("genre", state.genre);
+        formData.append("releaseYear", state.releaseYear);
+        if (state.poster) {
+            formData.append("poster", state.poster);
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3344/editmovie/${id}`, {
+                method: "PUT",
+                body: formData,
+            });
+            const data = await response.json();
+            if (response.ok) {
+                console.log("Movie updated successfully:", data);
+                navigate('/'); // Redirect to home page after successful update
+            } else {
+                console.error("Update failed:", data.msg);
+            }
+        } catch (error) {
+            console.error("Error updating movie:", error);
+        }
+    };
     return (
         <>
         <div className="form-container">
@@ -97,5 +181,5 @@ const editmovie = () => {
     )
 }
 
-export default editmovie;
+export default EditMovie;
 
