@@ -54,7 +54,7 @@ const AddMovie = () => {
     return (
         <div className="form-container">
             <h2>Add Movie Details</h2>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form onSubmit={handleSubmit} action='/addmovie' method='post' encType="multipart/form-data">
                 <div className="form-group">
                     <label>Movie Name</label>
                     <input

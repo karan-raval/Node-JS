@@ -1,55 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/Homepage.css";
 
 const HomePage = () => {
-  const [state, setstate] = useState();
-  fetch("http://localhost:3344/allmovie")
-    .then((Res) => Res.json())
-    .then((Res) =>
-      // console.log(Res)
-      setstate(Res)
-    );
+  const [movies, setMovies] = useState([]); // Initialize state as an empty array
+
+  // Fetch movies data on component mount
+  useEffect(() => {
+    fetch("http://localhost:3344/allmovie")
+      .then((res) => res.json())
+      .then((data) => setMovies(data))
+      .catch((error) => console.error("Error fetching movies:", error));
+  }, []); // Empty dependency array ensures this runs once on mount
+
   return (
     <>
-      <div class="wrapper">
-        <div class="search-block">
+      <div className="wrapper">
+        <div className="search-block">
           <a href="/">
             <h1>TheMovieDB</h1>
           </a>
-          <form id="search-form">
+          <form
+            id="search-form"
+            onSubmit={(e) => {
+              e.preventDefault(); // Prevent form default behavior
+              // Add search logic here if needed
+            }}
+          >
             <input type="text" id="query" placeholder="Search movies..." />
-            <button class="btn" type="submit">
+            <button className="btn" type="submit">
               Search
             </button>
           </form>
         </div>
-        <div class="row" id="root">
-          <div class="col">
-            state.map((el)=>{
-              <div class="card">
-                <a class="card-media">
-                  <img src="${movie.poster_path}" alt="" width="100%" />
-                </a>
-                <div class="card-content">
-                  <div class="card-cont-header">
-                    <div class="cont-left">
-                      <h3 style={{ fontWeight: 600 }}>$movie.original_title</h3>
-                      <span style={{ color: "#12efec" }}>
-                        $movie.release_date
-                      </span>
+        <div className="row" id="root">
+          {movies.length > 0 ? (
+            movies.map((el, index) => (
+              <div className="col" key={index}>
+                <div className="card">
+                  <a className="card-media">
+                    <img src={el.poster_path} alt="Movie Poster" width="100%" />
+                  </a>
+                  <div className="card-content">
+                    <div className="card-cont-header">
+                      <div className="cont-left">
+                        <h3 style={{ fontWeight: 600 }}>{el.movieName}</h3>
+                        <span style={{ color: "#12efec" }}>
+                          {el.release_date}
+                        </span>
+                      </div>
+                      <div className="cont-right">
+                        <a
+                          href={el.poster_path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn"
+                        >
+                          See image
+                        </a>
+                      </div>
                     </div>
-                    <div class="cont-right">
-                      <a href="" target="_blank" class="btn">
-                        See image
-                      </a>
-                    </div>
+                    <div className="describe">{el.overview}</div>
                   </div>
-                  <div class="describe">$movie.overview</div>
                 </div>
               </div>
-            }
-            )
-          </div>
+            ))
+          ) : (
+            <p>No movies found!</p>
+          )}
         </div>
       </div>
     </>
