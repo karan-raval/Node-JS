@@ -11,7 +11,11 @@ const HomePage = () => {
       .then((res) => res.json())
       .then((data) => setMovies(data))
       .catch((error) => console.error("Error fetching movies:", error));
-  }, []); 
+  }, [delmovie]); 
+
+  const handleEdit = (id) => {
+    console.log(id);
+  }
 
 
   // console.log(movies)
@@ -24,9 +28,6 @@ const HomePage = () => {
     .then((data) => setdelMovies(data))
     .catch((error) => console.error("Error deleting movie:", error));
   }
-  useEffect(() => {
-  
-  }, [delmovie])
 
   return (
     <>
@@ -73,7 +74,7 @@ const HomePage = () => {
                       </div>
                     </div>
                     <div className="describe" style={{ color: "#12efec" }}>Gener : {el.genre}</div>
-                    <div className="btns"><span className="btn1" onClick={() => handleDelete(el._id)}>Delete</span> <a className="btn1" href={`/editBook/${el._id}`}>Edit</a></div>
+                    <div className="btns"><span className="btn1" onClick={() => handleDelete(el._id)}>Delete</span> <a onClick={() => handleEdit(el._id)} className="btn1" href={`/editBook/${el._id}`}>Edit</a></div>
                   </div>
                 </div>
               </div>
