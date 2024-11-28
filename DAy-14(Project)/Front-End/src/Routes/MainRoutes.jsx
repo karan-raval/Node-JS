@@ -7,6 +7,7 @@ const MainRoutes = () => {
     <>
       <Routes>
         <Route path="/addmovie" element={<AddMovie />}></Route>
+        {/* <Route path="/deleteBook/:id" element={<DeleteBook />}></Route> */}
         <Route path="/allmovie" element={<HomePage />}></Route>
       </Routes>
     </>

@@ -1,4 +1,4 @@
-.body {
+body {
   color: white;
   font-family: "microsoft yahei", arial, -apple-system, BlinkMacSystemFont,
     "segoe ui", roboto, oxygen, cantarell, "helvetica neue", ubuntu, sans-serif;
@@ -77,6 +77,32 @@
   transition: inherit;
 }
 
+.wrapper .card .card-content .btns {
+  max-height: 0;
+  opacity: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: inherit;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btns .btn1{
+  width: 80px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #fff;
+  font-size: medium;
+  border-radius: 20px;
+  height: 40px;
+  background-color: #06c3dd;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.btn1:hover{
+  background-color: #0092F8;
+}
+
 .wrapper .card:hover {
   cursor: pointer;
 }
@@ -91,6 +117,12 @@
 }
 
 .wrapper .card:hover .describe {
+  max-height: 200px;
+  padding: 8px 0;
+  opacity: 1;
+}
+
+.wrapper .card:hover .btns{
   max-height: 200px;
   padding: 8px 0;
   opacity: 1;

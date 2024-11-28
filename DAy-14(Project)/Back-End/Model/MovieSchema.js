@@ -5,6 +5,7 @@ const MovieSchema = mongoose.Schema({
   image: { type: String },
   imdbRating: { type: String },
   genre: { type: String },
+  type: { type: String },
   releaseYear: { type: String },
 });
 const MovieModel = mongoose.model("movie", MovieSchema);

@@ -5,6 +5,7 @@ const AddMovie = () => {
     const [state, setState] = useState({
         movieName: '',
         imdbRating: '',
+        type:'',
         genre: '',
         releaseYear: '',
         poster: null,
@@ -28,6 +29,7 @@ const AddMovie = () => {
         const formData = new FormData();
         formData.append('movieName', state.movieName);
         formData.append('imdbRating', state.imdbRating);
+        formData.append('type', state.type);
         formData.append('genre', state.genre);
         formData.append('releaseYear', state.releaseYear);
         formData.append('poster', state.poster);
@@ -90,6 +92,19 @@ const AddMovie = () => {
                         step="0.1"
                         required
                     />
+                </div>
+                <div className="form-group">
+                    <label>Type</label>
+                    <select
+                        id="genre"
+                        name="type"
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">Select Type</option>
+                        <option value="movie">Movie</option>
+                        <option value="web-series">Web-Series</option>
+                    </select>
                 </div>
 
                 <div className="form-group">

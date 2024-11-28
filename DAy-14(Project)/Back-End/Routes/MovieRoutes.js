@@ -21,6 +21,7 @@ MovieRouter.post("/addmovie", Data.single("poster"), async (req, res) => {
     const movieData = {
       movieName: req.body.movieName,
       imdbRating: req.body.imdbRating,
+      type: req.body.type,
       genre: req.body.genre,
       releaseYear: req.body.releaseYear,
       image: req.file ? req.file.filename : null,
@@ -42,5 +43,19 @@ MovieRouter.get("/allmovie", async (req, res) => {
     res.status(401).send({ msg: error.message});
   }
 });
+
+
+MovieRouter.delete("/deletemovie/:id",async(req,res)=>{
+  const {id} = req.params
+  const data = await MovieModel.findById(id);
+  if(data.image){
+     const image_path = path.join(__dirname,"/public/assets", data.image) 
+     if(fs.existsSync(image_path)){
+       fs.unlinkSync(image_path)
+     }
+  }
+ await MovieModel.findByIdAndDelete(id)
+ res.status(200).send({msg:"Data Deleted Successfully"})
+})
 
 module.exports = MovieRouter;
