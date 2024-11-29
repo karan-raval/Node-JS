@@ -9,7 +9,7 @@ const EditMovie = () => {
         type: '',
         genre: '',
         releaseYear: '',
-        poster: null,
+        image: null,
     });
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const EditMovie = () => {
                 }
                 
                 const data = await response.json();
-                console.log("Movie data:", data);
+                console.log(data);
                 
                 setState({
                     movieName: data.movieName || '',
@@ -33,7 +33,7 @@ const EditMovie = () => {
                     type: data.type || '',
                     genre: data.genre || '',
                     releaseYear: data.releaseYear || '',
-                    poster: null
+                    image: data.image || ""
                 });
             } catch (error) {
                 console.error("Error fetching movie:", error);
@@ -49,7 +49,7 @@ const EditMovie = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'poster') {
+        if (name === 'image') {
             setState({ ...state, [name]: e.target.files[0] });
         } else {
             setState({ ...state, [name]: value });
@@ -65,19 +65,18 @@ const EditMovie = () => {
         formData.append("type", state.type);
         formData.append("genre", state.genre);
         formData.append("releaseYear", state.releaseYear);
-        if (state.poster) {
-            formData.append("poster", state.poster);
+        if (state.image) {
+            formData.append("image", state.image);
         }
-
         try {
-            const response = await fetch(`http://localhost:3344/allmovie/${id}`, {
+            const response = await fetch(`http://localhost:3344/editmovie/${id}`, {
                 method: "PUT",
                 body: formData,
             });
             const data = await response.json();
             if (response.ok) {
                 console.log("Movie updated successfully:", data);
-                navigate('/'); 
+                navigate('/allmovie'); 
             } else {
                 console.error("Update failed:", data.msg);
             }
@@ -107,7 +106,7 @@ const EditMovie = () => {
                     <input
                         type="file"
                         id="poster"
-                        name="poster"
+                        name="image"
                         onChange={handleChange}
                         required
                     />
@@ -122,6 +121,7 @@ const EditMovie = () => {
                         onChange={handleChange}
                         min="0"
                         max="10"
+                        value={state.imdbRating}
                         step="0.1"
                         required
                     />
@@ -132,6 +132,7 @@ const EditMovie = () => {
                         id="genre"
                         name="type"
                         onChange={handleChange}
+                        value={state.type}
                         required
                     >
                         <option value="">Select Type</option>
@@ -146,6 +147,7 @@ const EditMovie = () => {
                         id="genre"
                         name="genre"
                         onChange={handleChange}
+                        value={state.genre}
                         required
                     >
                         <option value="">Select Genre</option>
@@ -181,4 +183,3 @@ const EditMovie = () => {
 }
 
 export default EditMovie;
-

@@ -19,7 +19,7 @@ const HomePage = () => {
   }
 
 
-  // console.log(movies)
+  console.log(movies)
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3344/deletemovie/${id}`, {

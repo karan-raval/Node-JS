@@ -43,6 +43,14 @@ MovieRouter.get("/allmovie", async (req, res) => {
     res.status(401).send({ msg: error.message});
   }
 });
+MovieRouter.get("/allmovie/:id", async (req, res) => {
+  try {
+    let data = await MovieModel.findOne({_id : req.params.id});
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(401).send({ msg: error.message});
+  }
+});
 
 
 MovieRouter.delete("/deletemovie/:id", async (req, res) => {
@@ -52,7 +60,6 @@ MovieRouter.delete("/deletemovie/:id", async (req, res) => {
     
     if (data.image) {
       const image_path = path.join(__dirname, "../public/assets", data.image);
-      console.log("Attempting to delete image at:", image_path);
       
       if (fs.existsSync(image_path)) {
         fs.unlinkSync(image_path);
@@ -67,7 +74,7 @@ MovieRouter.delete("/deletemovie/:id", async (req, res) => {
   }
 });
 
-MovieRouter.put("/editmovie/:id", Data.single("poster"), async (req, res) => {
+MovieRouter.put("/editmovie/:id", Data.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
     const oldMovie = await MovieModel.findById(id);
@@ -79,7 +86,9 @@ MovieRouter.put("/editmovie/:id", Data.single("poster"), async (req, res) => {
       type: req.body.type,
       genre: req.body.genre,
       releaseYear: req.body.releaseYear,
+      image: req.file ? req.file.filename : null,
     };
+    console.log(movieData)
 
     // Handle image update
     if (req.file) {
@@ -90,15 +99,12 @@ MovieRouter.put("/editmovie/:id", Data.single("poster"), async (req, res) => {
           fs.unlinkSync(oldImagePath);
         }
       }
-      // Add new image
-      movieData.image = req.file.filename;
     }
 
     // Update the movie
     const updatedMovie = await MovieModel.findByIdAndUpdate(
       id,
       movieData,
-      { new: true } // This option returns the updated document
     );
 
     res.status(200).send({ 
