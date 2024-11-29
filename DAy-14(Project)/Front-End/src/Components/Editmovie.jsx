@@ -106,9 +106,9 @@ const EditMovie = () => {
                     <input
                         type="file"
                         id="poster"
+                        style={{color:'black'}}
                         name="image"
                         onChange={handleChange}
-                        required
                     />
                 </div>
 
@@ -173,8 +173,7 @@ const EditMovie = () => {
                         required
                     />
                 </div>
-
-                <button type="submit">Add Movie</button>
+                <button type="submit">Update Movie</button>
             </form>
         </div>
         
