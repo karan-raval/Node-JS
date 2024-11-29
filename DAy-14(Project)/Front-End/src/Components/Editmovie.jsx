@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EditMovie = () => {
-    const { id } = useParams(); // Get the movie ID from URL
+    const { id } = useParams(); 
     const [state, setState] = useState({
         movieName: '',
         imdbRating: '',
@@ -12,7 +12,6 @@ const EditMovie = () => {
         poster: null,
     });
 
-    // Add useEffect to fetch movie data
     useEffect(() => {
         console.log("Movie ID:", id);
 
@@ -71,14 +70,14 @@ const EditMovie = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3344/editmovie/${id}`, {
+            const response = await fetch(`http://localhost:3344/allmovie/${id}`, {
                 method: "PUT",
                 body: formData,
             });
             const data = await response.json();
             if (response.ok) {
                 console.log("Movie updated successfully:", data);
-                navigate('/'); // Redirect to home page after successful update
+                navigate('/'); 
             } else {
                 console.error("Update failed:", data.msg);
             }

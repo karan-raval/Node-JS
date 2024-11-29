@@ -69,10 +69,11 @@ const AddMovie = () => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" >
                     <label>Poster</label>
                     <input
                         type="file"
+                        style={{color:'black'}}
                         id="poster"
                         name="poster"
                         onChange={handleChange}
