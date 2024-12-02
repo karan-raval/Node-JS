@@ -86,7 +86,7 @@ MovieRouter.put("/editmovie/:id", Data.single("image"), async (req, res) => {
       type: req.body.type,
       genre: req.body.genre,
       releaseYear: req.body.releaseYear,
-      image: req.file ? req.file.filename : null,
+      image: req.file ? req.file.filename : oldMovie.image,
     };
     console.log(movieData)
 
