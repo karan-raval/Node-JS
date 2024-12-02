@@ -3,9 +3,15 @@ const express =require('express')
 const Movierouter= express.Router()
 
 
-Movierouter.get('/',(req,res)=>{
+Movierouter.get('/login',(req,res)=>{
 
-    res.render('LoginSignup.ejs')
+    res.render('Login.ejs')
 })
+
+Movierouter.get('/signup',(req,res)=>{
+
+    res.render('Signup.ejs')
+})
+
 
 module.exports=Movierouter
