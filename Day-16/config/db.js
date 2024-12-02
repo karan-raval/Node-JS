@@ -1,4 +1,4 @@
- const mongoose =('mongoose')
+ const mongoose =require('mongoose')
 
  const connect = async()=>{
     await mongoose.connect('mongodb+srv://karan:raval@cluster0.howpl.mongodb.net/MovieData?retryWrites=true&w=majority&appName=Cluster0')

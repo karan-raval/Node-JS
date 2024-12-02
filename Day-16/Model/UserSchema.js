@@ -6,3 +6,4 @@ const UserSchema=mongoose.schema({
     password:{type:String,require:true},
     type:{type:String,default:"user"},
 })
+module.exports=UserSchema
