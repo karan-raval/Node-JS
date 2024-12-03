@@ -27,7 +27,7 @@ body {
 .forms {
 	display: flex;
 	/* align-items: flex-start; */
-	margin-top: 30px;
+	/* margin-top: 30px; */
 }
 
 .form-wrapper {
@@ -122,20 +122,12 @@ body {
 .form {
 	overflow: hidden;
 	min-width: 260px;
-	margin-top: 50px;
+	/* margin-top: 50px; */
 	padding: 30px 25px;
   border-radius: 5px;
 	transform-origin: top;
 	background-color: #cddbef;
 }
-
-/* .form-login {
-	animation: hideLogin .3s ease-out forwards;
-}
-
-.form-wrapper.is-active .form-login {
-	animation: showLogin .3s ease-in forwards;
-} */
 
 @keyframes showLogin {
 	0% {
@@ -223,7 +215,7 @@ body {
 
 .input-block label {
 	font-size: 14px;
-  color: #dc4504;
+  color: #0f04dc;
 }
 
 .input-block input {

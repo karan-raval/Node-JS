@@ -1,4 +1,6 @@
 const express =require('express')
+const UserSchema = require('../Model/UserSchema')
+const UserModel = require('../Model/UserSchema')
 
 const UserRouter= express.Router()
 
@@ -13,8 +15,8 @@ UserRouter.get('/signup',(req,res)=>{
     res.render('Signup.ejs')
 })
 
-
 UserRouter.post("/signup",async(req,res)=>{
+    // const{usename,email,password}=req.body
     const data = req.body;
   try {
        let a = new UserModel(data)
@@ -25,11 +27,12 @@ UserRouter.post("/signup",async(req,res)=>{
   }
 })
 
-
 UserRouter.post("/login",async(req,res)=>{
     const {email,password}  = req.body
+    console.log(email,password)
   try {
       let user = await UserModel.findOne({email : email})
+      console.log(user)
       if(!user){
         return res.status(401).json({msg : "Email is Not Registered"})
       }

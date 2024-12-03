@@ -11,14 +11,14 @@
     <%-include ('Navbar')%>
     <section class="forms-section">
       <div class="form-wrapper is-active">
-        <form class="form form-signup" action="/signup"  method="post">
+        <form class="form" action="/signup"  method="post">
           <fieldset>
             <legend>
               Please, enter your email, password and password confirmation for
               sign up.
             </legend>
             <div class="input-block">
-              <label for="signup-email"></label>
+              <label for="signup-email">User Name</label>
               <input id="signup-email" name="username" type="text" required />
             </div>
             <div class="input-block">
@@ -28,10 +28,6 @@
             <div class="input-block">
               <label for="signup-password">Password</label>
               <input id="signup-password" name="password" type="password" required />
-            </div>
-            <div class="input-block">
-              <label for="signup-password-confirm">Confirm password</label>
-              <input id="signup-password-confirm" type="password" required />
             </div>
           </fieldset>
           <button type="submit" class="btn-signup">Register</button>
