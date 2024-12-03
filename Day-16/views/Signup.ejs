@@ -8,10 +8,10 @@
   </head>
 
   <body>
+    <%-include ('Navbar')%>
     <section class="forms-section">
-      <div class="form-wrapper">
-        <%-include ('Navbar')%>
-        <form class="form form-signup">
+      <div class="form-wrapper is-active">
+        <form class="form form-signup" action="/signup"  method="post">
           <fieldset>
             <legend>
               Please, enter your email, password and password confirmation for
