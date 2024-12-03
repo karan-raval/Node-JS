@@ -19,6 +19,18 @@ UserRouter.post("/signup",async(req,res)=>{
     // const{usename,email,password}=req.body
     const data = req.body;
   try {
+       const { email } = data;
+
+       // Check if email already exists
+       const existingUser = await UserModel.findOne({ email });
+       
+       if (existingUser) {
+         return res.status(400).json({
+           message: "Email is already registered"
+         });
+       }
+
+       // If email doesn't exist, proceed with registration
        let a = new UserModel(data)
        await a.save()
        return res.redirect("/login")
