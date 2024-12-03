@@ -1,14 +1,14 @@
 const express =require('express')
 
-const Movierouter= express.Router()
+const UserRouter= express.Router()
 
 
-Movierouter.get('/login',(req,res)=>{
+UserRouter.get('/login',(req,res)=>{
 
     res.render('Login.ejs')
 })
 
-Movierouter.get('/signup',(req,res)=>{
+UserRouter.get('/signup',(req,res)=>{
 
     res.render('Signup.ejs')
 })
@@ -43,4 +43,4 @@ UserRouter.post("/login",async(req,res)=>{
 })
 
 
-module.exports=Movierouter
+module.exports=UserRouter
