@@ -1,8 +1,6 @@
 const http = require("http");
 const path = require("path");
 const fs = require("fs");
-// let home = path.join(__dirname,"index.html")
-// console.log(home)
 let server = http.createServer((req, res) => {
   if (req.url == "/") {
     let a = fs.readFileSync("index.html",'utf-8')
