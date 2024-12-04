@@ -7,5 +7,5 @@ app.get("/",(req,res)=>{
 })
 
 app.listen(5000,()=>{
-    console.log("portal is running");
+    console.log("portal is running at 5000");
 })
