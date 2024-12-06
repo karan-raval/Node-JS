@@ -24,10 +24,6 @@ const Login = () => {
     e.preventDefault();
     console.log(state);
 
-    const formData = new FormData();
-    formData.append("username", state.movieName);
-    formData.append("email", state.imdbRating);
-    formData.append("password", state.type);
     try {
       const response = await fetch(`http://localhost:3333/login`, {
         method: "POST",
@@ -41,7 +37,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("User added successfully:", result);
-        navigate("/allmovie");
+        navigate("/");
       } else {
         console.error("Failed to add movie:", result.message);
       }
