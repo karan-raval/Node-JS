@@ -3,12 +3,50 @@ import Footer from "../Components/Footer";
 import '../assets/css/Login.css'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { db } from '../Firebase/Firebase';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 const Signup = () => {
  
+  const [state, setState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+      setState({ ...state, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(state);
+
+    const formData = new FormData();
+    formData.append("username", state.movieName);
+    formData.append("email", state.imdbRating);
+    formData.append("password", state.type);
+    try {
+      const response = await fetch(`http://localhost:3333/addmovie`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("User added successfully:", result);
+        navigate("/allmovie");
+      } else {
+        console.error("Failed to add movie:", result.message);
+      }
+    } catch (error) {
+      console.error("Error during submission:", error);
+    }
+  };
+
   return (
     <>
     <ToastContainer/>
@@ -20,15 +58,15 @@ const Signup = () => {
         <form id="loginForm" onSubmit={handleSubmit} >
           <div className="input-group">
             <label for="username">Username</label>
-            <input type="text"  name="username" required  onChange={(e)=>setname(e.target.value)} />
+            <input type="text"  name="username" required  onChange={handleChange} />
           </div>
           <div className="input-group">
             <label for="username">Email</label>
-            <input type="email" name="email" required  onChange={(e)=>setEmail(e.target.value)} />
+            <input type="email" name="email" required  onChange={handleChange} />
           </div>
           <div className="input-group">
             <label for="password">Password</label>
-            <input type="password"  name="password" required  onChange={(e)=>setPass(e.target.value)} />
+            <input type="password"  name="password" required  onChange={handleChange} />
           </div>
           <button type="submit" className="button">Register</button>
         </form>
