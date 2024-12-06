@@ -24,14 +24,13 @@ const Signup = () => {
     e.preventDefault();
     console.log(state);
 
-    const formData = new FormData();
-    formData.append("username", state.username);
-    formData.append("email", state. email);
-    formData.append("password", state.password);
     try {
       const response = await fetch(`http://localhost:3333/signup`, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
       });
 
       const result = await response.json();
@@ -56,15 +55,15 @@ const Signup = () => {
         <h1>Signup</h1>
         <form id="loginForm" action="signup" method="POST" onSubmit={handleSubmit} >
           <div className="input-group">
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input type="text"  name="username" required  onChange={handleChange} />
           </div>
           <div className="input-group">
-            <label for="username">Email</label>
+            <label htmlFor="username">Email</label>
             <input type="email" name="email" required  onChange={handleChange} />
           </div>
           <div className="input-group">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input type="password"  name="password" required  onChange={handleChange} />
           </div>
           <button type="submit" className="button">Register</button>

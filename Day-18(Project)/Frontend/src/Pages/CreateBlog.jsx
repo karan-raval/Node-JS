@@ -1,6 +1,4 @@
 import { React, useState } from "react";
-import { addData } from "../Redux/Product/action";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";

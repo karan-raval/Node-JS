@@ -29,9 +29,12 @@ const Login = () => {
     formData.append("email", state.imdbRating);
     formData.append("password", state.type);
     try {
-      const response = await fetch(`http://localhost:3333/addmovie`, {
+      const response = await fetch(`http://localhost:3333/login`, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
       });
 
       const result = await response.json();
@@ -63,8 +66,8 @@ const Login = () => {
       <div className="body">
         <div className="login-container">
           <h1>Login</h1>
-          <form id="loginForm" onSubmit={handleSubmit}>
-            <div className="input-group">
+          <form id="loginForm" action="/login" method="post" onSubmit={handleSubmit}>
+            {/* <div className="input-group">
               <label>Username</label>
               <input
                 type="text"
@@ -72,7 +75,7 @@ const Login = () => {
                 name="username"
                 required
               />
-            </div>
+            </div> */}
 
             <div className="input-group">
               <label>Email</label>
@@ -99,7 +102,7 @@ const Login = () => {
           </form>
           <button
             type="button"
-            onClick={handleClick}
+            // onClick={handleClick}
             className="btn_1 green button full_width text-center"
           >
             Log in With Google &nbsp;&nbsp;

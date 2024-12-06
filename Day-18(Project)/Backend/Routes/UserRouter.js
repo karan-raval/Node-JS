@@ -72,79 +72,97 @@ UserRouter.post("/signup", async (req, res) => {
     const UserData = {
       username: req.body.username,
       email: req.body.email,
-      type: req.body.password,
+      password: req.body.password,
     };
     let data = await UserModel.create(UserData);
-    // console.log(data);
     res.status(200).send({ msg: "User Added successfully", data: data });
-    // res.redirect('/allmovie')
   } catch (error) {
     res.status(401).send({ msg: error.message });
   }
 });
 
-UserRouter.get("/allmovie", async (req, res) => {
-  try {
-    let data = await UserModel.find();
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(401).send({ msg: error.message});
-  }
-});
-UserRouter.get("/allmovie/:id", async (req, res) => {
-  try {
-    let data = await UserModel.findOne({_id : req.params.id});
-    res.status(200).send(data);
-  } catch (error) {
-    res.status(401).send({ msg: error.message});
-  }
-});
-
-
-UserRouter.delete("/deletemovie/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const data = await UserModel.findById(id);
-    
-    if (data.image) {
-      const image_path = path.join(__dirname, "../public/assets", data.image);
-      
-      if (fs.existsSync(image_path)) {
-        fs.unlinkSync(image_path);
-      }
+UserRouter.post("/login",async(req,res)=>{
+  const {email,password}  = req.body
+  console.log(email,password)
+try {
+    let user = await UserModel.findOne({email : email})
+    console.log(user)
+    if(!user){
+      return res.status(401).json({msg : "Email is Not Registered"})
     }
+    if(user.password != password){
+        return res.status(401).json({msg : "Password Incorrect"})
+    }
+    res.status(200).json({msg : "User Login Successfully"})
+} catch (error) {
+    res.status(401).json({msg : error.message})
+}
+})
+
+
+
+// UserRouter.get("/allmovie", async (req, res) => {
+//   try {
+//     let data = await UserModel.find();
+//     res.status(200).send(data);
+//   } catch (error) {
+//     res.status(401).send({ msg: error.message});
+//   }
+// });
+// UserRouter.get("/allmovie/:id", async (req, res) => {
+//   try {
+//     let data = await UserModel.findOne({_id : req.params.id});
+//     res.status(200).send(data);
+//   } catch (error) {
+//     res.status(401).send({ msg: error.message});
+//   }
+// });
+
+
+// UserRouter.delete("/deletemovie/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const data = await UserModel.findById(id);
     
-    await UserModel.findByIdAndDelete(id);
-    res.status(200).send({ msg: "Data Deleted Successfully" });
-  } catch (error) {
-    console.error("Delete error:", error);
-    res.status(500).send({ msg: error.message });
-  }
-});
-
-UserRouter.put("/editmovie/:id",  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const oldMovie = await UserModel.findById(id);
+//     if (data.image) {
+//       const image_path = path.join(__dirname, "../public/assets", data.image);
+      
+//       if (fs.existsSync(image_path)) {
+//         fs.unlinkSync(image_path);
+//       }
+//     }
     
-    // Prepare updated movie data
-    const movieData = {
-      movieName: req.body.movieName,
-      imdbRating: req.body.imdbRating,
-      type: req.body.type,
-    };
-    console.log(movieData)
+//     await UserModel.findByIdAndDelete(id);
+//     res.status(200).send({ msg: "Data Deleted Successfully" });
+//   } catch (error) {
+//     console.error("Delete error:", error);
+//     res.status(500).send({ msg: error.message });
+//   }
+// });
+
+// UserRouter.put("/editmovie/:id",  async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const oldMovie = await UserModel.findById(id);
+    
+//     // Prepare updated movie data
+//     const movieData = {
+//       movieName: req.body.movieName,
+//       imdbRating: req.body.imdbRating,
+//       type: req.body.type,
+//     };
+//     console.log(movieData)
 
 
-    res.status(200).send({ 
-      msg: "Movie Updated Successfully", 
-      data: updatedMovie 
-    });
+//     res.status(200).send({ 
+//       msg: "Movie Updated Successfully", 
+//       data: updatedMovie 
+//     });
 
-  } catch (error) {
-    console.error("Update error:", error);
-    res.status(500).send({ msg: error.message });
-  }
-});
+//   } catch (error) {
+//     console.error("Update error:", error);
+//     res.status(500).send({ msg: error.message });
+//   }
+// });
 
 module.exports = UserRouter;
