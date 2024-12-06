@@ -2,75 +2,50 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "../assets/css/Login.css";
-// import { Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { db } from "../Firebase/Firebase";
 import { toast, ToastContainer } from "react-toastify";
-import { google, userdatas } from "../Redux/User/UserReducer";
 import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [pass, setPass] = useState("");
-  const [d, setD] = useState([]);
-  const UserCollection = collection(db, "users");
+  
+  const [state, setState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const state = useSelector((s) => s.UserReducer);
-  console.log(state);
-  console.log(state.isLogin);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        let data = await getDocs(UserCollection);
-        let val = data.docs.map((el) => ({
-          id: el.id,
-          ...el.data(),
-        }));
-        setD(val);
-      } catch (error) {
-        toast.error("Failed to load user data", { autoClose: 3000 });
-      }
-    };
-    getData();
-  }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+      setState({ ...state, [name]: value });
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(state);
 
-    let user = d.filter(
-      (el) => el.email === email && el.pass === pass && el.name === username
-    );
-    console.log(user);
-    if (user.length > 0) {
-      toast.success("Login Successful!", { autoClose: 3000 });
-      dispatch(userdatas)(user[0]);
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    } else {
-      toast.error("Login Unsuccessful! Please check your credentials.", {
-        autoClose: 3000,
+    const formData = new FormData();
+    formData.append("username", state.movieName);
+    formData.append("email", state.imdbRating);
+    formData.append("password", state.type);
+    try {
+      const response = await fetch(`http://localhost:3333/addmovie`, {
+        method: "POST",
+        body: formData,
       });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("User added successfully:", result);
+        navigate("/allmovie");
+      } else {
+        console.error("Failed to add movie:", result.message);
+      }
+    } catch (error) {
+      console.error("Error during submission:", error);
     }
   };
-
-  const handleClick = () => {
-    dispatch(google);
-  };
-
-  useEffect(() => {
-    if (state.isLogin) {
-      toast.success("Login Successful!", { autoClose: 3000 });
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    }
-  }, [state.isLogin, navigate]);
-
   return (
     <>
       <Header />
@@ -84,7 +59,6 @@ const Login = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        // theme="colored"
       />
       <div className="body">
         <div className="login-container">
@@ -94,7 +68,7 @@ const Login = () => {
               <label>Username</label>
               <input
                 type="text"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleChange}
                 name="username"
                 required
               />
@@ -104,7 +78,7 @@ const Login = () => {
               <label>Email</label>
               <input
                 type="text"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
                 name="email"
                 required
               />
@@ -114,7 +88,7 @@ const Login = () => {
               <label>Password</label>
               <input
                 type="password"
-                onChange={(e) => setPass(e.target.value)}
+                onChange={handleChange}
                 name="password"
                 required
               />
