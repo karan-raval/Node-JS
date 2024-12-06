@@ -25,11 +25,11 @@ const Signup = () => {
     console.log(state);
 
     const formData = new FormData();
-    formData.append("username", state.movieName);
-    formData.append("email", state.imdbRating);
-    formData.append("password", state.type);
+    formData.append("username", state.username);
+    formData.append("email", state. email);
+    formData.append("password", state.password);
     try {
-      const response = await fetch(`http://localhost:3333/addmovie`, {
+      const response = await fetch(`http://localhost:3333/signup`, {
         method: "POST",
         body: formData,
       });
@@ -38,7 +38,7 @@ const Signup = () => {
 
       if (response.ok) {
         console.log("User added successfully:", result);
-        navigate("/allmovie");
+        navigate("/login");
       } else {
         console.error("Failed to add movie:", result.message);
       }
@@ -50,12 +50,11 @@ const Signup = () => {
   return (
     <>
     <ToastContainer/>
-
      <Header />
       <div className="body">
       <div className="login-container">
         <h1>Signup</h1>
-        <form id="loginForm" onSubmit={handleSubmit} >
+        <form id="loginForm" action="signup" method="POST" onSubmit={handleSubmit} >
           <div className="input-group">
             <label for="username">Username</label>
             <input type="text"  name="username" required  onChange={handleChange} />
