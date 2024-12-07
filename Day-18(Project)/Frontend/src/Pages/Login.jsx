@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   
   const [state, setState] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -34,9 +33,8 @@ const Login = () => {
       });
 
       const result = await response.json();
-
       if (response.ok) {
-        console.log("User added successfully:", result);
+        alert("Login Successfull")
         navigate("/");
       } else {
         console.error("Failed to add movie:", result.message);
@@ -62,7 +60,7 @@ const Login = () => {
       <div className="body">
         <div className="login-container">
           <h1>Login</h1>
-          <form id="loginForm" action="/login" method="post" onSubmit={handleSubmit}>
+          <form id="loginForm" onSubmit={handleSubmit}>
             {/* <div className="input-group">
               <label>Username</label>
               <input
