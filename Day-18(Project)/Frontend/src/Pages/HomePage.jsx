@@ -9,6 +9,7 @@ import salad from "../assets/images/salad-150.jpg";
 import lamp from "../assets/images/lamp-400.jpg";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import '../App.css'
 
 const HomePage = () => {
   return (
