@@ -71,7 +71,6 @@ const CreateBlog = () => {
       sort,
     };
 
-    dispatch(addData)(obj);
     navigate("/");
   };
 
