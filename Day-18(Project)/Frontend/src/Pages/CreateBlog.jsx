@@ -36,12 +36,12 @@ const CreateBlog = () => {
   let all = date + " " + month + " " + year;
 
   const navigate = useNavigate();
-  // console.log(state);
   const [fromdata, setState] = useState({
     blogname: "",
     heading: "",
     des: "",
     imgURL: "",
+    all:all
   });
 
   const handleChange = async(e) => {
@@ -55,28 +55,34 @@ const CreateBlog = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-  
+    console.log(fromdata)
+   
     try {
-      const response = await fetch(`http://localhost:3333/login`, {
+      const response = await fetch(`http://localhost:3333/createblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(state),
+        body: JSON.stringify(fromdata),
       });
 
       const result = await response.json();
       if (response.ok) {
-        alert("Login Successfull")
+        alert("BLog Data Added Successfull")
         navigate("/");
       } else {
-        console.error("Failed to add movie:", result.message);
+        console.error("Failed to add BLog Data:", result.message);
       }
     } catch (error) {
       console.error("Error during submission:", error);
     }
 
-    navigate("/");
+  setState({
+    blogname: "",
+    heading: "",
+    des: "",
+    imgURL: "",
+  });
   };
 
   let { blogname, heading, des, imgURL } = fromdata;
@@ -95,6 +101,7 @@ const CreateBlog = () => {
                     <div className="form-field">
                       <input
                         onChange={handleChange}
+                        value={blogname}
                         name="blogname"
                         type="text"
                         className="full-width"
@@ -106,6 +113,7 @@ const CreateBlog = () => {
                       <input
                         onChange={handleChange}
                         name="heading"
+                        value={heading}
                         type="text"
                         className="full-width"
                         placeholder="Enter Heading"
@@ -115,6 +123,7 @@ const CreateBlog = () => {
                     <div className="form-field">
                       <input
                         onChange={handleChange}
+                        value={des}
                         name="des"
                         type="text"
                         className="full-width"
@@ -145,6 +154,7 @@ const CreateBlog = () => {
                     <div className="form-field">
                       <input
                         onChange={handleChange}
+                        value={imgURL}
                         name="imgURL"
                         type="text"
                         className="full-width"

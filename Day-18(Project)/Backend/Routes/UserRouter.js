@@ -1,19 +1,6 @@
-// const express =require('express')
-// const UserSchema = require('../Model/UserSchema')
-// const UserModel = require('../Model/UserSchema')
-
-// const UserRouter= express.Router()
 
 
-// UserRouter.get('/login',(req,res)=>{
 
-//     res.render('Login.ejs')
-// })
-
-// UserRouter.get('/signup',(req,res)=>{
-
-//     res.render('Signup.ejs')
-// })
 
 // UserRouter.post("/signup",async(req,res)=>{
 //     // const{usename,email,password}=req.body
@@ -63,6 +50,7 @@
 
 const express = require("express");
 const UserModel = require("../Model/UserSchema");
+const BLogModel = require("../Model/BlogSchema");
 const UserRouter = express.Router();
 
 
@@ -98,6 +86,23 @@ try {
     res.status(401).json({msg : error.message})
 }
 })
+
+
+UserRouter.post("/createblog",async(req,res)=>{
+    try {
+      const BlogData = {
+        blogname: req.body.blogname,
+        heading: req.body.heading,
+        des: req.body.des,
+        imgURL: req.body.imgURL,
+        date: req.body.all,
+      };
+      let data = await BLogModel.create(BlogData);
+      res.status(200).send({ msg: "User Added successfully", data: data });
+    } catch (error) {
+      res.status(401).send({ msg: error.message });
+    }
+  });
 
 
 
