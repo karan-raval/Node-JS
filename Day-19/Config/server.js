@@ -4,3 +4,5 @@ const connect=async()=>{
     await mongoose.connect('')
     console.log('Database is connected successfully')
 }
+
+module.exports=connect
