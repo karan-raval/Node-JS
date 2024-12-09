@@ -1,5 +1,6 @@
 const express=require('express')
 const UserRouter = require('./Routes/UserRoutes')
+const connect =require('./Config/server')
 
 const app=express()
 
@@ -13,5 +14,6 @@ app.use('/user',UserRouter)
 
 
 app.listen(2902,()=>{
+    connect()
     console.log('Server Runnig at 2902')
 })
