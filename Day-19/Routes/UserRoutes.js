@@ -10,4 +10,6 @@ UserRouter.post('/',(req,res)=>{
     
 })
 
+UserRouter.post()
+
 module.exports=UserRouter
