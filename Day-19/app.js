@@ -18,7 +18,6 @@ app.use(passport.session())
 app.use('/user',UserRouter)
 
 
-
 app.listen(2902,()=>{
     connect()
     console.log('Server Runnig at 2902')
