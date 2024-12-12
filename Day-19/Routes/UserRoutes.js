@@ -1,6 +1,7 @@
 const {Router}=require('express')
 const userModel =require('../Model/UserSchema')
 const passport = require('passport')
+const UserModel = require('../Model/UserSchema')
 const LocalStratergy =require('passport-local').Strategy
 
 const UserRouter=Router()
@@ -30,8 +31,10 @@ UserRouter.get('/',(req,res)=>{
 res.render('signup.ejs')
 })
 
-UserRouter.post('/',(req,res)=>{
+UserRouter.post('/',async(req,res)=>{
     let data=req.body
+    const datas= await UserModel.create(data)
+    
 })
 
 
