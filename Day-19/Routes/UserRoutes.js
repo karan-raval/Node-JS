@@ -40,4 +40,24 @@ UserRouter.post("/signup", async (req, res) => {
   }
 });
 
+
+UserRouter.get("/login", (req, res) => {
+  res.render("login.ejs")
+})
+
+UserRouter.get("/home", (req, res) => {
+  if(req.isAuthenticated()) {
+      res.render("home.ejs")
+  } else {
+      res.redirect("/login")
+  }
+})
+
+UserRouter.post("/login", passport.authenticate("local", {
+  successRedirect: "/home", 
+  failureRedirect: "/login", 
+  failureFlash: true          
+}))
+
+
 module.exports = UserRouter;
