@@ -48,7 +48,7 @@ UserRouter.get('/login',(req,res)=>{
 
 UserRouter.post("/login", passport.authenticate("local"),async(req,res)=>{
   try {
-    res.status(200).send({msg:"login successfully"})
+    res.status(200).redirect('/')
   } catch (error) {
     res.status(501).send({ err: error.message });
   }
