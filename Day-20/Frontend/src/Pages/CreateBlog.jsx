@@ -7,7 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import '../assets/css/createblog.css'
 const CreateBlog = () => {
   const [sort, setSort] = useState("");
 
@@ -131,13 +131,13 @@ const CreateBlog = () => {
                       />
                     </div>
                     <div className="form-field">
-                      <Box className="h2">
-                        <FormControl fullWidth>
-                          <InputLabel >
+                      <Box>
+                        <FormControl className="InputLabel" fullWidth>
+                          <InputLabel className="InputLabel" >
                             Categories
                           </InputLabel>
                           <Select
-                            
+                            className="InputLabel"
                             onChange={handleSort}
                           >
                             <MenuItem value={"Lifestyle"}>Lifestyle</MenuItem>

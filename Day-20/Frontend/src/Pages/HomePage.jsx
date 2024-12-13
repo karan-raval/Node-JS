@@ -1,10 +1,16 @@
 import React from "react";
 import shutterbug from "../assets/images/shutterbug-400.jpg";
 import jump from "../assets/images/jump-400.jpg";
+import user3 from '../assets/images/user-01.jpg'
+import user1 from '../assets/images/user-02.jpg'
+import user2 from '../assets/images/user-03.jpg'
+import user4 from '../assets/images/user-04.jpg'
 import wheel from "../assets/images/wheel-400.jpg";
 import cookies from "../assets/images/cookies-150.jpg";
+import cookies4 from "../assets/images/cookies-400.jpg";
 import beetle from "../assets/images/beetle-150.jpg";
 import tulips from "../assets/images/tulips-150.jpg";
+import tulips4 from "../assets/images/tulips-400.jpg";
 import salad from "../assets/images/salad-150.jpg";
 import lamp from "../assets/images/lamp-400.jpg";
 import Header from "../Components/Header";
@@ -37,7 +43,7 @@ const HomePage = () => {
                       <a className="entry__profile-pic">
                         <img
                           className="avatar"
-                          src="images/avatars/user-03.jpg"
+                          src={user3}
                           alt=""
                         />
                       </a>
@@ -68,7 +74,7 @@ const HomePage = () => {
                       <a className="entry__profile-pic">
                         <img
                           className="avatar"
-                          src="images/avatars/user-03.jpg"
+                          src={user3}
                           alt=""
                         />
                       </a>
@@ -97,7 +103,7 @@ const HomePage = () => {
                       <a className="entry__profile-pic">
                         <img
                           className="avatar"
-                          src="images/avatars/user-03.jpg"
+                          src={user3}
                           alt=""
                         />
                       </a>
@@ -128,7 +134,7 @@ const HomePage = () => {
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/thumbs/masonry/lamp-400.jpg" srcset="images/thumbs/masonry/lamp-400.jpg 1x, images/thumbs/masonry/lamp-800.jpg 2x" alt=""/>
+                            <img src={lamp}  alt=""/>
                         </a>
                     </div>
 
@@ -172,7 +178,7 @@ const HomePage = () => {
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/thumbs/masonry/tulips-400.jpg" srcset="images/thumbs/masonry/tulips-400.jpg 1x, images/thumbs/masonry/tulips-800.jpg 2x" alt=""/>
+                            <img src={tulips4} alt=""/>
                         </a>
                     </div>
 
@@ -203,7 +209,7 @@ const HomePage = () => {
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/thumbs/masonry/cookies-400.jpg" srcset="images/thumbs/masonry/cookies-400.jpg 1x, images/thumbs/masonry/cookies-800.jpg 2x" alt=""/>
+                            <img src={cookies4} alt=""/>
                         </a>
                     </div>
 
