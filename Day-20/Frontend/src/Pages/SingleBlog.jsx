@@ -3,7 +3,6 @@ import "../App.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import standard1000 from "../assets/images/standard-1000.jpg";
-import wheel1000 from "../assets/images/wheel-1000.jpg";
 import wheel150 from "../assets/images/wheel-150.jpg";
 import shutterbug150 from "../assets/images/shutterbug-150.jpg";
 import beetle150 from "../assets/images/beetle-150.jpg";
@@ -23,11 +22,10 @@ const SingleBlog = () => {
       <section className="s-content s-content--narrow s-content--no-padding-bottom">
         <article className="row format-standard">
           <div className="s-content__header col-full">
-           
             <ul className="s-content__header-meta">
               <li className="date">December 16, 2017</li>
               <li className="cat">
-                In 
+                In
                 <a>Lifestyle</a>
                 <a>Travel</a>
               </li>
@@ -66,66 +64,6 @@ const SingleBlog = () => {
               fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua
               laborum mollit quis nostrud sed sed.
             </p>
-
-            <p className="s-content__tags">
-              <span>Post Tags</span>
-
-              <span className="s-content__tag-list">
-                <a>orci</a>
-                <a>lectus</a>
-                <a>varius</a>
-                <a>turpis</a>
-              </span>
-            </p>
-
-            <div className="s-content__author">
-              <img src={user3} alt="" />
-
-              <div className="s-content__author-about">
-                <h4 className="s-content__author-name">
-                  <a>Jonathan Doe</a>
-                </h4>
-
-                <p>
-                  Alias aperiam at debitis deserunt dignissimos dolorem
-                  doloribus, fuga fugiat impedit laudantium magni maxime nihil
-                  nisi quidem quisquam sed ullam voluptas voluptatum. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-
-                <ul className="s-content__author-social">
-                  <li>
-                    <a>Facebook</a>
-                  </li>
-                  <li>
-                    <a>Twitter</a>
-                  </li>
-                  <li>
-                    <a>GooglePlus</a>
-                  </li>
-                  <li>
-                    <a>Instagram</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* <div className="s-content__pagenav">
-            <div className="s-content__nav">
-                <div className="s-content__prev">
-                    <a  rel="prev">
-                        <span>Previous Post</span>
-                        Tips on Minimalist Design
-                    </a>
-                </div>
-                <div className="s-content__next">
-                    <a  rel="next">
-                        <span>Next Post</span>
-                        Less Is More
-                    </a>
-                </div>
-            </div>
-        </div>  */}
           </div>
         </article>
 
