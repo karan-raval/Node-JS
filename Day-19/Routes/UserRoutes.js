@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const userModel = require("../Model/UserSchema");
 const passport = require("passport");
 const UserModel = require("../Model/UserSchema");
 const LocalStratergy = require("passport-local").Strategy;
@@ -7,7 +6,7 @@ const LocalStratergy = require("passport-local").Strategy;
 const UserRouter = Router();
 passport.use(
   new LocalStratergy(async (username, password, done) => {
-    let user = await userModel.findOne({ username });
+    let user = await UserModel.findOne({ username });
     if (!user) {
       return done(null, false, { msg: "user not register" });
     }
@@ -23,7 +22,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  let user = await userModel.findById(id);
+  let user = await UserModel.findById(id);
   done(null, user);
 });
 
@@ -33,8 +32,8 @@ UserRouter.get("/signup", (req, res) => {
 
 UserRouter.post("/signup", async (req, res) => {
   try {
-    let {data} = req.body;
-    const datas = await UserModel.create(data);
+    let data = req.body;
+    await UserModel.create(data);
     res.status(200).send({ msg: "register successfully" });
   } catch (error) {
     res.status(501).send({ err: error.message });
