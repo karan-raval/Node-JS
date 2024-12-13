@@ -46,8 +46,16 @@ UserRouter.get('/login',(req,res)=>{
   res.render('login.ejs')
 })
 
-UserRouter.post("/login", passport.authenticate("local"),(req,res)=>{
-  res.status(200).send({msg:"login successfully"})
+UserRouter.post("/login", passport.authenticate("local"),async(req,res)=>{
+  try {
+    res.status(200).send({msg:"login successfully"})
+  } catch (error) {
+    res.status(501).send({ err: error.message });
+  }
+})
+
+UserRouter.get('/',(req,res)=>{
+  res.render('Home.ejs')
 })
 
 module.exports = UserRouter;
