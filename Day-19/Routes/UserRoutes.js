@@ -33,9 +33,9 @@ UserRouter.get("/signup", (req, res) => {
 
 UserRouter.post("/signup", async (req, res) => {
   try {
-    let data = req.body;
+    let {data} = req.body;
     const datas = await UserModel.create(data);
-    res.status(200).send({ data: ans, msg: "register successfully" });
+    res.status(200).send({ msg: "register successfully" });
   } catch (error) {
     res.status(501).send({ err: error.message });
   }
