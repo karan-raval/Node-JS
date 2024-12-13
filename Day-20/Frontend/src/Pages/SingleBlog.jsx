@@ -5,7 +5,14 @@ import Footer from "../Components/Footer";
 import standard1000 from "../assets/images/standard-1000.jpg";
 import wheel1000 from "../assets/images/wheel-1000.jpg";
 import wheel150 from "../assets/images/wheel-150.jpg";
+import shutterbug150 from "../assets/images/shutterbug-150.jpg";
+import beetle150 from "../assets/images/beetle-150.jpg";
+import salad150 from "../assets/images/salad-150.jpg";
+import cookies150 from "../assets/images/cookies-150.jpg";
 import user1 from "../assets/images/user-01.jpg";
+import user3 from "../assets/images/user-03.jpg";
+import user4 from "../assets/images/user-04.jpg";
+import user2 from "../assets/images/user-02.jpg";
 import tulips150 from "../assets/images/tulips-150.jpg";
 const SingleBlog = () => {
   return (
@@ -16,13 +23,11 @@ const SingleBlog = () => {
       <section className="s-content s-content--narrow s-content--no-padding-bottom">
         <article className="row format-standard">
           <div className="s-content__header col-full">
-            <h1 className="s-content__header-title">
-              This Is A Standard Format Post.
-            </h1>
+           
             <ul className="s-content__header-meta">
               <li className="date">December 16, 2017</li>
               <li className="cat">
-                In
+                In 
                 <a>Lifestyle</a>
                 <a>Travel</a>
               </li>
@@ -74,7 +79,7 @@ const SingleBlog = () => {
             </p>
 
             <div className="s-content__author">
-              <img src="images/avatars/user-03.jpg" alt="" />
+              <img src={user3} alt="" />
 
               <div className="s-content__author-about">
                 <h4 className="s-content__author-name">
@@ -170,7 +175,7 @@ const SingleBlog = () => {
                       width="50"
                       height="50"
                       className="avatar"
-                      src="images/avatars/user-04.jpg"
+                      src={user4}
                       alt=""
                     />
                   </div>
@@ -205,7 +210,7 @@ const SingleBlog = () => {
                           width="50"
                           height="50"
                           className="avatar"
-                          src="images/avatars/user-03.jpg"
+                          src={user3}
                           alt=""
                         />
                       </div>
@@ -239,7 +244,7 @@ const SingleBlog = () => {
                               width="50"
                               height="50"
                               className="avatar"
-                              src="images/avatars/user-04.jpg"
+                              src={user4}
                               alt=""
                             />
                           </div>
@@ -277,7 +282,7 @@ const SingleBlog = () => {
                       width="50"
                       height="50"
                       className="avatar"
-                      src="images/avatars/user-02.jpg"
+                      src={user2}
                       alt=""
                     />
                   </div>
@@ -397,7 +402,7 @@ const SingleBlog = () => {
               </article>
               <article className="col-block popular__post">
                 <a className="popular__thumb">
-                  <img src="images/thumbs/small/shutterbug-150.jpg" alt="" />
+                  <img src={shutterbug150} alt="" />
                 </a>
                 <h5>
                   <a>Key Benefits Of Family Photography.</a>
@@ -414,7 +419,7 @@ const SingleBlog = () => {
               </article>
               <article className="col-block popular__post">
                 <a className="popular__thumb">
-                  <img src="images/thumbs/small/cookies-150.jpg" alt="" />
+                  <img src={cookies150} alt="" />
                 </a>
                 <h5>
                   <a>Absolutely No Sugar Oatmeal Cookies.</a>
@@ -431,7 +436,7 @@ const SingleBlog = () => {
               </article>
               <article className="col-block popular__post">
                 <a className="popular__thumb">
-                  <img src="images/thumbs/small/beetle-150.jpg" alt="" />
+                  <img src={beetle150} alt="" />
                 </a>
                 <h5>
                   <a>Throwback To The Good Old Days.</a>
@@ -465,7 +470,7 @@ const SingleBlog = () => {
               </article>
               <article className="col-block popular__post">
                 <a className="popular__thumb">
-                  <img src="images/thumbs/small/salad-150.jpg" alt="" />
+                  <img src={salad150} alt="" />
                 </a>
                 <h5>
                   <a>Healthy Mediterranean Salad Recipes</a>
