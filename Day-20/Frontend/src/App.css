@@ -3955,17 +3955,6 @@ footer h4::after {
   }
 }
 
-/* ===================================================================
-* # page styles
-*
-* ------------------------------------------------------------------- */
-
-/* ------------------------------------------------------------------- 
-* ## contact page
-* ------------------------------------------------------------------- */
-
-/* map
-* ----------------------------------------------- */
 #map-wrap {
   background: #ffffff;
   z-index: 500;
@@ -4023,52 +4012,10 @@ footer h4::after {
   background-color: #0054a5;
 }
 
-/* contact form
-* ----------------------------------------------- */
 #cForm {
   margin-top: 3.6rem;
 }
 
-/*# sourceMappingURL=main.css.map */
-
-/* =================================================================== 
- *
- *  Philosophy v1.0 Base Stylesheet
- *  12-30-2017
- *  ------------------------------------------------------------------
- *
- *  TOC:
- *  # imports
- *  # normalize
- *  # basic/base setup styles
- *    ## Media
- *    ## Typography resets
- *    ## links
- *    ## inputs
- *  # grid
- *    ## medium size devices
- *    ## tablets
- *    ## mobile devices
- *    ## small mobile devices
- *  # block grids
- *    ## medium size devices
- *    ## tablets
- *    ## mobile devices
- *    ## small mobile devices
- *  # MISC
- *
- * =================================================================== */
-
-/* ===================================================================
- *  # imports 
- *
- * ------------------------------------------------------------------- */
-/* ===================================================================
-  *  # normalize
-  *  normalize.css v5.0.0 | MIT License | 
-  *  github.com/necolas/normalize.css
-  *
-  * ------------------------------------------------------------------- */
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -4289,10 +4236,6 @@ template {
   display: none;
 }
 
-/* ===================================================================
- *  # basic/base setup styles
- *
- * ------------------------------------------------------------------- */
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -4320,18 +4263,12 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ------------------------------------------------------------------- 
-  * ## Media
-  * ------------------------------------------------------------------- */
 img,
 video {
   max-width: 100%;
   height: auto;
 }
 
-/* ------------------------------------------------------------------- 
-  * ## Typography resets 
-  * ------------------------------------------------------------------- */
 div,
 dl,
 dt,
@@ -4395,9 +4332,6 @@ li {
   display: block;
 }
 
-/* ------------------------------------------------------------------- 
-  * ## links
-  * ------------------------------------------------------------------- */
 a {
   text-decoration: none;
   line-height: inherit;
@@ -4407,9 +4341,6 @@ a img {
   border: none;
 }
 
-/* ------------------------------------------------------------------- 
-  *  ## inputs
-  * ------------------------------------------------------------------- */
 fieldset {
   margin: 0;
   padding: 0;
@@ -4430,10 +4361,6 @@ textarea {
   appearance: none;
 }
 
-/* ===================================================================
-  * # grid
-  *
-  * ------------------------------------------------------------------- */
 .row {
   width: 94%;
   max-width: 1200px;
@@ -4453,8 +4380,6 @@ textarea {
   margin-right: -20px;
 }
 
-/* column blocks
-  * -------------------------------------- */
 [class*="col-"] {
   float: left;
   padding: 0 20px;
@@ -4463,9 +4388,6 @@ textarea {
 [class*="col-"] + [class*="col-"].end {
   float: right;
 }
-
-/* column width classes 
-  * -------------------------------------- */
 
 .col-two {
   width: 16.66667%;
@@ -4492,9 +4414,6 @@ textarea {
   width: 100%;
 }
 
-/* ------------------------------------------------------------------- 
-  * ## medium size devices
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 1200px) {
   .row .row {
     margin-left: -15px;
@@ -4518,9 +4437,6 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------- 
-  * ## tablets
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 800px) {
   .row {
     width: 90%;
@@ -4531,9 +4447,6 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------- 
-  * ## mobile devices
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 600px) {
   .row {
     width: auto;
@@ -4557,12 +4470,6 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------- 
-  * ## small mobile devices
-  * ------------------------------------------------------------------- */
-
-/* stack columns on small mobile devices
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 400px) {
   .row .row {
     margin-left: 0;
@@ -4583,13 +4490,6 @@ textarea {
   }
 }
 
-/* ===================================================================
-  * # block grids
-  *
-  * ------------------------------------------------------------------- */
-
-/* Equally-sized columns define at row level
-  * ------------------------------------------------------------------- */
 [class*="block-"]:after {
   content: "";
   display: table;
@@ -4600,18 +4500,10 @@ textarea {
   width: 50%;
 }
 
-/**
-  * Clearing for block grid columns. Allow columns with 
-  * different heights to align properly.
-  */
-
 .block-1-2 .col-block:nth-child(2n + 1) {
   clear: both;
 }
 
-/* ------------------------------------------------------------------- 
-  * ## medium size devices
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 1200px) {
   .block-m-full .col-block {
     width: 100%;
@@ -4623,9 +4515,6 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------- 
-  * ## tablets
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 800px) {
   .block-tab-full .col-block {
     width: 100%;
@@ -4637,16 +4526,6 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------- 
-  * ## mobile devices
-  * ------------------------------------------------------------------- */
-
-/* ------------------------------------------------------------------- 
-  * ## small mobile devices
-  * ------------------------------------------------------------------- */
-
-/* stack columns on small mobile devices
-  * ------------------------------------------------------------------- */
 @media only screen and (max-width: 400px) {
   .stack .col-block {
     width: 100% !important;
@@ -4657,18 +4536,14 @@ textarea {
   }
 }
 
-/* ===================================================================
-  * # MISC
-  *
-  * ------------------------------------------------------------------- */
+
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Misc Helper Styles
-  * -------------------------------------- */
+
 
 .half-bottom {
   margin-bottom: 1.5rem !important;
@@ -4690,16 +4565,6 @@ textarea {
   float: left;
 }
 
-/*# sourceMappingURL=base.css.map */
-
-/* ===================================================================
- * fonts.scss
- *
- * ------------------------------------------------------------------- */
-
-/*
- * libre baskerville
-================================================================================ */
 @font-face {
   font-family: "librebaskerville-regular";
   src: url("../fonts/librebaskerville/librebaskerville-regular-webfont.woff2")
@@ -4730,9 +4595,6 @@ textarea {
   font-weight: normal;
 }
 
-/*
-* metropolis
-================================================================================ */
 @font-face {
   font-family: "metropolis-black";
   src: url("../fonts/metropolis/metropolis-black-webfont.woff2") format("woff2"),
@@ -4898,28 +4760,6 @@ textarea {
   font-weight: normal;
 }
 
-/*# sourceMappingURL=fonts.css.map */
-
-/* =================================================================== 
- *
- *  Philosophy v1.0 Vendor/Third Party CSS 
- *  12-30-2017
- *  ------------------------------------------------------------------
- *
- *  TOC:
- *  # lity - v1.6.6 - 2016-04-22
- *  # Animate on Scroll
- *  # Slick Slider
- *  # MediaElement
- *  # prettyprint GitHub Theme
- *
- * =================================================================== */
-
-/* ===================================================================
- * # lity - v1.6.6 - 2016-04-22
- *   http://sorgalla.com/lity/
- *   Copyright (c) 2016 Jan Sorgalla; Licensed MIT 
- * ------------------------------------------------------------------- */
 .lity {
   z-index: 9990;
   position: fixed;
@@ -5126,10 +4966,6 @@ textarea {
 .lity-close:visited::after {
   background-color: #0054a5;
 }
-
-/* Image */
-
-/* iFrame */
 
 .lity-iframe-container {
   width: 100%;
@@ -5436,12 +5272,6 @@ body[data-aos-easing="ease-in-sine"] [data-aos] {
   transform: translate(0);
 }
 
-/*# sourceMappingURL=aos.css.map*/
-
-/* ===================================================================
-* # Slick Slider
-*
-* ------------------------------------------------------------------- */
 .slick-slider {
   position: relative;
   display: block;
@@ -5545,18 +5375,6 @@ body[data-aos-easing="ease-in-sine"] [data-aos] {
   display: none;
 }
 
-/* ===================================================================
-* # MediaElement
-*
-* ------------------------------------------------------------------- */
-
-/* Accessibility: hide screen reader texts (and prefer "top" for RTL languages).
-Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-how/ */
-
-/* Hide native play button and control bar from iOS to favor plugin button */
-
-/* Start: LAYERS */
-
 @keyframes mejs__loading-spinner {
   100% {
     -webkit-transform: rotate(360deg);
@@ -5564,23 +5382,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
   }
 }
 
-/* End: LAYERS */
 
-/* Start: CONTROL BAR */
-
-/* :focus for accessibility */
-
-/* End: CONTROL BAR */
-
-/* Start: Time (Current / Duration) */
-
-/* End: Time (Current / Duration) */
-
-/* Start: Play/Pause/Stop */
-
-/* End: Play/Pause/Stop */
-
-/* Start: Progress Bar */
 
 @-webkit-keyframes buffering-stripes {
   from {
@@ -5602,28 +5404,7 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
   }
 }
 
-/* End: Progress Bar */
 
-/* Start: Fullscreen */
-
-/* End: Fullscreen */
-
-/* Start: Mute/Volume */
-
-/* End: Mute/Volume */
-
-/* Start: Track (Captions and Chapters) */
-
-/* End: Track (Captions and Chapters) */
-
-/* Start: Error */
-
-/* End: Error */
-
-/* ===================================================================
-* # prettyprint GitHub Theme 
-*
-* ------------------------------------------------------------------- */
 .prettyprint {
   background: #e5e5e5;
   font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco,
@@ -5726,22 +5507,20 @@ Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-h
   }
 }
 
-/* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
 }
-
-/* IE indents via margin-left */
-
-/* Alternate shading for lines */
-
-/*# sourceMappingURL=vendor.css.map */
 
 .bg1 {
   background-image: url("https://preview.colorlib.com/theme/philosophy/images/thumbs/featured/featured-guitarman.jpg.webp");
 }
 
 .bg2 {
-  background-image: url("https://preview.colorlib.com/theme/philosophy/images/thumbs/featured/featured-guitarman.jpg.webp");
+  background-image: url("https://preview.colorlib.com/theme/philosophy/images/thumbs/featured/featured-watch.jpg.webp");
+}
+
+
+.bg3 {
+  background-image: url("https://preview.colorlib.com/theme/philosophy/images/thumbs/featured/featured-beetle.jpg.webp");
 }
