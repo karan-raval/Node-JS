@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import Input from '@mui/material/Input';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import '../assets/css/createblog.css'
@@ -130,17 +131,16 @@ const CreateBlog = () => {
                         placeholder="Enter description"
                       />
                     </div>
-                    <div className="form-field">
+                    <div className="form-field" >
                       <Box>
-                        <FormControl className="InputLabel" fullWidth>
-                          <InputLabel className="InputLabel" >
+                        <FormControl  size="big" error  fullWidth>
+                          <InputLabel  id="demo-simple-select" labelId="demo-simple-select-label" >
                             Categories
                           </InputLabel>
                           <Select
-                            className="InputLabel"
                             onChange={handleSort}
                           >
-                            <MenuItem value={"Lifestyle"}>Lifestyle</MenuItem>
+                            <MenuItem  value={"Lifestyle"}>Lifestyle</MenuItem>
                             <MenuItem value={"Health"}>Health</MenuItem>
                             <MenuItem value={"Family"}>Family</MenuItem>
                             <MenuItem value={"Management"}>Management</MenuItem>

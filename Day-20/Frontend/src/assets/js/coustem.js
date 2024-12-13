@@ -4261,10 +4261,6 @@
     var doc = document.documentElement;
     doc.setAttribute('data-useragent', navigator.userAgent);
 
-    // svg fallback
-    if (!Modernizr.svg) {
-        $(".header__logo img").attr("src", "images/logo.png");
-    }
 
 
    /* Preloader
