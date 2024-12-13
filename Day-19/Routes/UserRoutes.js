@@ -5,8 +5,10 @@ const LocalStratergy = require("passport-local").Strategy;
 
 const UserRouter = Router();
 passport.use(
-  new LocalStratergy(async (username, password, done) => {
-    let user = await UserModel.findOne({ username });
+  new LocalStratergy(
+    {usernameField : 'email'},
+    async (email, password, done) => {
+    let user = await UserModel.findOne({ email });
     if (!user) {
       return done(null, false, { msg: "user not register" });
     }
@@ -40,24 +42,12 @@ UserRouter.post("/signup", async (req, res) => {
   }
 });
 
-
-UserRouter.get("/login", (req, res) => {
-  res.render("login.ejs")
+UserRouter.get('/login',(req,res)=>{
+  res.render('login.ejs')
 })
 
-UserRouter.get("/home", (req, res) => {
-  if(req.isAuthenticated()) {
-      res.render("home.ejs")
-  } else {
-      res.redirect("/login")
-  }
+UserRouter.post("/login", passport.authenticate("local"),(req,res)=>{
+  res.status(200).send({msg:"login successfully"})
 })
-
-UserRouter.post("/login", passport.authenticate("local", {
-  successRedirect: "/home", 
-  failureRedirect: "/login", 
-  failureFlash: true          
-}))
-
 
 module.exports = UserRouter;
