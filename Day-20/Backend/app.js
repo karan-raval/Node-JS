@@ -1,5 +1,5 @@
 const express=require('express')
-
+require('dotenv').config();
 const UserRouter = require('./Routes/UserRouter')
 const connect = require('./config/server')
 const cors=require('cors')
@@ -11,7 +11,7 @@ app.use(express.static('public'))
 
 app.use('/',UserRouter)
 
-app.listen(3333,()=>{
+app.listen(process.env.port,()=>{
     connect()
     console.log('server running at 3333')
 })
