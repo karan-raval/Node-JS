@@ -1,10 +1,9 @@
-import './App.css'
-
+import MainRutes from './Routes/MainRutes'
 function App() {
 
   return (
     <>
-    
+    <MainRutes/>
     </>
   )
 }
