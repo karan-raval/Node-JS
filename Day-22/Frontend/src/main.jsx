@@ -6,9 +6,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 // const theme = createTheme();
 
 createRoot(document.getElementById("root")).render(
-  <ThemeProvider >
+  // <ThemeProvider >
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </ThemeProvider>
+  // </ThemeProvider>
 );
