@@ -4,10 +4,15 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const Popover = () => {
-     const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,36 +21,26 @@ const Popover = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
-   <>
-    <Button variant="outlined" onClick={handleClickOpen}>
-    Change Password
+    <>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Change Password
       </Button>
       <Dialog
         open={open}
+        TransitionComponent={Transition}
+        keepMounted
         onClose={handleClose}
-        PaperProps={{
-          component: 'form',
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
+        aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>Change Password</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To change Your Password Email And Old Password is require
-          </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
-            id="name"
+            id="email"
             name="email"
             label="Email Address"
             type="email"
@@ -53,45 +48,39 @@ const Popover = () => {
             variant="standard"
           />
           <TextField
-            autoFocus
             required
             margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
+            id="old-password"
+            name="oldpassword"
+            label="Old Password"
+            type="password"
             fullWidth
             variant="standard"
           />
           <TextField
-            autoFocus
             required
             margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
+            id="new-password"
+            name="newpassword"
+            label="New Password"
+            type="password"
             fullWidth
             variant="standard"
           />
-          <TextField
-            autoFocus
+           <TextField
             required
             margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
+            id="new-password"
+            type="submit"
             fullWidth
-            variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          {/* <Button onClick={handleClose}>Cancel</Button> */}
+          {/* <Button type="submit">Change Password</Button> */}
         </DialogActions>
       </Dialog>
-   </>
+    </>
   );
 };
 
