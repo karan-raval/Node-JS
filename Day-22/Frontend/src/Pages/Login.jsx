@@ -1,18 +1,20 @@
-import React from 'react'
-import './login.css'
+import React from 'react';
+import "./login.css";
 import {
-    MDBBtn,
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBIcon,
-    MDBInput
-  }
-  from 'mdb-react-ui-kit';
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+  MDBInput
+}
+from 'mdb-react-ui-kit';
+import Popover from './Popover';
+
 const Login = () => {
   return (
     <>
-    <MDBContainer fluid>
+      <MDBContainer fluid>
       <MDBRow>
 
         <MDBCol sm='6'>
@@ -30,23 +32,23 @@ const Login = () => {
             <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
 
             <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
-            <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot password?</a></p>
-            <p className='ms-5'>Don't have an account? <a href="#!" className="link-info">Register here</a></p>
+            <p className="small mb-5 pb-lg-3 ms-5"><a class="text-muted"><Popover/></a></p>
+            <p className='ms-5'>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
 
           </div>
 
         </MDBCol>
 
-        <MDBCol sm='6' className='d-none  d-sm-block px-0'>
+        <MDBCol sm='6' className='d-none d-sm-block px-0'>
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
-            alt="Login image" className="w-100 img-fluid h-50" style={{objectFit: 'cover', objectPosition: 'left'}} />
+            alt="Login image" className="w-100" style={{objectFit: 'cover', objectPosition: 'left'}} />
         </MDBCol>
 
       </MDBRow>
 
     </MDBContainer>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
