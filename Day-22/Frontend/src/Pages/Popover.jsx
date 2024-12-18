@@ -61,9 +61,9 @@ const Popover = () => {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <p  onClick={handleClickOpen}>
         Change Password
-      </Button>
+      </p>
       <Dialog
         open={open}
         TransitionComponent={Transition}

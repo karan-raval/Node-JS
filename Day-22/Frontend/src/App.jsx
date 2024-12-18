@@ -1,11 +1,10 @@
-import MainRutes from './Routes/MainRutes'
+import MainRutes from "./Routes/MainRutes";
 function App() {
-
   return (
     <>
-    <MainRutes/>
+      <MainRutes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

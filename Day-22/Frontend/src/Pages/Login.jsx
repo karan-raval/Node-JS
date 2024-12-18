@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./login.css";
-import { jwtDecode } from "jwt-decode";
-import axios from "axios";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
-  MDBIcon,
+  MDBCard,
+  MDBCardBody,
   MDBInput,
+  MDBBtn,
+  MDBIcon,
 } from "mdb-react-ui-kit";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import Popover from "./Popover";
 
 const Login = () => {
@@ -17,6 +20,9 @@ const Login = () => {
     password: "",
     email: "",
   });
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
@@ -31,6 +37,7 @@ const Login = () => {
         let a = jwtDecode(Res.data.token);
         console.log(a);
         localStorage.setItem("token", Res.data.token);
+        navigate('/home');
       })
       .catch((err) => {
         console.log(err);
@@ -38,73 +45,42 @@ const Login = () => {
   };
 
   return (
-    <MDBContainer fluid>
-      <MDBRow>
-        <MDBCol sm="6">
-          <div className="d-flex flex-row ps-5 pt-5">
-            <MDBIcon fas icon="crow fa-3x me-3" style={{ color: "#709085" }} />
-            <span className="h1 fw-bold mb-0">Logo</span>
-          </div>
-          <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-            <h3
-              className="fw-normal mb-3 ps-5 pb-3"
-              style={{ letterSpacing: "1px" }}
-            >
-              Log in
-            </h3>
-            <form action="" onSubmit={handleSubmit}>
-              <MDBInput
-              className="mb-4 mx-5 w-100"
-                onChange={handleChange}
-                label="Email address"
-                type="email"
-                name="email"
-                size="lg"
-              />
-              <MDBInput
-                className="mb-4 mx-5 w-100"
-                onChange={handleChange}
-                label="Password"
-                type="password"
-                name="password"
-                size="lg"
-              />
-              <MDBInput
-                className="mb-4 px-5 mx-5 w-100"
-                color="info"
-                type="submit"
-                size="lg"
-                value='Login'
-              />
-                
-            </form>
-            <p className="small mb-5 pb-lg-3 ms-5">
-              <a className="text-muted">
-                <Popover />
-              </a>
-            </p>
-            <p className="ms-5">
-              Don't have an account?{" "}
-              <a href="#!" className="link-info">
-                Register here
-              </a>
-            </p>
-          </div>
-        </MDBCol>
-        <MDBCol
-          sm="6"
-          className="d-none d-sm-block px-0 d-flex justify-content-center align-items-center"
-        >
-          <img
-            src="https://tse2.mm.bing.net/th?id=OIP.xY7ZSmIBRsf-MbdyWpKs7gHaEK&pid=Api&P=0&h=180" // Replace with your nature image URL
-            alt="Nature"
-            className="w-100"
-            style={{
-              height: "450px",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-          />
+    <MDBContainer fluid className="bg-light p-5">
+      <MDBRow className="justify-content-center">
+        <MDBCol md="6">
+          <MDBCard className="shadow-sm">
+            <MDBCardBody className="p-5">
+              <h3 className="text-center mb-4">Welcome Back!</h3>
+              <form onSubmit={handleSubmit}>
+                <MDBInput
+                  wrapperClass="mb-4"
+                  onChange={handleChange}
+                  name="email"
+                  label="Email address"
+                  type="email"
+                  icon="envelope"
+                />
+                <MDBInput
+                  wrapperClass="mb-4"
+                  onChange={handleChange}
+                  name="password"
+                  label="Password"
+                  type="password"
+                  icon="lock"
+                />
+                <MDBBtn className="w-100 mb-4" color="primary" type="submit">
+                  Login
+                </MDBBtn>
+              </form>
+              <div className="text-center">
+                <p>Forgot Password: <Popover/></p>
+
+              </div>
+              <p className="text-center mt-3">
+                Don't have an account? <Link className="link-info" to={'/signup'}>Register here</Link>
+              </p>
+            </MDBCardBody>
+          </MDBCard>
         </MDBCol>
       </MDBRow>
     </MDBContainer>
