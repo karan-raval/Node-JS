@@ -6,6 +6,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from "axios";
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -22,6 +24,29 @@ const Popover = () => {
     setOpen(false);
   };
 
+
+  const [state, setState] = React.useState({
+    oldPassword:"",
+    newPassword:"",
+    confirmPassword:'',
+    email: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const handleSubmit = (E) => {
+    E.preventDefault();
+    axios.post("http://localhost:8888/changePassword", state)
+      .then((Res) => {
+        console.log(Res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -36,7 +61,7 @@ const Popover = () => {
       >
         <DialogTitle>Change Password</DialogTitle>
         <DialogContent>
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
           <TextField
             autoFocus
             required
@@ -46,6 +71,7 @@ const Popover = () => {
             type="email"
             fullWidth
             variant="standard"
+            onChange={handleChange}
           />
           <TextField
             required
@@ -55,6 +81,8 @@ const Popover = () => {
             type="password"
             fullWidth
             variant="standard"
+            onChange={handleChange}
+
           />
           <TextField
             required
@@ -64,6 +92,8 @@ const Popover = () => {
             type="password"
             fullWidth
             variant="standard"
+            onChange={handleChange}
+
           />
           <TextField
             required
@@ -73,13 +103,14 @@ const Popover = () => {
             type="password"
             fullWidth
             variant="standard"
+            onChange={handleChange}
+
           />
            <TextField
             required
             margin="dense"
             id="new-password"
             type="submit"
-            fullWidth
           />
           </form>
         </DialogContent>
