@@ -41,7 +41,6 @@ const Popover = () => {
             autoFocus
             required
             margin="dense"
-            id="email"
             name="email"
             label="Email Address"
             type="email"
@@ -51,7 +50,6 @@ const Popover = () => {
           <TextField
             required
             margin="dense"
-            id="old-password"
             name="oldpassword"
             label="Old Password"
             type="password"
@@ -61,7 +59,6 @@ const Popover = () => {
           <TextField
             required
             margin="dense"
-            id="new-password"
             name="newpassword"
             label="New Password"
             type="password"
@@ -71,7 +68,6 @@ const Popover = () => {
           <TextField
             required
             margin="dense"
-            id="new-password"
             name="confirmPassword"
             label="Confrim Password"
             type="password"

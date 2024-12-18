@@ -27,7 +27,7 @@ const handleChange = (e)=>{
 
 const handleSubmit = (E)=>{
     E.preventDefault()
-    axios.post("http://localhost:8080/register",state)
+    axios.post("http://localhost:8888/register",state)
     .then((Res)=>{
         console.log(Res)
     }).catch((err)=>{
@@ -60,25 +60,12 @@ const handleSubmit = (E)=>{
 
     <MDBCard className='my-5'>
       <MDBCardBody className='p-5'>
-      <form action="" onSubmit={handleSubmit}>
-        <MDBRow>
-          
-
-          <MDBCol >
-            <MDBInput wrapperClass='mb-4' onChange={handleChange} label='User name' id='form1' type='text'/>
-          </MDBCol>
-        </MDBRow>
-
-        <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Email' id='form1' type='email'/>
-        <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Password' id='form1' type='password'/>
-
-        <div className='d-flex justify-content-center mb-4'>
-          <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-        </div>
-
+      <form  onSubmit={handleSubmit}>
+        <MDBInput wrapperClass='mb-4' onChange={handleChange} name='username' label='User name'  type='text'/>
+        <MDBInput wrapperClass='mb-4' onChange={handleChange} name='email' label='Email' type='email'/>
+        <MDBInput wrapperClass='mb-4' onChange={handleChange} name='password' label='Password'  type='password'/>
+        <MDBInput className='w-100 mb-4' type='submit' value='sign up' size='md'/>
         </form>
-
-        <MDBBtn className='w-100 mb-4' size='md'>sign up</MDBBtn>
 
         <div className="text-center">
 

@@ -25,7 +25,7 @@ const Login = () => {
   const handleSubmit = (E) => {
     E.preventDefault();
     axios
-      .post("http://localhost:8080/login", state)
+      .post("http://localhost:8888/login", state)
       .then((Res) => {
         console.log(Res);
         let a = jwtDecode(Res.data.token);
@@ -54,29 +54,29 @@ const Login = () => {
             </h3>
             <form action="" onSubmit={handleSubmit}>
               <MDBInput
-                wrapperClassName="mb-4 mx-5 w-100"
+              className="mb-4 mx-5 w-100"
                 onChange={handleChange}
                 label="Email address"
-                id="emailInput"
                 type="email"
+                name="email"
                 size="lg"
               />
               <MDBInput
-                wrapperClassName="mb-4 mx-5 w-100"
+                className="mb-4 mx-5 w-100"
                 onChange={handleChange}
                 label="Password"
-                id="passwordInput"
                 type="password"
+                name="password"
                 size="lg"
               />
-              <MDBBtn
+              <MDBInput
                 className="mb-4 px-5 mx-5 w-100"
                 color="info"
                 type="submit"
                 size="lg"
-              >
-                Login
-              </MDBBtn>
+                value='Login'
+              />
+                
             </form>
             <p className="small mb-5 pb-lg-3 ms-5">
               <a className="text-muted">
