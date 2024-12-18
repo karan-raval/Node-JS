@@ -28,9 +28,13 @@ const Login = () => {
             <p className='ms-5'>Don't have an account? <a href="#!" className="link-info">Register here</a></p>
           </div>
         </MDBCol>
-        <MDBCol sm='6' className='d-none d-sm-block px-0'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
-            alt="Login image" className="w-100" style={{objectFit: 'cover', objectPosition: 'left'}} />
+        <MDBCol sm='6' className='d-none d-sm-block px-0 d-flex justify-content-center align-items-center'>
+          <img 
+            src="https://tse2.mm.bing.net/th?id=OIP.xY7ZSmIBRsf-MbdyWpKs7gHaEK&pid=Api&P=0&h=180" // Replace with your nature image URL
+            alt="Nature" 
+            className="w-100" 
+            style={{ height: '450px', objectFit: 'cover', objectPosition: 'center' }} 
+          />
         </MDBCol>
       </MDBRow>
     </MDBContainer>
