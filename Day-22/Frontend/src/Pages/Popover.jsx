@@ -36,6 +36,7 @@ const Popover = () => {
       >
         <DialogTitle>Change Password</DialogTitle>
         <DialogContent>
+          <form action="">
           <TextField
             autoFocus
             required
@@ -67,6 +68,16 @@ const Popover = () => {
             fullWidth
             variant="standard"
           />
+          <TextField
+            required
+            margin="dense"
+            id="new-password"
+            name="confirmPassword"
+            label="Confrim Password"
+            type="password"
+            fullWidth
+            variant="standard"
+          />
            <TextField
             required
             margin="dense"
@@ -74,6 +85,7 @@ const Popover = () => {
             type="submit"
             fullWidth
           />
+          </form>
         </DialogContent>
         <DialogActions>
           {/* <Button onClick={handleClose}>Cancel</Button> */}

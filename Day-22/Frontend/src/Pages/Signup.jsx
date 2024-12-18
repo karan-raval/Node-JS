@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './signup.css'
 import {
   MDBBtn,
@@ -12,9 +12,28 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+import axios from "axios"
 
 const Signup = () => {
+  const [state,setState] = useState({
+    username : "",
+    password : "",
+    email : ""
+})
+const handleChange = (e)=>{
+    const {name,value} = e.target
+    setState({...state,[name] : value})
+}
 
+const handleSubmit = (E)=>{
+    E.preventDefault()
+    axios.post("http://localhost:8080/register",state)
+    .then((Res)=>{
+        console.log(Res)
+    }).catch((err)=>{
+        console.log(err)
+    })
+}
   return (
     <>
        <MDBContainer fluid className='p-4'>
@@ -41,23 +60,23 @@ const Signup = () => {
 
     <MDBCard className='my-5'>
       <MDBCardBody className='p-5'>
-
+      <form action="" onSubmit={handleSubmit}>
         <MDBRow>
-          <MDBCol col='6'>
-            <MDBInput wrapperClass='mb-4' label='First name' id='form1' type='text'/>
-          </MDBCol>
+          
 
-          <MDBCol col='6'>
-            <MDBInput wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
+          <MDBCol >
+            <MDBInput wrapperClass='mb-4' onChange={handleChange} label='User name' id='form1' type='text'/>
           </MDBCol>
         </MDBRow>
 
-        <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email'/>
-        <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'/>
+        <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Email' id='form1' type='email'/>
+        <MDBInput wrapperClass='mb-4' onChange={handleChange} label='Password' id='form1' type='password'/>
 
         <div className='d-flex justify-content-center mb-4'>
           <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
         </div>
+
+        </form>
 
         <MDBBtn className='w-100 mb-4' size='md'>sign up</MDBBtn>
 

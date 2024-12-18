@@ -2,6 +2,7 @@ const { Router } = require("express");
 const bcrypt = require("bcrypt");
 const UserModel = require("../Model/UserSchema");
 require('dotenv').config()
+const jwt = require('jsonwebtoken');
 
 const UserRouter = Router();
 
@@ -32,7 +33,7 @@ UserRouter.post("/login", async (req, res) => {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
           const token =jwt.sing({userID:user._id,username:user.username},process.env.secret)
-          res.status(200).send({ msg: "User Logged in successfully" });
+          res.status(200).send({ msg: "User Logged in successfully",token });
         } else {
           res.status(501).send({ msg: "Incorrect Passwrod" });
         }
@@ -44,5 +45,34 @@ UserRouter.post("/login", async (req, res) => {
     res.status(501).send({ msg: error.message });
   }
 });
+
+UserRouter.post("/changePassword",async(req,res)=>{
+  const {email,oldPassword,newPassword,confirmPassword}  = req.body;
+  try {
+      let user = await UserModel.findOne({email : email})
+      
+      if(!user){
+          return res.status(501).send({msg : "User not Registered"})
+      }
+      bcrypt.compare(oldPassword,user.password,async(err,result)=>{
+          if(result){
+              
+              if(newPassword == confirmPassword){
+                    bcrypt.hash(newPassword,5,async (err,hash)=>{
+                      let data = await UserModel.findOneAndUpdate({email : email},{password : hash})
+                      res.status(200).send({msg : "Password Changed !!1"})
+                    })
+              }else{
+                  res.status(501).send({msg : "Confirm Password is Not Similar"})
+              }
+
+          }else{
+              res.status(501).send({msg : "Incorrect Passwrod"})
+          }
+      })
+  } catch (error) {
+      
+  }
+})
 
 module.exports = UserRouter;
