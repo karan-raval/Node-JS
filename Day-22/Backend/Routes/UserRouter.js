@@ -49,35 +49,32 @@ UserRouter.post("/login", async (req, res) => {
   }
 });
 
-UserRouter.post("/changePassword", async (req, res) => {
-  const { email, oldPassword, newPassword, confirmPassword } = req.body;
+UserRouter.post("/changepassword", async (req, res) => {
+  // res.send({msg:"hahahaha"})
+  const { email, oldpassword, newpassword, confirmpassword } = req.body;
   try {
     let user = await UserModel.findOne({ email: email });
-
     if (!user) {
-      return res.status(501).send({ msg: "User not Registered" });
+      return res.status(400).send({ msg: "User not Registered" });
     }
-    bcrypt.compare(oldPassword, user.password, async (err, result) => {
-      if (result) {
-        if (newPassword == confirmPassword) {
-          bcrypt.hash(newPassword, 5, async (err, hash) => {
-            let data = await UserModel.findOneAndUpdate(
+    let result = await bcrypt.compare(oldpassword,user.password);
+    if(result){
+        if (newpassword == confirmpassword) {
+  
+            let hash = await bcrypt.hash(newpassword,5);
+            let data = await UserModel.finOneAndUpdate(
               { email: email },
               { password: hash }
-            );
-            res
-              .status(200)
-              .send({ msg: "Password Changed successfully", data });
-          });
+            )
+            res.status(200).send({msg : "Changed !!",data})
         } else {
-          res.status(501).send({ msg: "Confirm Password is Not Similar" });
+         return res.status(400).send({ msg: "Confirm Password is Not Similar" });
         }
-      } else {
-        res.status(501).send({ msg: "Incorrect Passwrod" });
-      }
-    });
+    }else{
+      return  res.status(400).send({ msg: "Incorrect Passwrod" });
+    }
   } catch (error) {
-    res.status(501).send({ msg: error.message });
+    return res.status(501).send({ msg: error.message });
   }
 });
 

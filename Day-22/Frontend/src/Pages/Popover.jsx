@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from "axios";
+import axios from "axios"
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -25,25 +25,38 @@ const Popover = () => {
 
 
   const [state, setState] = React.useState({
-    oldPassword:"",
-    newPassword:"",
-    confirmPassword:'',
+    oldpassword:"",
+    newpassword:"",
+    confirmpassword:'',
     email: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8888/changePassword", state)
+    // axios.post("http://localhost:8888/changepassword", state)
+    //   .then((Res) => {
+    //     console.log(Res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    fetch(`http://localhost:8888/changepassword`,{
+      method : "POST",
+      headers : {
+         "Content-Type" : "application/json"
+      },
+      body : JSON.stringify(state)
+    })
+    .then((Res)=>Res.json())
       .then((Res) => {
-        console.log(Res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          console.log(Res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   return (
@@ -97,20 +110,17 @@ const Popover = () => {
           <TextField
             required
             margin="dense"
-            name="confirmPassword"
-            label="Confrim Password"
+            name="confirmpassword"
+            label="Confirm Password"
             type="password"
             fullWidth
             variant="standard"
             onChange={handleChange}
 
           />
-           <TextField
-            required
-            margin="dense"
-            id="new-password"
-            type="submit"
-          />
+           <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
           </form>
         </DialogContent>
       </Dialog>
