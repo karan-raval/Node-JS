@@ -60,7 +60,7 @@ UserRouter.post("/changePassword",async(req,res)=>{
               if(newPassword == confirmPassword){
                     bcrypt.hash(newPassword,5,async (err,hash)=>{
                       let data = await UserModel.findOneAndUpdate({email : email},{password : hash})
-                      res.status(200).send({msg : "Password Changed !!1",data})
+                      res.status(200).send({msg : "Password Changed successfully",data})
                     })
               }else{
                   res.status(501).send({msg : "Confirm Password is Not Similar"})

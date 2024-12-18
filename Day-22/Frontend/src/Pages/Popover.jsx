@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -36,8 +35,8 @@ const Popover = () => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = (E) => {
-    E.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios.post("http://localhost:8888/changePassword", state)
       .then((Res) => {
         console.log(Res);
@@ -114,10 +113,6 @@ const Popover = () => {
           />
           </form>
         </DialogContent>
-        <DialogActions>
-          {/* <Button onClick={handleClose}>Cancel</Button> */}
-          {/* <Button type="submit">Change Password</Button> */}
-        </DialogActions>
       </Dialog>
     </>
   );
