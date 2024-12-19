@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../Model/UserSchema");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer")
 
 const UserRouter = Router();
 
@@ -90,12 +91,12 @@ UserRouter.post("/forgotPassword",async(req,res)=>{
            const transpoter = nodemailer.createTransport({
                 service : "gmail",
                 auth : {
-                    user : "hemanagsolanki10@gmail.com", 
-                    pass : "pixdctsztdggwhpy"
+                    user : "karanraval424@gmail.com", 
+                    pass : "gpgpfxmwxpnavigs"
                 }
            }) 
            let mailOption = {
-               from : "hemanagsolanki10@gmail.com",
+               from : "karanraval424@gmail.com",
                to : email,
                subject : "OTP for Password Reset",
                text : `Your otp for password reset is ${otp}`
@@ -107,8 +108,6 @@ UserRouter.post("/forgotPassword",async(req,res)=>{
               }
               res.status(200).send({msg : "OTP Sended Successfully"})
            })
-
-
 
 
         }else{
