@@ -4,8 +4,11 @@ const UserModel = require("../Model/UserSchema");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer")
-
 const UserRouter = Router();
+
+let otpStore = {
+   
+}
 
 UserRouter.post("/register", async (req, res) => {
   try {
