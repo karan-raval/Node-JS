@@ -41,7 +41,7 @@ const Forgotpassword = () => {
       const handleSubmit = (E) => {
         E.preventDefault();
         axios
-          .post("http://localhost:8888/login", state)
+          .post("http://localhost:9999/forgotPassword", state)
           .then((Res) => {
             console.log(Res);
             let a = jwtDecode(Res.data.token);
