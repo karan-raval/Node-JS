@@ -54,7 +54,6 @@ UserRouter.post("/login", async (req, res) => {
 });
 
 UserRouter.post("/changepassword", async (req, res) => {
-  // res.send({msg:"hahahaha"})
   const { email, oldpassword, newpassword, confirmpassword } = req.body;
   try {
     let user = await UserModel.findOne({ email: email });
