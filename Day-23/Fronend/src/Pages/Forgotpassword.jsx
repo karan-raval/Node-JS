@@ -6,64 +6,57 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
 // import axios from "axios"
-
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Popover = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
 
-  const [state, setState] = React.useState({
-    oldpassword:"",
-    newpassword:"",
-    confirmpassword:'',
-    email: "",
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setState({ ...state, [name]: value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // axios.post("http://localhost:8888/changepassword", state)
-    //   .then((Res) => {
-    //     console.log(Res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    fetch(`http://localhost:8888/changepassword`,{
-      method : "POST",
-      headers : {
-         "Content-Type" : "application/json"
-      },
-      body : JSON.stringify(state)
-    })
-    .then((Res)=>Res.json())
-      .then((Res) => {
-          console.log(Res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
+const Forgotpassword = () => {
+    const [open, setOpen] = useState(false);
+    
+      const handleClickOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
 
+      const [state, setState] = useState({
+        password: "",
+        email: "",
+      });
+    
+      const navigate = useNavigate();
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setState({ ...state, [name]: value });
+      };
+    
+      const handleSubmit = (E) => {
+        E.preventDefault();
+        axios
+          .post("http://localhost:8888/login", state)
+          .then((Res) => {
+            console.log(Res);
+            let a = jwtDecode(Res.data.token);
+            console.log(a);
+            localStorage.setItem("token", Res.data.token);
+            navigate('/home');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
   return (
     <>
-      <p onClick={handleClickOpen}>
-        Change Your Password 
+     <p onClick={handleClickOpen}>
+        Forgot Your Password 
       </p>
       <Dialog
         open={open}
@@ -132,7 +125,7 @@ const Popover = () => {
         </DialogContent>
       </Dialog>
     </>
-  );
-};
+  )
+}
 
-export default Popover;
+export default Forgotpassword
