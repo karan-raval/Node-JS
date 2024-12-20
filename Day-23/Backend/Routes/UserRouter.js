@@ -3,12 +3,10 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../Model/UserSchema");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 const UserRouter = Router();
 
-let otpStore = {
-   
-}
+let otpStore = {};
 
 UserRouter.post("/register", async (req, res) => {
   try {
@@ -60,65 +58,59 @@ UserRouter.post("/changepassword", async (req, res) => {
     if (!user) {
       return res.status(400).send({ msg: "User not Registered" });
     }
-    let result = await bcrypt.compare(oldpassword,user.password);
-    if(result){
-        if (newpassword == confirmpassword) {
-  
-            let hash = await bcrypt.hash(newpassword,5);
-            let data = await UserModel.finOneAndUpdate(
-              { email: email },
-              { password: hash }
-            )
-            res.status(200).send({msg : "Changed !!",data})
-        } else {
-         return res.status(400).send({ msg: "Confirm Password is Not Similar" });
-        }
-    }else{
-      return  res.status(400).send({ msg: "Incorrect Passwrod" });
+    let result = await bcrypt.compare(oldpassword, user.password);
+    if (result) {
+      if (newpassword == confirmpassword) {
+        let hash = await bcrypt.hash(newpassword, 5);
+        let data = await UserModel.finOneAndUpdate(
+          { email: email },
+          { password: hash }
+        );
+        res.status(200).send({ msg: "Changed !!", data });
+      } else {
+        return res.status(400).send({ msg: "Confirm Password is Not Similar" });
+      }
+    } else {
+      return res.status(400).send({ msg: "Incorrect Passwrod" });
     }
   } catch (error) {
     return res.status(501).send({ msg: error.message });
   }
 });
 
-UserRouter.post("/forgotPassword",async(req,res)=>{
-    const {email} = req.body;
-    try {
-        let user = await UserModel.findOne({email})
-        if(user){
-            let otp = Math.round(Math.random()*10000)
-            otpStore[email] = otp
-            console.log(otpStore);
-            
-           const transpoter = nodemailer.createTransport({
-                service : "gmail",
-                auth : {
-                    user : "karanraval424@gmail.com", 
-                    pass : "gpgpfxmwxpnavigs"
-                }
-           }) 
-           let mailOption = {
-               from : "karanraval424@gmail.com",
-               to : email,
-               subject : "OTP for Password Reset",
-               text : `Your otp for password reset is ${otp}`
-           }
+UserRouter.post("/forgotPassword", async (req, res) => {
+  const { email } = req.body;
+  try {
+    let user = await UserModel.findOne({ email });
+    if (user) {
+      let otp = Math.round(Math.random() * 10000);
+      otpStore[email] = otp;
+      console.log(otpStore);
 
-           transpoter.sendMail(mailOption,(error,info)=>{
-              if(error){
-                 return res.status(400).send({msg : "unable to send OTP"})
-              }
-              res.status(200).send({msg : "OTP Sended Successfully"})
-           })
+      const transpoter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "karanraval424@gmail.com",
+          pass: "gpgpfxmwxpnavigs",
+        },
+      });
+      let mailOption = {
+        from: "karanraval424@gmail.com",
+        to: email,
+        subject: "OTP for Password Reset",
+        text: `Your otp for password reset is ${otp}`,
+      };
 
-
-        }else{
-            res.status(500).send({msg : "Email Not Registered"})
+      transpoter.sendMail(mailOption, (error, info) => {
+        if (error) {
+          return res.status(400).send({ msg: "unable to send OTP" });
         }
-    } catch (error) {
-        
+        res.status(200).send({ msg: "OTP Sended Successfully" });
+      });
+    } else {
+      res.status(500).send({ msg: "Email Not Registered" });
     }
-})
-
+  } catch (error) {}
+});
 
 module.exports = UserRouter;

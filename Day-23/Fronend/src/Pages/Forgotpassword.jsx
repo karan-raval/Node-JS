@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from 'react-router-dom';
-// import axios from "axios"
+import axios from "axios"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -44,9 +44,6 @@ const Forgotpassword = () => {
           .post("http://localhost:9999/forgotPassword", state)
           .then((Res) => {
             console.log(Res);
-            let a = jwtDecode(Res.data.token);
-            console.log(a);
-            localStorage.setItem("token", Res.data.token);
             navigate('/home');
           })
           .catch((err) => {
@@ -79,44 +76,11 @@ const Forgotpassword = () => {
             variant="standard"
             onChange={handleChange}
           />
-          <TextField
-            required
-            margin="dense"
-            name="oldpassword"
-            label="Old Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={handleChange}
-
-          />
-          <TextField
-            required
-            margin="dense"
-            name="newpassword"
-            label="New Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={handleChange}
-
-          />
-          <TextField
-            required
-            margin="dense"
-            name="confirmpassword"
-            label="Confirm Password"
-            type="password"
-            fullWidth
-            variant="standard"
-            onChange={handleChange}
-
-          />
+          
            <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
 
-          
           </form>
           <br />
           <Button variant="contained" color="primary">

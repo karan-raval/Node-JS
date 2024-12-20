@@ -6,6 +6,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DialogTitle from '@mui/material/DialogTitle';
+import Forgotpassword from './Forgotpassword';
 // import axios from "axios"
 
 
@@ -126,9 +127,9 @@ const Popover = () => {
           
           </form>
           <br />
-          <Button variant="contained" color="primary">
-            Forgot Password
-          </Button>
+          {/* <Button variant="contained" color="primary"> */}
+            <Forgotpassword/>
+          {/* </Button> */}
         </DialogContent>
       </Dialog>
     </>
