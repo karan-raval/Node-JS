@@ -36,13 +36,15 @@ const Forgotpassword = () => {
     setState({ ...state, [name]: value });
   };
 
+  const [showOtpFields, setShowOtpFields] = useState(false);
+
   const handleSubmit = (E) => {
     E.preventDefault();
     axios
       .post("http://localhost:9999/forgotPassword", state)
       .then((Res) => {
         console.log(Res);
-        navigate("/home");
+        setShowOtpFields(true);
       })
       .catch((err) => {
         console.log(err);
@@ -76,6 +78,31 @@ const Forgotpassword = () => {
             <Button type="submit" variant="contained" color="primary">
               Submit
             </Button>
+            
+            {showOtpFields && (
+              <>
+                <TextField
+                  required
+                  margin="dense"
+                  name="otp"
+                  label="OTP"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleChange}
+                />
+                <TextField
+                  required
+                  margin="dense"
+                  name="newPassword"
+                  label="New Password"
+                  type="password"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleChange}
+                />
+              </>
+            )}
           </form>
           <br />
           <Button variant="contained" color="primary">
