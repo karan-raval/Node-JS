@@ -127,9 +127,7 @@ const Popover = () => {
           
           </form>
           <br />
-          {/* <Button variant="contained" color="primary"> */}
             <Forgotpassword/>
-          {/* </Button> */}
         </DialogContent>
       </Dialog>
     </>

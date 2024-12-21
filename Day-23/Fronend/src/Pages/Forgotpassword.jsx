@@ -8,6 +8,7 @@ import Slide from "@mui/material/Slide";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './Forgotpassword.css';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -59,8 +60,9 @@ const Forgotpassword = () => {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        className="dialog-animation"
       >
-        <DialogTitle>Change Password</DialogTitle>
+        <DialogTitle className="dialog-title">Forgot Password</DialogTitle>
         <DialogContent>
           <form action="" onSubmit={handleSubmit}>
             <TextField
@@ -73,9 +75,10 @@ const Forgotpassword = () => {
               fullWidth
               variant="standard"
               onChange={handleChange}
+              className="input-field"
             />
 
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary" className="hover-button">
               Submit
             </Button>
             
@@ -90,6 +93,7 @@ const Forgotpassword = () => {
                   fullWidth
                   variant="standard"
                   onChange={handleChange}
+                  className="input-field"
                 />
                 <TextField
                   required
@@ -100,12 +104,13 @@ const Forgotpassword = () => {
                   fullWidth
                   variant="standard"
                   onChange={handleChange}
+                  className="input-field"
                 />
               </>
             )}
           </form>
           <br />
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" className="hover-button">
             Forgot Password
           </Button>
         </DialogContent>
