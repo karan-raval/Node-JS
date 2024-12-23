@@ -34,7 +34,7 @@ const Signup = () => {
     axios.post("http://localhost:9999/register", state)
       .then((Res) => {
         console.log(Res)
-        navigate('/login');
+        navigate('/');
       }).catch((err) => {
         console.log(err)
       })
