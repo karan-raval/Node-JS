@@ -31,7 +31,7 @@ const Signup = () => {
 
   const handleSubmit = (E) => {
     E.preventDefault()
-    axios.post("http://localhost:8888/register", state)
+    axios.post("http://localhost:9999/register", state)
       .then((Res) => {
         console.log(Res)
         navigate('/login');

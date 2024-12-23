@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -9,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Forgotpassword.css';
+import OtpAndNewPasswordFields from './Otppass';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -16,6 +16,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Forgotpassword = () => {
   const [open, setOpen] = useState(false);
+  const [state, setState] = useState({
+    email: "",
+  });
+  
+  const [showOtpFields, setShowOtpFields] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,32 +31,26 @@ const Forgotpassword = () => {
     setOpen(false);
   };
 
-  const [state, setState] = useState({
-    password: "",
-    email: "",
-  });
-
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
-  const [showOtpFields, setShowOtpFields] = useState(false);
+ 
 
-  const handleSubmit = (E) => {
-    E.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:9999/forgotPassword", state)
-      .then((Res) => {
-        console.log(Res);
+      .then((res) => {
+        console.log(res);
         setShowOtpFields(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.error("Error during API call:", err);
       });
   };
+
   return (
     <>
       <p onClick={handleClickOpen}>Forgot Your Password</p>
@@ -64,7 +64,7 @@ const Forgotpassword = () => {
       >
         <DialogTitle className="dialog-title">Forgot Password</DialogTitle>
         <DialogContent>
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <TextField
               autoFocus
               required
@@ -82,37 +82,12 @@ const Forgotpassword = () => {
               Submit
             </Button>
             
+            </form>
             {showOtpFields && (
-              <>
-                <TextField
-                  required
-                  margin="dense"
-                  name="otp"
-                  label="OTP"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                  onChange={handleChange}
-                  className="input-field"
-                />
-                <TextField
-                  required
-                  margin="dense"
-                  name="newPassword"
-                  label="New Password"
-                  type="password"
-                  fullWidth
-                  variant="standard"
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </>
+              <OtpAndNewPasswordFields  />
             )}
-          </form>
           <br />
-          <Button variant="contained" color="primary" className="hover-button">
-            Forgot Password
-          </Button>
+          
         </DialogContent>
       </Dialog>
     </>

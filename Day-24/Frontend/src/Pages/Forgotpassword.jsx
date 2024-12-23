@@ -42,7 +42,7 @@ const Forgotpassword = () => {
   const handleSubmit = (E) => {
     E.preventDefault();
     axios
-      .post("http://localhost:9999/forgotPassword", state)
+      .post("http://localhost:5010/forgotPassword", state)
       .then((Res) => {
         console.log(Res);
         setShowOtpFields(true);
