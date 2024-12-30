@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 // import ChangePassword from "./ChangePassword";
 // import { Button } from '@mui/material';
 import Popover from "./Popover";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Login = () => {
   const [state, setState] = useState({
@@ -26,7 +28,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(state);
-
+  
     try {
       const response = await fetch(`http://localhost:5010/login`, {
         method: "POST",
@@ -35,15 +37,18 @@ const Login = () => {
         },
         body: JSON.stringify(state),
       });
-
+  
       const result = await response.json();
       if (response.ok) {
-        alert("Login Successful");
-        navigate("/");
+        toast.success("Login Successful");
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
       } else {
-        console.error("Failed to add movie:", result.message);
+        toast.error(result.msg || "Login Failed");
       }
     } catch (error) {
+      toast.error("An error occurred. Please try again.");
       console.error("Error during submission:", error);
     }
   };
@@ -52,16 +57,16 @@ const Login = () => {
     <>
       <Header />
       <ToastContainer
-        className="toast-container-custom"
-        position="top-left"
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+/>
 
       <section className="s-content--narrow">
         <div className="comments-wrapp">

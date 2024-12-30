@@ -8,7 +8,7 @@ const UserRouter = Router();
 
 let otpStore = {};
 
-UserRouter.post("/register", async (req, res) => {
+UserRouter.post("/signup", async (req, res) => {
   try {
     bcrypt.hash(req.body.password, 5, async (err, hash) => {
       if (err) {
