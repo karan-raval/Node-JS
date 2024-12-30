@@ -66,10 +66,10 @@ const Footer = () => {
                   <a>October 2017</a>
                 </li>
                 <li>
-                  <a x>September 2017</a>
+                  <a>September 2017</a>
                 </li>
                 <li>
-                  <a >August 2017</a>
+                  <a>August 2017</a>
                 </li>
               </ul>
             </div>

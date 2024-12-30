@@ -29,7 +29,7 @@ function Contact() {
     <div className="s-content__media col-full">
         <div id="map-wrap">
             <div id="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d892.703862534159!2d70.77821700504678!3d22.291002633035955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959cb147744699d%3A0x2060a6cbc4a6e0bd!2sRed%20%26%20White%20Multimedia%20Education%20-%20Kalawad%20Road!5e0!3m2!1sen!2sin!4v1730007362429!5m2!1sen!2sin" width="1349" height="420" style={{border:0}}  loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8287.584861547493!2d70.74256092330599!3d22.289374306600195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959cbe7a603e1b9%3A0x7da60912bfabbf4a!2sMunjka%2C%20Rajkot%2C%20Gujarat%20360005!5e0!3m2!1sen!2sin!4v1735551322233!5m2!1sen!2sin" width="919" height="420" style={{border:0}}  loading="lazy"></iframe>
 
             </div>
         </div>
