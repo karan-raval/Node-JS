@@ -62,7 +62,7 @@ UserRouter.post("/changepassword", async (req, res) => {
     if (result) {
       if (newpassword == confirmpassword) {
         let hash = await bcrypt.hash(newpassword, 5);
-        let data = await UserModel.finOneAndUpdate(
+        let data = await UserModel.findOneAndUpdate(
           { email: email },
           { password: hash }
         );

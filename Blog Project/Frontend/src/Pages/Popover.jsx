@@ -7,6 +7,8 @@ import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import DialogTitle from "@mui/material/DialogTitle";
 import Forgotpassword from "./Forgotpassword";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import axios from "axios"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -34,26 +36,77 @@ const Popover = () => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5010/changepassword`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(state),
-    })
-      .then((Res) => Res.json())
-      .then((Res) => {
-        console.log(Res);
-      })
-      .catch((err) => {
-        console.log(err);
+    console.log("Form State:", state);
+  
+    try {
+      const response = await fetch(`http://localhost:5010/changepassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
       });
+  
+      const result = await response.json(); // Parse the response
+      console.log("Response Status:", response.status);
+      console.log("Response Data:", result);
+  
+      if (response.ok) {
+        // Success alert
+        toast.success(result.msg || "Password changed successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setOpen(false); // Close the dialog after success
+      } else {
+        // Error alert for specific backend responses
+        toast.error(result.msg || "Password change failed!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      console.error("Error during submission:", error);
+  
+      // Generic error alert
+      toast.error("An error occurred. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
     <>
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+
       <p onClick={handleClickOpen}>Change Your Password</p>
       <Dialog
         open={open}
