@@ -4,7 +4,6 @@ import Footer from "../Components/Footer";
 import Popularpost from "../Components/Popularpost";
 
 function About() {
-  
   return (
     <>
       <Header />
@@ -26,48 +25,19 @@ function About() {
 
           <div className="col-full s-content__main">
             <p className="lead">
-              A Dynamic Platform for Blogging Enthusiasts <br /> The Blog
-              Application is a user-centric, feature-rich platform designed to
-              make blogging effortless and enjoyable. This application allows
-              users to create, read, update, and manage their blogs efficiently
-              within a fully responsive website that delivers a seamless
-              experience across all devices, whether desktop, tablet, or mobile.
-              Key Features User Authentication Login System: Only registered
-              users can create, edit, or delete blogs. Visitors without an
-              account can browse and read blogs but cannot contribute content,
-              ensuring controlled and secure publishing. Secure Authentication:
-              User login credentials are encrypted, ensuring data safety and
-              secure access to the platform. Create and Manage Blogs Blog
-              Creation: Authenticated users can craft engaging blogs with a
-              user-friendly editor, featuring options to add titles,
-              descriptions, and images. Edit and Update: Users can revisit their
-              published blogs to update or enhance content effortlessly. Delete
-              Blogs: Unwanted or outdated blogs can be removed with a single
-              click, keeping the user’s content organized. Blog Whitelist
-              Feature Favorite Blogs: Users can add specific blogs to their
-              personal whitelist for quick access, creating a personalized
-              reading list tailored to their interests. Manage Whitelisted
-              Blogs: Add or remove blogs from the whitelist anytime for enhanced
-              flexibility. Responsive Design The application boasts a fully
-              responsive design, adapting flawlessly to various screen sizes.
-              Whether users are browsing on a smartphone, tablet, or desktop,
-              they will experience consistent performance and visual appeal.
-              User Restrictions Non-authenticated users are restricted from
-              creating or managing blogs, ensuring content integrity and
-              accountability. This feature helps maintain a professional and
-              secure blogging environment. Additional Features Search and
-              Filter: Users can easily search for specific blogs or filter
-              content based on categories or tags. Rich User Interface: The
-              intuitive interface enhances usability, making the platform
-              accessible even for non-technical users. Real-Time Updates: Blogs
-              and user actions reflect changes instantly, providing a dynamic
-              experience. SEO Optimization: Each blog post is optimized for
-              search engines to enhance visibility and reach. This blog
-              application is perfect for writers, professionals, and enthusiasts
-              who want a reliable and accessible platform to share their
-              thoughts and ideas. Its robust features, responsive design, and
-              secure user authentication system ensure a smooth and enjoyable
-              blogging experience for both creators and readers.
+              A Dynamic Platform for Blogging Enthusiasts
+              <br />
+              <br />
+              The Blog Application is a user-friendly, feature-rich platform for
+              creating, managing, and sharing blogs. With secure authentication,
+              only registered users can create, edit, or delete content,
+              ensuring a professional and safe environment. It includes features
+              like blog whitelisting, search, and filter options, making it easy
+              to organize and access content. The fully responsive design
+              ensures seamless performance across all devices, and real-time
+              updates enhance user experience. Perfect for writers and
+              enthusiasts, this app simplifies blogging while maintaining a
+              dynamic, intuitive interface.
             </p>
 
             <div className="row block-1-2 block-tab-full">
@@ -119,7 +89,7 @@ function About() {
         </div>
       </section>
 
-      <Popularpost/>
+      <Popularpost />
       <Footer />
     </>
   );

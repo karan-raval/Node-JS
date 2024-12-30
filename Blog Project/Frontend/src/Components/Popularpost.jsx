@@ -3,11 +3,7 @@ import shutterbug150 from "../assets/images/shutterbug-150.jpg";
 import wheel150 from "../assets/images/wheel-150.jpg";
 import beetle150 from "../assets/images/beetle-150.jpg";
 import tulips150 from "../assets/images/tulips-150.jpg";
-import lamp from "../assets/images/lamp-400.jpg";
-import wheel from "../assets/images/wheel-400.jpg";
 import cookies from "../assets/images/cookies-150.jpg";
-import beetle from "../assets/images/beetle-150.jpg";
-import tulips from "../assets/images/tulips-150.jpg";
 import salad from "../assets/images/salad-150.jpg";
 
 const Popularpost = () => {
