@@ -86,6 +86,9 @@ const Popover = () => {
             fullWidth
             variant="standard"
             onChange={handleChange}
+            InputLabelProps={{
+              style: { fontSize: "1.5rem" }, 
+            }}
           />
           <TextField
             required
@@ -96,7 +99,9 @@ const Popover = () => {
             fullWidth
             variant="standard"
             onChange={handleChange}
-
+            InputLabelProps={{
+              style: { fontSize: "1.5rem" }, 
+            }}
           />
           <TextField
             required
@@ -107,7 +112,9 @@ const Popover = () => {
             fullWidth
             variant="standard"
             onChange={handleChange}
-
+            InputLabelProps={{
+              style: { fontSize: "1.5rem" }, 
+            }}
           />
           <TextField
             required
@@ -118,8 +125,11 @@ const Popover = () => {
             fullWidth
             variant="standard"
             onChange={handleChange}
-
+            InputLabelProps={{
+              style: { fontSize: "1.5rem" }, 
+            }}
           />
+          <br /><br />
            <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>

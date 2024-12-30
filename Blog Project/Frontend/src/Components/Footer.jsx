@@ -54,22 +54,22 @@ const Footer = () => {
               <h4>Archives</h4>
               <ul className="s-footer__linklist">
                 <li>
-                  <a href="#january-2018">January 2018</a>
+                  <a >January 2018</a>
                 </li>
                 <li>
-                  <a href="#december-2017">December 2017</a>
+                  <a >December 2017</a>
                 </li>
                 <li>
-                  <a href="#november-2017">November 2017</a>
+                  <a >November 2017</a>
                 </li>
                 <li>
-                  <a href="#october-2017">October 2017</a>
+                  <a>October 2017</a>
                 </li>
                 <li>
-                  <a href="#september-2017">September 2017</a>
+                  <a x>September 2017</a>
                 </li>
                 <li>
-                  <a href="#august-2017">August 2017</a>
+                  <a >August 2017</a>
                 </li>
               </ul>
             </div>
@@ -113,7 +113,7 @@ const Footer = () => {
                     placeholder="Email Address"
                     required
                   />
-                  <input type="submit" name="subscribe" value="Send" />
+                  <input type="button" name="subscribe" value="Send" />
                   <label className="subscribe-message"></label>
                 </form>
               </div>

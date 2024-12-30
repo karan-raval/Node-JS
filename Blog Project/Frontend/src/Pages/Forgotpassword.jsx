@@ -76,6 +76,9 @@ const Forgotpassword = () => {
               variant="standard"
               onChange={handleChange}
               className="input-field"
+              InputLabelProps={{
+                style: { fontSize: "1.5rem" }, 
+              }}
             />
 
             <Button type="submit" variant="contained" color="primary" className="hover-button">
@@ -94,6 +97,9 @@ const Forgotpassword = () => {
                   variant="standard"
                   onChange={handleChange}
                   className="input-field"
+                  InputLabelProps={{
+                    style: { fontSize: "1.5rem" }, 
+                  }}
                 />
                 <TextField
                   required
@@ -105,6 +111,9 @@ const Forgotpassword = () => {
                   variant="standard"
                   onChange={handleChange}
                   className="input-field"
+                  InputLabelProps={{
+                    style: { fontSize: "1.5rem" }, 
+                  }}
                 />
               </>
             )}
