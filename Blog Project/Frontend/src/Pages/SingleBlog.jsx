@@ -13,6 +13,8 @@ import user3 from "../assets/images/user-03.jpg";
 import user4 from "../assets/images/user-04.jpg";
 import user2 from "../assets/images/user-02.jpg";
 import tulips150 from "../assets/images/tulips-150.jpg";
+
+
 const SingleBlog = () => {
   return (
     <>

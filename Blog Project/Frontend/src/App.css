@@ -3394,6 +3394,7 @@ footer h4::after {
 
 .s-content--narrow h3.quarter-top-margin {
   margin-top: 1.5rem;
+  line-height: 4rem;
 }
 
 .s-content__header-title {
@@ -4494,6 +4495,7 @@ textarea {
 
 .block-1-2 .col-block {
   width: 50%;
+  line-height: 2.3rem;
 }
 
 .block-1-2 .col-block:nth-child(2n + 1) {
