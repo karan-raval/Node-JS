@@ -36,13 +36,6 @@ const Popover = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // axios.post("http://localhost:8888/changepassword", state)
-    //   .then((Res) => {
-    //     console.log(Res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     fetch(`http://localhost:5010/changepassword`, {
       method: "POST",
       headers: {
