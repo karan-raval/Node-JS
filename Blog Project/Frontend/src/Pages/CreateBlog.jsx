@@ -59,7 +59,7 @@ const CreateBlog = () => {
     console.log(fromdata)
    
     try {
-      const response = await fetch(`http://localhost:3333/createblog`, {
+      const response = await fetch(`http://localhost:5010/createblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

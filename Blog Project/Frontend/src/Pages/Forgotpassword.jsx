@@ -49,7 +49,6 @@ const Forgotpassword = () => {
       console.log("Response:", response);
   
       if (response.status === 200) {
-        // Success alert
         toast.success(response.data.msg || "OTP sent successfully!", {
           position: "top-right",
           autoClose: 3000,
@@ -59,12 +58,11 @@ const Forgotpassword = () => {
           draggable: true,
           progress: undefined,
         });
-        setShowOtpFields(true); // Show OTP fields on success
+        setShowOtpFields(true); 
       }
     } catch (error) {
       console.error("Error:", error);
   
-      // Display appropriate error messages
       const errorMsg =
         error.response?.data?.msg || "An error occurred. Please try again.";
       toast.error(errorMsg, {

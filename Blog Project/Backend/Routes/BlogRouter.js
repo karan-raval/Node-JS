@@ -7,14 +7,18 @@ BlogRouter.post("/add", isAuth, async (req, res) => {
   try {
     let data = await BlogModel.create(req.body);
     res.send(data);
-  } catch (error) {}
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
 });
 
 BlogRouter.get("/allBlogs", async (req, res) => {
   try {
     let data = await BlogModel.find().populate("userId", "email username");
     res.status(200).send(data);
-  } catch (error) {}
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
 });
 
 BlogRouter.get("/myBlogs", isAuth, async (req, res) => {
@@ -24,7 +28,9 @@ BlogRouter.get("/myBlogs", isAuth, async (req, res) => {
       "email username"
     );
     res.status(200).send(data);
-  } catch (error) {}
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
 });
 
 BlogRouter.get("/allBlogs/:id", async (req, res) => {
@@ -35,7 +41,9 @@ BlogRouter.get("/allBlogs/:id", async (req, res) => {
       "email username"
     );
     res.status(200).send(data);
-  } catch (error) {}
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
 });
 
 BlogRouter.patch("/edit/:id", async (req, res) => {
@@ -45,7 +53,9 @@ BlogRouter.patch("/edit/:id", async (req, res) => {
     let a = data.like + 1;
     let d = await BlogModel.findByIdAndUpdate(id, { like: a });
     res.status(200).send({ d });
-  } catch (error) {}
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
 });
 
 module.exports = BlogRouter;
