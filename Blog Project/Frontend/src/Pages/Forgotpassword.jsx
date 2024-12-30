@@ -8,7 +8,9 @@ import Slide from "@mui/material/Slide";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './Forgotpassword.css';
+import "./Forgotpassword.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -39,17 +41,42 @@ const Forgotpassword = () => {
 
   const [showOtpFields, setShowOtpFields] = useState(false);
 
-  const handleSubmit = (E) => {
-    E.preventDefault();
-    axios
-      .post("http://localhost:5010/forgotPassword", state)
-      .then((Res) => {
-        console.log(Res);
-        setShowOtpFields(true);
-      })
-      .catch((err) => {
-        console.log(err);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post("http://localhost:5010/forgotPassword", state);
+      console.log("Response:", response);
+  
+      if (response.status === 200) {
+        // Success alert
+        toast.success(response.data.msg || "OTP sent successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setShowOtpFields(true); // Show OTP fields on success
+      }
+    } catch (error) {
+      console.error("Error:", error);
+  
+      // Display appropriate error messages
+      const errorMsg =
+        error.response?.data?.msg || "An error occurred. Please try again.";
+      toast.error(errorMsg, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
+    }
   };
   return (
     <>
@@ -64,7 +91,7 @@ const Forgotpassword = () => {
       >
         <DialogTitle className="dialog-title">Forgot Password</DialogTitle>
         <DialogContent>
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <TextField
               autoFocus
               required
@@ -77,14 +104,19 @@ const Forgotpassword = () => {
               onChange={handleChange}
               className="input-field"
               InputLabelProps={{
-                style: { fontSize: "1.5rem" }, 
+                style: { fontSize: "1.5rem" },
               }}
             />
 
-            <Button type="submit" variant="contained" color="primary" className="hover-button">
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className="hover-button"
+            >
               Submit
             </Button>
-            
+
             {showOtpFields && (
               <>
                 <TextField
@@ -98,7 +130,7 @@ const Forgotpassword = () => {
                   onChange={handleChange}
                   className="input-field"
                   InputLabelProps={{
-                    style: { fontSize: "1.5rem" }, 
+                    style: { fontSize: "1.5rem" },
                   }}
                 />
                 <TextField
@@ -112,7 +144,7 @@ const Forgotpassword = () => {
                   onChange={handleChange}
                   className="input-field"
                   InputLabelProps={{
-                    style: { fontSize: "1.5rem" }, 
+                    style: { fontSize: "1.5rem" },
                   }}
                 />
               </>
