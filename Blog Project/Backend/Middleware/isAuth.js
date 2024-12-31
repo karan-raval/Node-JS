@@ -13,7 +13,7 @@ const isAuth = (req, res, next) => {
       return res.status(401).send({ msg: "Login First" });
     }
   } catch (error) {
-    return res.status(501).send({ msg: "" });
+    return res.status(403).json({ msg: "Invalid token" });
   }
 };
 

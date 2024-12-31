@@ -25,7 +25,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(state);
+    // console.log(state);
   
     try {
       const response = await fetch(`http://localhost:5010/login`, {
@@ -35,14 +35,20 @@ const Login = () => {
         },
         body: JSON.stringify(state),
       });
-  
-      const result = await response.json();
+      
       if (response.ok) {
+        const result = await response.json();
+        const token = result.token;
+        console.log("Token:", token);
+
+        // localStorage.setItem("authToken", token);
+
         toast.success("Login Successful");
         setTimeout(() => {
           navigate("/");
         }, 4000);
       } else {
+        const result = await response.json();
         toast.error(result.msg || "Login Failed");
       }
     } catch (error) {

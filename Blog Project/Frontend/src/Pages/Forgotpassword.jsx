@@ -83,6 +83,17 @@ const Forgotpassword = () => {
   return (
     <>
       <p onClick={handleClickOpen}>Forgot Your Password</p>
+      <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+/>
       <Dialog
         open={open}
         TransitionComponent={Transition}

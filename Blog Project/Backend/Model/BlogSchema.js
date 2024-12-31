@@ -7,7 +7,7 @@ const BlogSchema = mongoose.Schema(
     image: { type: String },
     like: { type: Number, default: 0 },
     userId: { type: mongoose.Types.ObjectId, require: true, ref: "users" },
-    // publishTime : {type : Date, default : Date.now}
+    date: { type: String,},
   },
   {
     versionKey: false,

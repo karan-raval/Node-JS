@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -10,7 +10,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import '../assets/css/createblog.css'
 const CreateBlog = () => {
+  const [token, setToken] = useState(null);
   const [sort, setSort] = useState("");
+
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
+
 
   const today = new Date();
 
@@ -30,7 +37,6 @@ const CreateBlog = () => {
   ];
 
   const month = monthNames[today.getMonth()];
-
   const date = today.getDate();
   const year = today.getFullYear();
 
@@ -63,6 +69,7 @@ const CreateBlog = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(fromdata),
       });
