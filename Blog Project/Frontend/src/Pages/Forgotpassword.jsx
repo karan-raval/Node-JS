@@ -11,6 +11,7 @@ import axios from "axios";
 import "./Forgotpassword.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OtpForm from "./OtpForm";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -77,9 +78,8 @@ const Forgotpassword = () => {
     }
   };
 
-  const handleforgotpassword=()=>{
-    
-  }
+  
+
   return (
     <>
       <p onClick={handleClickOpen}>Forgot Your Password</p>
@@ -120,43 +120,9 @@ const Forgotpassword = () => {
             </Button>
           </form>
 
-            {showOtpFields && (
-              <>
-              <form onSubmit={handleforgotpassword}>
-                <TextField
-                  required
-                  margin="dense"
-                  name="otp"
-                  label="OTP"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                  onChange={handleChange}
-                  className="input-field"
-                  InputLabelProps={{
-                    style: { fontSize: "1.5rem" },
-                  }}
-                />
-                <TextField
-                  required
-                  margin="dense"
-                  name="newPassword"
-                  label="New Password"
-                  type="password"
-                  fullWidth
-                  variant="standard"
-                  onChange={handleChange}
-                  className="input-field"
-                  InputLabelProps={{
-                    style: { fontSize: "1.5rem" },
-                  }}
-                />
-          <Button variant="contained" color="primary" className="hover-button">
-            Forgot Password
-          </Button>
-          </form>
-              </>
-            )}
+          {showOtpFields && (
+            <OtpForm/>
+          )}
         </DialogContent>
       </Dialog>
     </>

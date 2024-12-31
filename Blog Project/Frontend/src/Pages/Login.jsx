@@ -5,8 +5,6 @@ import "../assets/css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import ChangePassword from "./ChangePassword";
-// import { Button } from '@mui/material';
 import Popover from "./Popover";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -43,7 +41,7 @@ const Login = () => {
         toast.success("Login Successful");
         setTimeout(() => {
           navigate("/");
-        }, 3000);
+        }, 4000);
       } else {
         toast.error(result.msg || "Login Failed");
       }
