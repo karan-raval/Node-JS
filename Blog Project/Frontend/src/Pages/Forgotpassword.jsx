@@ -76,6 +76,10 @@ const Forgotpassword = () => {
       });
     }
   };
+
+  const handleforgotpassword=()=>{
+    
+  }
   return (
     <>
       <p onClick={handleClickOpen}>Forgot Your Password</p>
@@ -114,9 +118,11 @@ const Forgotpassword = () => {
             >
               Submit
             </Button>
+          </form>
 
             {showOtpFields && (
               <>
+              <form onSubmit={handleforgotpassword}>
                 <TextField
                   required
                   margin="dense"
@@ -145,13 +151,12 @@ const Forgotpassword = () => {
                     style: { fontSize: "1.5rem" },
                   }}
                 />
-              </>
-            )}
-          </form>
-          <br />
           <Button variant="contained" color="primary" className="hover-button">
             Forgot Password
           </Button>
+          </form>
+              </>
+            )}
         </DialogContent>
       </Dialog>
     </>
