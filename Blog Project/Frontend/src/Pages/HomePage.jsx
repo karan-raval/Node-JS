@@ -8,6 +8,9 @@ import Footer from "../Components/Footer";
 import "../App.css";
 import Popularpost from "../Components/Popularpost";
 
+import { Flex, Text } from "@chakra-ui/react"
+import { Link } from "react-router-dom";
+
 const HomePage = () => {
 
   // State to manage the like and wishlist status for each article
@@ -163,9 +166,9 @@ const HomePage = () => {
                 id={`sy${el.id}`}
               >
                 <div className="entry__thumb">
-                  <a className="entry__thumb-link">
+                  <Link to={'/'} className="entry__thumb-link">
                     <img src={el.image} alt="" />
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="entry__text">
@@ -173,30 +176,41 @@ const HomePage = () => {
                     <div className="entry__date">
                       <a>{el.date}</a>
                     </div>
-                    <h1 className="entry__title">
-                      <a>{el.title}</a>
+                    <h1 className="entry__title"><Flex maxW="300px">
+                      <Text truncate>
+                        {el.title}
+                      </Text>
+                    </Flex>
+
                     </h1>
                   </div>
                   <div className="entry__excerpt">
                     <p>
-                      {el.description}
+                      <Flex maxW="300px">
+                        <Text lineClamp="2">
+                          {el.description}
+                        </Text>
+                      </Flex>
+
                     </p>
                   </div>
+                  <br />
                   <div className="entry__meta">
                     <span className="entry__meta-links">
                       <a>{el.category}</a>
                     </span>
                   </div>
+                  <br /><br />
                   <div className="entry__actions">
                     <FontAwesomeIcon
                       icon={faHeart}
-                      // onClick={() => handleLike(article.id)}
-                      // className={`icon like-icon ${article.isLiked ? "liked" : ""}`}
+                    // onClick={() => handleLike(article.id)}
+                    // className={`icon like-icon ${article.isLiked ? "liked" : ""}`}
                     />
                     <FontAwesomeIcon
                       icon={faBookmark}
-                      // onClick={() => handleWishlist(article.id)}
-                      // className={`icon wishlist-icon ${article.isWishlisted ? "wishlisted" : ""}`}
+                    // onClick={() => handleWishlist(article.id)}
+                    // className={`icon wishlist-icon ${article.isWishlisted ? "wishlisted" : ""}`}
                     />
                   </div>
                 </div>
