@@ -9,15 +9,17 @@ import Input from '@mui/material/Input';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import '../assets/css/createblog.css'
+
 const CreateBlog = () => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState((localStorage.getItem("Token")) || null);
   const [sort, setSort] = useState("");
 
 
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);
+  // useEffect(() => {
+    // setToken(localStorage.getItem("Token"));
+  // }, []);
 
+  console.log(token)
 
   const today = new Date();
 
@@ -44,14 +46,14 @@ const CreateBlog = () => {
 
   const navigate = useNavigate();
   const [fromdata, setState] = useState({
-    blogname: "",
-    heading: "",
-    des: "",
-    imgURL: "",
-    all:all
+    title: "",
+    description: "",
+    image: "",
+    category: "",
+    all: all
   });
 
-  const handleChange = async(e) => {
+  const handleChange = async (e) => {
     let { name, value } = e.target;
     setState({ ...fromdata, [name]: value });
   };
@@ -60,10 +62,10 @@ const CreateBlog = () => {
     setSort(e.target.value);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(fromdata)
-   
+    // console.log(fromdata)
+
     try {
       const response = await fetch(`http://localhost:5010/createblog`, {
         method: "POST",
@@ -84,16 +86,16 @@ const CreateBlog = () => {
     } catch (error) {
       console.error("Error during submission:", error);
     }
-
-  setState({
-    blogname: "",
-    heading: "",
-    des: "",
-    imgURL: "",
-  });
+    
+    setState({
+    title: "",
+    description: "",
+    image: "",
+    category: "",
+    });
   };
 
-  let { blogname, heading, des, imgURL } = fromdata;
+  // let { title,description,image,category } = fromdata;
   return (
     <>
       <Header />
@@ -109,60 +111,55 @@ const CreateBlog = () => {
                     <div className="form-field">
                       <input
                         onChange={handleChange}
-                        value={blogname}
-                        name="blogname"
+                        name="title"
                         type="text"
                         className="full-width"
-                        placeholder="Your Name"
+                        placeholder="Blog Title"
                       />
                     </div>
 
                     <div className="form-field">
                       <input
                         onChange={handleChange}
-                        name="heading"
-                        value={heading}
+                        name="description"
                         type="text"
                         className="full-width"
-                        placeholder="Enter Heading"
+                        placeholder="Blog Description"
                       />
                     </div>
 
-                    <div className="form-field">
-                      <input
-                        onChange={handleChange}
-                        value={des}
-                        name="des"
-                        type="text"
-                        className="full-width"
-                        placeholder="Enter description"
-                      />
-                    </div>
                     <div className="form-field" >
                       <Box>
-                        <FormControl  size="big" error  fullWidth>
-                          <InputLabel  id="demo-simple-select" labelId="demo-simple-select-label" >
+                        <FormControl
+                          size="big"
+                          fullWidth
+                          sx={{ marginBottom: 2 ,fontSize: '2rem',color: 'Gray' }}
+                        >
+                          <InputLabel
+                            id="demo-simple-select-label"
+                            sx={{ fontSize: '1.5rem',color:'Gray' }}
+                          >
                             Categories
                           </InputLabel>
                           <Select
                             onChange={handleSort}
+                            sx={{ fontSize: '1.6rem',color: 'blue' }}
                           >
-                            <MenuItem  value={"Lifestyle"}>Lifestyle</MenuItem>
-                            <MenuItem value={"Health"}>Health</MenuItem>
-                            <MenuItem value={"Family"}>Family</MenuItem>
-                            <MenuItem value={"Management"}>Management</MenuItem>
-                            <MenuItem value={"Travel"}>Travel</MenuItem>
-                            <MenuItem value={"Work"}>Work</MenuItem>
+                            <MenuItem value={"Lifestyle"} sx={{ fontSize: '1.2rem' }}>Lifestyle</MenuItem>
+                            <MenuItem value={"Health"} sx={{ fontSize: '1.2rem' }}>Health</MenuItem>
+                            <MenuItem value={"Family"} sx={{ fontSize: '1.2rem' }}>Family</MenuItem>
+                            <MenuItem value={"Management"} sx={{ fontSize: '1.2rem' }}>Management</MenuItem>
+                            <MenuItem value={"Travel"} sx={{ fontSize: '1.2rem' }}>Travel</MenuItem>
+                            <MenuItem value={"Work"} sx={{ fontSize: '1.2rem' }}>Work</MenuItem>
                           </Select>
                         </FormControl>
                       </Box>
-                      
+
                     </div>
                     <div className="form-field">
                       <input
                         onChange={handleChange}
-                        value={imgURL}
-                        name="imgURL"
+                        name="image"
                         type="text"
                         className="full-width"
                         placeholder="Your Image Link"
@@ -171,8 +168,7 @@ const CreateBlog = () => {
 
                     <button
                       type="submit"
-                      className="submit btn--primary btn--large full-width"
-                    >
+                      className="submit btn--primary btn--large full-width">
                       Submit
                     </button>
                   </fieldset>

@@ -3,7 +3,7 @@ const isAuth = require("../Middleware/isAuth");
 const BlogModel = require("../Model/BlogSchema");
 const BlogRouter = Router();
 
-BlogRouter.post("/add", isAuth, async (req, res) => {
+BlogRouter.post("/createblog", isAuth, async (req, res) => {
   try {
     let data = await BlogModel.create(req.body);
     res.send(data);

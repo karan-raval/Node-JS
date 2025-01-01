@@ -41,7 +41,7 @@ const Login = () => {
         const token = result.token;
         console.log("Token:", token);
 
-        // localStorage.setItem("authToken", token);
+        localStorage.setItem("Token", token);
 
         toast.success("Login Successful");
         setTimeout(() => {

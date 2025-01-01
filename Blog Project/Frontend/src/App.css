@@ -1,73 +1,31 @@
-/* =================================================================== 
- *
- *  Philosophy v1.0 Main Stylesheet
- *  1-2-2018
- *  ------------------------------------------------------------------
- *
- *  TOC:
- *  # base style overrides
- *    ## links
- *  # typography & general theme styles
- *    ## Lists
- *    ## responsive video container
- *    ## floated image
- *    ## tables
- *    ## spacing 
- *    ## pace.js styles - minimal
- *  # preloader (line scale)
- *  # forms
- *    ## Style Placeholder Text
- *    ## Change Autocomplete styles in Chrome
- *  # buttons
- *  # additional components
- *    ## alert box
- *    ## additional typo styles
- *    ## pagination
- *  # reusable and common theme styles
- *    ## mediaelement style overrides
- *    ## close button for search and mobile navigation
- *    ## slick slider
- *    ## masonry entries
- *    ## post formats - masonry view
- *  # pageheader
- *    ## header logo
- *    ## header social
- *    ## header-toggle
- *    ## header-search
- *    ## header search trigger
- *    ## main navigation
- *    ## pageheader content
- *    ## feature section animation
- *  # s-content
- *    ## masonry layout
- *  # s-extra
- *    ## popular posts
- *    ## about
- *    ## tags
- *  # footer
- *    ## footer link list
- *    ## subscribe form
- *    ## copyright
- *    ## go to top
- *  # blog styles
- *    ## content main
- *    ## content media
- *    ## post tags
- *    ## author profile
- *    ## blog single page navigation
- *    ## format gallery
- *    ## format video
- *    ## format audio
- *    ## comments
- *  # page styles
- *    ## contact page
- *
- * =================================================================== */
+.icon {
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 25px; /* Increase the font size for larger icons */
+  cursor: pointer;
+  color: black;
+  display: inline-block; /* Ensure icons are inline */
+}
 
-/* ===================================================================
- * # base style overrides
- *
- * ------------------------------------------------------------------- */
+.wishlisted {
+  color: blue; /* Change color to blue when wishlisted */
+}
+
+/* .icon:hover {
+  color: #0056b3;
+} */
+
+.entry__actions {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.liked {
+  color: red; /* Change color to red when liked */
+}
+
+
 html {
   font-size: 10px;
 }
