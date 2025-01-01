@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faBookmark } from "@fortawesome/free-solid-svg-icons";
 import user3 from "../assets/images/user-01.jpg";
@@ -9,33 +9,53 @@ import "../App.css";
 import Popularpost from "../Components/Popularpost";
 
 const HomePage = () => {
+
   // State to manage the like and wishlist status for each article
-  const [articles, setArticles] = useState([
-    { id: 1, isLiked: false, isWishlisted: false },
-    { id: 2, isLiked: false, isWishlisted: false },
-    { id: 3, isLiked: false, isWishlisted: false },
-    // Add more articles as needed
-  ]);
+  // const [articles, setArticles] = useState([
+  //   { id: 1, isLiked: false, isWishlisted: false },
+  //   { id: 2, isLiked: false, isWishlisted: false },
+  //   { id: 3, isLiked: false, isWishlisted: false },
+  //   // Add more articles as needed
+  // ]);
 
-  const handleLike = (id) => {
-    setArticles((prevArticles) =>
-      prevArticles.map((article) =>
-        article.id === id
-          ? { ...article, isLiked: !article.isLiked }
-          : article
-      )
-    );
-  };
+  // const handleLike = (id) => {
+  //   setArticles((prevArticles) =>
+  //     prevArticles.map((article) =>
+  //       article.id === id
+  //         ? { ...article, isLiked: !article.isLiked }
+  //         : article
+  //     )
+  //   );
+  // };
 
-  const handleWishlist = (id) => {
-    setArticles((prevArticles) =>
-      prevArticles.map((article) =>
-        article.id === id
-          ? { ...article, isWishlisted: !article.isWishlisted }
-          : article
-      )
-    );
-  };
+  // const handleWishlist = (id) => {
+  //   setArticles((prevArticles) =>
+  //     prevArticles.map((article) =>
+  //       article.id === id
+  //         ? { ...article, isWishlisted: !article.isWishlisted }
+  //         : article
+  //     )
+  //   );
+  // };
+
+  const [blogs, setBlogs] = useState([]); // State to store blog data
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch("http://localhost:5010/allBlogs"); // Adjust the URL as needed
+        if (!response.ok) {
+          throw new Error("Failed to fetch blogs");
+        }
+        const data = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   return (
     <>
@@ -135,52 +155,48 @@ const HomePage = () => {
           <div className="masonry" id="sy3">
             <div className="grid-sizer"></div>
 
-            {articles.map((article) => (
+            {blogs.map((el) => (
               <article
-                key={article.id}
+                key={el.id}
                 className="masonry__brick entry format-standard aos-init aos-animate"
                 data-aos="fade-up"
-                id={`sy${article.id}`}
+                id={`sy${el.id}`}
               >
                 <div className="entry__thumb">
                   <a className="entry__thumb-link">
-                    <img src={lamp} alt="" />
+                    <img src={el.image} alt="" />
                   </a>
                 </div>
 
                 <div className="entry__text">
                   <div className="entry__header">
                     <div className="entry__date">
-                      <a>December 15, 2017</a>
+                      <a>{el.date}</a>
                     </div>
                     <h1 className="entry__title">
-                      <a>Just a Standard Format Post.</a>
+                      <a>{el.title}</a>
                     </h1>
                   </div>
                   <div className="entry__excerpt">
                     <p>
-                      Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua
-                      incididunt mollit id et sit proident dolor nulla sed commodo
-                      est ad minim elit reprehenderit nisi officia aute incididunt
-                      velit sint in aliqua...
+                      {el.description}
                     </p>
                   </div>
                   <div className="entry__meta">
                     <span className="entry__meta-links">
-                      <a>Design</a>
-                      <a>Photography</a>
+                      <a>{el.category}</a>
                     </span>
                   </div>
                   <div className="entry__actions">
                     <FontAwesomeIcon
                       icon={faHeart}
-                      onClick={() => handleLike(article.id)}
-                      className={`icon like-icon ${article.isLiked ? "liked" : ""}`}
+                      // onClick={() => handleLike(article.id)}
+                      // className={`icon like-icon ${article.isLiked ? "liked" : ""}`}
                     />
                     <FontAwesomeIcon
                       icon={faBookmark}
-                      onClick={() => handleWishlist(article.id)}
-                      className={`icon wishlist-icon ${article.isWishlisted ? "wishlisted" : ""}`}
+                      // onClick={() => handleWishlist(article.id)}
+                      // className={`icon wishlist-icon ${article.isWishlisted ? "wishlisted" : ""}`}
                     />
                   </div>
                 </div>
