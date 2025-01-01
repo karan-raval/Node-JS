@@ -9,17 +9,14 @@ import Input from '@mui/material/Input';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import '../assets/css/createblog.css'
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+
 
 const CreateBlog = () => {
   const [token, setToken] = useState((localStorage.getItem("Token")) || null);
-  const [sort, setSort] = useState("");
-
-
-  // useEffect(() => {
-    // setToken(localStorage.getItem("Token"));
-  // }, []);
-
-  console.log(token)
+  const [category, setCategory] = useState("");
+  // console.log(token)
 
   const today = new Date();
 
@@ -44,27 +41,33 @@ const CreateBlog = () => {
 
   let all = date + " " + month + " " + year;
 
+  const handleChange = async (e) => {
+    let { name, value } = e.target;
+    setFromdata({ ...fromdata, [name]: value });
+  };
+
+  const handleSort = (event) => {
+    const selectedCategory = event.target.value;
+    setFromdata((prevData) => ({
+      ...prevData,
+      category: selectedCategory,
+    }));
+  };
+
   const navigate = useNavigate();
-  const [fromdata, setState] = useState({
+  const [fromdata, setFromdata] = useState({
     title: "",
     description: "",
     image: "",
     category: "",
-    all: all
+    date: all
   });
 
-  const handleChange = async (e) => {
-    let { name, value } = e.target;
-    setState({ ...fromdata, [name]: value });
-  };
-
-  const handleSort = (e) => {
-    setSort(e.target.value);
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(fromdata)
+    console.log(fromdata)
 
     try {
       const response = await fetch(`http://localhost:5010/createblog`, {
@@ -78,13 +81,17 @@ const CreateBlog = () => {
 
       const result = await response.json();
       if (response.ok) {
-        alert("BLog Data Added Successfull")
-        navigate("/");
+        toast.success("Blog submitted successfully!");
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
       } else {
         console.error("Failed to add BLog Data:", result.message);
+        toast.success("Failed to add BLog Data:",result.message);
       }
     } catch (error) {
       console.error("Error during submission:", error);
+      toast.success("Error during submission !",error);
     }
     
     setState({
@@ -95,10 +102,20 @@ const CreateBlog = () => {
     });
   };
 
-  // let { title,description,image,category } = fromdata;
   return (
     <>
       <Header />
+      <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+/>
       <section className="s-content--narrow">
         <div className="comments-wrapp">
           <div id="comments" className="row">
@@ -138,12 +155,14 @@ const CreateBlog = () => {
                           <InputLabel
                             id="demo-simple-select-label"
                             sx={{ fontSize: '1.5rem',color:'Gray' }}
+                            name='category'
                           >
                             Categories
                           </InputLabel>
                           <Select
+                            value={fromdata.category}
                             onChange={handleSort}
-                            sx={{ fontSize: '1.6rem',color: 'blue' }}
+                            sx={{ fontSize: '1.6rem',color: '#f1f1f5' }}
                           >
                             <MenuItem value={"Lifestyle"} sx={{ fontSize: '1.2rem' }}>Lifestyle</MenuItem>
                             <MenuItem value={"Health"} sx={{ fontSize: '1.2rem' }}>Health</MenuItem>

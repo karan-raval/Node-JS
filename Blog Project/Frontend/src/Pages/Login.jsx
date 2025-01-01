@@ -4,7 +4,6 @@ import Footer from "../Components/Footer";
 import "../assets/css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Popover from "./Popover";
 import "react-toastify/dist/ReactToastify.css";
 

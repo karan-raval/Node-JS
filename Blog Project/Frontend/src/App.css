@@ -629,7 +629,7 @@ select {
   padding: 1.5rem 0;
   border: 0;
   outline: none;
-  color: #151515;
+  color: #f1f1f5;
   font-family: "metropolis-regular", sans-serif;
   font-size: 1.6rem;
   line-height: 3rem;
@@ -758,7 +758,7 @@ textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #0054a5;
+  -webkit-text-fill-color: #f1f1f5;
   transition: background-color 5000s ease-in-out 0s;
 }
 
