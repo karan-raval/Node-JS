@@ -166,7 +166,7 @@ const HomePage = () => {
                 id={`sy${el.id}`}
               >
                 <div className="entry__thumb">
-                  <Link to={'/'} className="entry__thumb-link">
+                  <Link to={`/allblogs/${el._id}`} className="entry__thumb-link">
                     <img src={el.image} alt="" />
                   </Link>
                 </div>

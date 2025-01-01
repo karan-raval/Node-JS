@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../App.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -16,56 +17,56 @@ import tulips150 from "../assets/images/tulips-150.jpg";
 
 
 const SingleBlog = () => {
+  const { id } = useParams();
+  const [blog, setBlog] = useState(null);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const response = await fetch(`http://localhost:5010/allblogs/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch blog");
+        }
+        const data = await response.json();
+        setBlog(data);
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  if (!blog) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      <div class="s-pageheader">
+      <div className="s-pageheader">
         <Header />
       </div>
       <section className="s-content s-content--narrow s-content--no-padding-bottom">
         <article className="row format-standard">
           <div className="s-content__header col-full">
+            <h1 className="s-content__title">{blog.title}</h1>
             <ul className="s-content__header-meta">
-              <li className="date">December 16, 2017</li>
+              <li className="date">{blog.date}</li>
               <li className="cat">
-                In
-                <a>Lifestyle</a>
-                <a>Travel</a>
+                In &nbsp;
+                <a>{blog.category}</a>
               </li>
             </ul>
           </div>
 
           <div className="s-content__media col-full">
             <div className="s-content__post-thumb">
-              <img
-                src={standard1000}
-                sizes="(max-width: 2000px) 100vw, 2000px"
-                alt=""
-              />
+              <img src={blog.image} alt={blog.title} />
             </div>
           </div>
 
           <div className="col-full s-content__main">
-            <p className="lead">
-              Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat
-              nostrud cupidatat dolor sunt sint sit nisi est eu exercitation
-              incididunt adipisicing veniam velit id fugiat enim mollit amet
-              anim veniam dolor dolor irure velit commodo cillum sit nulla
-              ullamco magna amet magna cupidatat qui labore cillum sit in tempor
-              veniam consequat non laborum adipisicing aliqua ea nisi sint.
-            </p>
-
-            <p>
-              Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat
-              nostrud cupidatat dolor sunt sint sit nisi est eu exercitation
-              incididunt adipisicing veniam velit id fugiat enim mollit amet
-              anim veniam dolor dolor irure velit commodo cillum sit nulla
-              ullamco magna amet magna cupidatat qui labore cillum sit in tempor
-              veniam consequat non laborum adipisicing aliqua ea nisi sint ut
-              quis proident ullamco ut dolore culpa occaecat ut laboris in sit
-              minim cupidatat ut dolor voluptate enim veniam consequat occaecat
-              fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua
-              laborum mollit quis nostrud sed sed.
-            </p>
+            <p className="lead">{blog.description}</p>
           </div>
         </article>
 

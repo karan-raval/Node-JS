@@ -63,7 +63,7 @@ const CreateBlog = () => {
     date: all
   });
 
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,18 +87,18 @@ const CreateBlog = () => {
         }, 4000);
       } else {
         console.error("Failed to add BLog Data:", result.message);
-        toast.success("Failed to add BLog Data:",result.message);
+        toast.success("Failed to add BLog Data:", result.message);
       }
     } catch (error) {
       console.error("Error during submission:", error);
-      toast.success("Error during submission !",error);
+      toast.success("Error during submission !", error);
     }
-    
+
     setState({
-    title: "",
-    description: "",
-    image: "",
-    category: "",
+      title: "",
+      description: "",
+      image: "",
+      category: "",
     });
   };
 
@@ -106,16 +106,16 @@ const CreateBlog = () => {
     <>
       <Header />
       <ToastContainer
-  position="top-right"
-  autoClose={3000}
-  hideProgressBar={false}
-  newestOnTop
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-/>
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <section className="s-content--narrow">
         <div className="comments-wrapp">
           <div id="comments" className="row">
@@ -150,11 +150,11 @@ const CreateBlog = () => {
                         <FormControl
                           size="big"
                           fullWidth
-                          sx={{ marginBottom: 2 ,fontSize: '2rem',color: 'Gray' }}
+                          sx={{ marginBottom: 2, fontSize: '2rem', color: 'Gray' }}
                         >
                           <InputLabel
                             id="demo-simple-select-label"
-                            sx={{ fontSize: '1.5rem',color:'Gray' }}
+                            sx={{ fontSize: '1.5rem', color: 'Gray' }}
                             name='category'
                           >
                             Categories
@@ -162,7 +162,7 @@ const CreateBlog = () => {
                           <Select
                             value={fromdata.category}
                             onChange={handleSort}
-                            sx={{ fontSize: '1.6rem',color: '#f1f1f5' }}
+                            sx={{ fontSize: '1.6rem', color: '#f1f1f5' }}
                           >
                             <MenuItem value={"Lifestyle"} sx={{ fontSize: '1.2rem' }}>Lifestyle</MenuItem>
                             <MenuItem value={"Health"} sx={{ fontSize: '1.2rem' }}>Health</MenuItem>

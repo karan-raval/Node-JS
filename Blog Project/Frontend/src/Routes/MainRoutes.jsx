@@ -19,7 +19,7 @@ const MainRoutes = () => {
         <Route path='/aboutus' element={<PrivateRoute><About/></PrivateRoute>}></Route>
         <Route path='/contact' element={<Contact/>}></Route>
         <Route path='/createblog' element={<CreateBlog/>}></Route>
-        <Route path='/singleblog' element={<SingleBlog/>}></Route>
+        <Route path='/allblogs/:id' element={<SingleBlog/>}></Route>
     </Routes>
     </>
   )
