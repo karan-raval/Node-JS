@@ -75,6 +75,9 @@ const Header = () => {
                 <li>
                   <Link to={"/whislist"}>wishlist</Link>
                 </li>
+                <li>
+                  <Link to={"/myblogs"}>My Blogs</Link>
+                </li>
               </ul>
               <a
                 title="Close Menu"
