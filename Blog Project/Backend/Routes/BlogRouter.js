@@ -89,9 +89,10 @@ BlogRouter.delete("/delete", async (req, res) => {
 BlogRouter.get("/editget/:id", isAuth, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
-
+    
     const blog = await BlogModel.findById(id);
+    console.log(blog);
+
 
     if (!blog) {
       return res.status(404).send({ msg: "Blog not found" });
@@ -106,24 +107,25 @@ BlogRouter.get("/editget/:id", isAuth, async (req, res) => {
 
 BlogRouter.patch("/editblog", isAuth, async (req, res) => {
   try {
-    const { id, title, description, image, category } = req.body;
+    const { id } = req.body;
 
-    const blog = await BlogModel.findById(id);
-
+    
+    const blog = await BlogModel.findByIdAndUpdate(id,req.body);
+    console.log(blog)
 
     if (!blog) {
       return res.status(404).send({ msg: "Blog not found" });
     }
 
-    blog.title = title.trim() || blog.title;
-    blog.description = description.trim() || blog.description;
-    blog.image = image?.trim() || blog.image;
+    // blog.title = title.trim() || blog.title;
+    // blog.description = description.trim() || blog.description;
+    // blog.image = image?.trim() || blog.image;
     // blog.content = content?.trim() || blog.content;
     // blog.tags = tags || blog.tags;
-    blog.category = category?.trim() || blog.category;
+    // blog.category = category?.trim() || blog.category;
     // blog.status = status || blog.status;
 
-    // await blog.save();
+    // await BlogModel.create(req.body);
 
     res.status(200).send({ msg: "Blog updated successfully", blog });
   } catch (error) {

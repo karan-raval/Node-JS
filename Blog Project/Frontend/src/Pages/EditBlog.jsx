@@ -99,30 +99,30 @@ const EditBlog = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5010/editBlog`, {
+      const response = await fetch(`http://localhost:5010/editblog`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(fromdata),
+        body: JSON.stringify({
+          id,
+          ...fromdata
+        }),
       });
 
       const result = await response.json();
-
       if (response.ok) {
-
         toast.success("Blog updated successfully!");
-
         setTimeout(() => {
-          navigate("/");  
+          navigate("/");
         }, 4000);
       } else {
-        // console.log("Failed to update Blog Data:", result.message);
+        console.error("Failed to update Blog Data:", result.message);
         toast.error("Failed to update Blog Data:", result.message);
       }
     } catch (error) {
-      console.log("Error during submission:", error);
+      console.error("Error during submission:", error);
       toast.error("Error during submission!", error);
     }
   };
