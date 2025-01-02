@@ -104,22 +104,23 @@ BlogRouter.get("/editget/:id", isAuth, async (req, res) => {
   }
 });
 
-BlogRouter.get("/editblog", isAuth, async (req, res) => {
+BlogRouter.patch("/editblog", isAuth, async (req, res) => {
   try {
     const { id, title, description, image, category } = req.body;
 
     const blog = await BlogModel.findById(id);
 
-    // if (!blog) {
-    //   return res.status(404).send({ msg: "Blog not found" });
-    // }
 
-    // blog.title = title.trim() || blog.title;
-    // blog.description = description.trim() || blog.description;
-    // blog.image = image?.trim() || blog.image;
+    if (!blog) {
+      return res.status(404).send({ msg: "Blog not found" });
+    }
+
+    blog.title = title.trim() || blog.title;
+    blog.description = description.trim() || blog.description;
+    blog.image = image?.trim() || blog.image;
     // blog.content = content?.trim() || blog.content;
     // blog.tags = tags || blog.tags;
-    // blog.category = category?.trim() || blog.category;
+    blog.category = category?.trim() || blog.category;
     // blog.status = status || blog.status;
 
     // await blog.save();

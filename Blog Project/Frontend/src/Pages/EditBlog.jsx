@@ -100,7 +100,7 @@ const EditBlog = () => {
 
     try {
       const response = await fetch(`http://localhost:5010/editBlog`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -115,10 +115,10 @@ const EditBlog = () => {
         toast.success("Blog updated successfully!");
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/");  
         }, 4000);
       } else {
-        console.log("Failed to update Blog Data:", result.message);
+        // console.log("Failed to update Blog Data:", result.message);
         toast.error("Failed to update Blog Data:", result.message);
       }
     } catch (error) {
