@@ -67,7 +67,7 @@ const CreateBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(fromdata)
+    // console.log(fromdata)
 
     try {
       const response = await fetch(`http://localhost:5010/createblog`, {
@@ -94,7 +94,7 @@ const CreateBlog = () => {
       toast.success("Error during submission !", error);
     }
 
-    setState({
+    setFromdata({
       title: "",
       description: "",
       image: "",

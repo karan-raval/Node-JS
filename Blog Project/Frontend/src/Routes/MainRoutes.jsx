@@ -9,6 +9,7 @@ import CreateBlog from '../Pages/CreateBlog'
 import SingleBlog from '../Pages/SingleBlog'
 import PrivateRoute from '../Pages/PrivateRoute'
 import Myblogs from '../Pages/Myblogs'
+import EditBlog from '../Pages/EditBlog'
 
 const MainRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const MainRoutes = () => {
         <Route path='/contact' element={<Contact/>}></Route>
         <Route path='/createblog' element={<CreateBlog/>}></Route>
         <Route path='/allblogs/:id' element={<SingleBlog/>}></Route>
+        <Route path='/editblog/:id' element={<EditBlog/>}></Route>
         <Route path='/myblogs' element={<Myblogs/>}></Route>
     </Routes>
     </>

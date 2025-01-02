@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const UserBlogs = () => {
+    const navigate=useNavigate()
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,28 +35,22 @@ const UserBlogs = () => {
     fetchUserBlogs();
   }, []);
 
-  const handleEdit = (id) => {
-    // Implement edit functionality here
-    console.log(`Edit blog with ID: ${id}`);
-  };
-
   const handleDelete = async (id) => {
-    // Implement delete functionality here
+    // console.log(id)
     try {
-      const response = await fetch(`http://localhost:5010/blogs/${id}`, {
+      const response = await fetch(`http://localhost:5010/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
+        body: JSON.stringify({ id }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to delete blog");
       }
 
-      // Remove the deleted blog from the state
-      setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
     }
@@ -63,6 +59,10 @@ const UserBlogs = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleEdit = (id) => {
+    navigate(`/EditBlog/${id}`); 
+  };
 
   return (
     <>
