@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 import Popover from "./Popover";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Login = () => {
   const [state, setState] = useState({
     email: "",
@@ -24,7 +23,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(state);
   
     try {
       const response = await fetch(`http://localhost:5010/login`, {
@@ -34,18 +32,19 @@ const Login = () => {
         },
         body: JSON.stringify(state),
       });
-      
+  
       if (response.ok) {
+        console.log("Login successful, showing toast...");
+        toast.success("Login Successful");
         const result = await response.json();
         const token = result.token;
         console.log("Token:", token);
-
+  
         localStorage.setItem("Token", token);
-
-        toast.success("Login Successful");
+  
         setTimeout(() => {
           navigate("/");
-        }, 4000);
+        }, 4000); // Increased delay to ensure toast is visible
       } else {
         const result = await response.json();
         toast.error(result.msg || "Login Failed");
@@ -55,21 +54,22 @@ const Login = () => {
       console.error("Error during submission:", error);
     }
   };
+  
 
   return (
     <>
       <Header />
       <ToastContainer
-  position="top-right"
-  autoClose={3000}
-  hideProgressBar={false}
-  newestOnTop
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-/>
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
       <section className="s-content--narrow">
         <div className="comments-wrapp">

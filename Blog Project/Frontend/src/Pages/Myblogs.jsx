@@ -71,7 +71,6 @@ const UserBlogs = () => {
         <div className="row masonry-wrap">
           <div className="masonry" id="sy3">
             <div className="grid-sizer"></div>
-
             {blogs.map((el) => (
               <article
                 key={el.id}
