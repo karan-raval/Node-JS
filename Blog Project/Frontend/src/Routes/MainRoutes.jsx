@@ -18,12 +18,12 @@ const MainRoutes = () => {
         <Route path='/' element={<HomePage/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<Signup/>}></Route>
-        <Route path='/aboutus' element={<PrivateRoute><About/></PrivateRoute>}></Route>
+        <Route path='/aboutus' element={<About/>}></Route>
         <Route path='/contact' element={<Contact/>}></Route>
-        <Route path='/createblog' element={<CreateBlog/>}></Route>
-        <Route path='/allblogs/:id' element={<SingleBlog/>}></Route>
-        <Route path='/editblog/:id' element={<EditBlog/>}></Route>
-        <Route path='/myblogs' element={<Myblogs/>}></Route>
+        <Route path='/createblog' element={<PrivateRoute><CreateBlog/></PrivateRoute>}></Route>
+        <Route path='/allblogs/:id' element={<PrivateRoute><SingleBlog/></PrivateRoute>}></Route>
+        <Route path='/editblog/:id' element={<PrivateRoute><EditBlog/></PrivateRoute>}></Route>
+        <Route path='/myblogs' element={<PrivateRoute><Myblogs/></PrivateRoute>}></Route>
     </Routes>
     </>
   )
