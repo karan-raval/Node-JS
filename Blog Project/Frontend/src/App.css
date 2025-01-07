@@ -11,10 +11,6 @@
   color: blue; 
 }
 
-/* .icon:hover {
-  color: #0056b3;
-} */
-
 .entry__actions {
   display: flex; 
   align-items: center; 
