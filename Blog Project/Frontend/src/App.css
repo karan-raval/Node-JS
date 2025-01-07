@@ -1,7 +1,7 @@
 .icon {
   margin-top: 15px;
   padding: 10px;
-  font-size: 25px; /* Increase the font size for larger icons */
+  font-size: 25px; 
   cursor: pointer;
   color: black;
   display: inline-block; /* Ensure icons are inline */
