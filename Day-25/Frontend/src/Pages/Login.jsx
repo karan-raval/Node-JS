@@ -1,11 +1,56 @@
-import React from "react";
-import Icon from "@mdi/react";
-import { mdiFacebook, mdiGooglePlus } from "@mdi/js";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import jwt_decode from 'jwt-decode';
 
 const Login = () => {
+
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handlechange = (e) => {
+    const { name, value } = e.target
+    setState({ ...state, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(state)
+      try {
+        const response = await fetch('http://localhost:5532/user/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(state),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          toast.success(result.msg);
+          const token = result.token;
+          const decoded = jwt_decode(token);
+
+          if (decoded.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/products');
+          }
+        } else {
+          toast.error(result.msg);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        toast.error('An error occurred while logging in.');
+      }
+  };
+
   return (
     <>
+     <ToastContainer />
       <div className="container-scroller">
         <div className="container-fluid page-body-wrapper full-page-wrapper">
           <div className="row w-100 m-0">
@@ -13,26 +58,16 @@ const Login = () => {
               <div className="card col-lg-4 mx-auto">
                 <div className="card-body px-5 py-5">
                   <h3 className="card-title text-left mb-3">Login</h3>
-                  <form>
+                  <form onSubmit={handleSubmit} >
                     <div className="form-group">
-                      <label>Username or email *</label>
-                      <input type="text" className="form-control p_input" />
+                      <label>email *</label>
+                      <input type="text"  name='email' onChange={handlechange} className="form-control p_input" />
                     </div>
                     <div className="form-group">
                       <label>Password *</label>
-                      <input type="password" className="form-control p_input" />
+                      <input type="password" name='password' onChange={handlechange} className="form-control p_input" />
                     </div>
-                    <div className="form-group d-flex align-items-center justify-content-between">
-                      <div className="form-check">
-                        <label className="form-check-label">
-                          <input type="checkbox" className="form-check-input" />
-                          Remember me
-                        </label>
-                      </div>
-                      <a className="forgot-pass">
-                        Forgot password
-                      </a>
-                    </div>
+                    
                     <div className="text-center">
                       <button
                         type="submit"
@@ -41,20 +76,12 @@ const Login = () => {
                         Login
                       </button>
                     </div>
-                    <div className="d-flex">
-                      <button className="btn btn-facebook me-2 col">
-                        <Icon path={mdiFacebook} size={1} className="me-2" />
-                        Facebook
-                      </button>
-                      <button className="btn btn-google col">
-                        <Icon path={mdiGooglePlus} size={1} className="me-2" />
-                        Google Plus
-                      </button>
-                    </div>
-                    <p className="sign-up">
+                    
+                    
+                  </form>
+                  <p className="sign-up">
                       Don't have an Account?<Link to={'/signup'}> Sign Up</Link>
                     </p>
-                  </form>
                 </div>
               </div>
             </div>

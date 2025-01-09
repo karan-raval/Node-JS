@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
   const [role, setRole] = useState('');
   const [adminInput, setAdminInput] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [state, setState] = useState({
     username: '',

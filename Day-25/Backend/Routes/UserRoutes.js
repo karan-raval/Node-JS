@@ -43,11 +43,25 @@ UserRouter.post("/login", async (req, res) => {
         if (!user) {
             return res.send({ msg: "User not Registered" })
         }
-        if (user.password != password) {
-            return res.send({ msg: "Wrong Password" })
+        // if (user.password != password) {
+        //     return res.send({ msg: "Wrong Password" })
+        // }
+        // const token = jwt.sign({ userId: user._id, role: user.role }, "nodejs")
+        if (user) {
+            bcrypt.compare(password, user.password, (err, result) => {
+                if (result) {
+                    const token = jwt.sign(
+                        { userID: user._id, username: user.username, role: user.role },
+                        process.env.secret
+                    );
+                    res.status(200).send({ msg: "User Logged in successfully", token });
+                } else {
+                    res.status(501).send({ msg: "Incorrect Passwrod" });
+                }
+            })
+        } else {
+            res.status(501).send({ msg: "User not registered" });
         }
-        const token = jwt.sign({ userId: user._id, role: user.role }, "nodejs")
-        res.send({ msg: "User Login Successfull", token: token })
     } catch (error) {
         res.status(501).send({ msg: error.message })
     }
