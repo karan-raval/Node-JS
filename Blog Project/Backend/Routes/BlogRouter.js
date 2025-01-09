@@ -115,12 +115,7 @@ BlogRouter.patch("/editblog", isAuth, async (req, res) => {
     if (!blog) {
       return res.status(404).send({ msg: "Blog not found" });
     }
-<<<<<<< HEAD
 
-
-=======
-    
->>>>>>> 97b5cccfcab836adacb3b0d3e27a2526977a9b8a
     res.status(200).send({ msg: "Blog updated successfully", blog });
   } catch (error) {
     console.error("Error updating blog:", error);
