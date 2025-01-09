@@ -1,19 +1,15 @@
 .icon {
   margin-top: 15px;
   padding: 10px;
-  font-size: 25px; /* Increase the font size for larger icons */
+  font-size: 25px; 
   cursor: pointer;
   color: black;
   display: inline-block; /* Ensure icons are inline */
 }
 
 .wishlisted {
-  color: blue; /* Change color to blue when wishlisted */
+  color: blue; 
 }
-
-/* .icon:hover {
-  color: #0056b3;
-} */
 
 .entry__actions {
   display: flex; 
@@ -22,7 +18,7 @@
 }
 
 .liked {
-  color: red; /* Change color to red when liked */
+  color: red; 
 }
 
 
@@ -1136,11 +1132,6 @@ input::-moz-focus-inner {
     background-size: 12px 8px;
   }
 }
-
-/* ===================================================================
-* # reusable and common theme styles
-*
-* ------------------------------------------------------------------- */
 
 .narrow {
   max-width: 800px;
