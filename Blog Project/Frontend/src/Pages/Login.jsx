@@ -12,7 +12,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,24 +33,22 @@ const Login = () => {
       });
   
       if (response.ok) {
-        console.log("Login successful, showing toast...");
-        toast.success("Login Successful");
         const result = await response.json();
         const token = result.token;
-        console.log("Token:", token);
+        const userId = result.userId;
   
         localStorage.setItem("Token", token);
-  
+        toast.success("Login Successful!");
         setTimeout(() => {
           navigate("/");
         }, 4000); // Increased delay to ensure toast is visible
       } else {
-        const result = await response.json();
-        toast.error(result.msg || "Login Failed");
+        const errorData = await response.json();
+        toast.error(errorData.msg);
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
-      console.error("Error during submission:", error);
+      console.error("Error during login:", error);
+      toast.error("Error during login!");
     }
   };
   

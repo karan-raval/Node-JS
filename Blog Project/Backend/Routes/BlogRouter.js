@@ -117,15 +117,6 @@ BlogRouter.patch("/editblog", isAuth, async (req, res) => {
       return res.status(404).send({ msg: "Blog not found" });
     }
 
-    // blog.title = title.trim() || blog.title;
-    // blog.description = description.trim() || blog.description;
-    // blog.image = image?.trim() || blog.image;
-    // blog.content = content?.trim() || blog.content;
-    // blog.tags = tags || blog.tags;
-    // blog.category = category?.trim() || blog.category;
-    // blog.status = status || blog.status;
-
-    // await BlogModel.create(req.body);
 
     res.status(200).send({ msg: "Blog updated successfully", blog });
   } catch (error) {
@@ -133,6 +124,29 @@ BlogRouter.patch("/editblog", isAuth, async (req, res) => {
     res.status(500).send({ msg: "Internal Server Error" });
   }
 });
+
+BlogRouter.patch("/:id/like", isAuth, async (req, res) => {
+  try {
+    const blog = await BlogModel.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ msg: "Blog not found" });
+    }
+
+    // Check if user has already liked the blog
+    if (blog.likedBy.includes(req.body.userId)) {
+      return res.status(400).json({ msg: "You have already liked this blog" });
+    }
+
+    blog.like += 1;
+    blog.likedBy.push(req.body.userId); // Add user to likedBy
+    await blog.save();
+
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
+
 
 
 module.exports = BlogRouter;

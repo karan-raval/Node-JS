@@ -7,41 +7,42 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "../App.css";
 import Popularpost from "../Components/Popularpost";
+import axios from "axios";
 
 import { Flex, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const [blogs, setBlogs] = useState([]); 
 
-  // State to manage the like and wishlist status for each article
-  // const [articles, setArticles] = useState([
-  //   { id: 1, isLiked: false, isWishlisted: false },
-  //   { id: 2, isLiked: false, isWishlisted: false },
-  //   { id: 3, isLiked: false, isWishlisted: false },
-  //   // Add more articles as needed
-  // ]);
+  const handleLike = async (blogId) => {
+    try {
+      const response = await fetch(`http://localhost:5010/${blogId}/like`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ userId: localStorage.getItem("UserId") }),
+      });
 
-  // const handleLike = (id) => {
-  //   setArticles((prevArticles) =>
-  //     prevArticles.map((article) =>
-  //       article.id === id
-  //         ? { ...article, isLiked: !article.isLiked }
-  //         : article
-  //     )
-  //   );
-  // };
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.msg);
+        return;
+      }
 
-  // const handleWishlist = (id) => {
-  //   setArticles((prevArticles) =>
-  //     prevArticles.map((article) =>
-  //       article.id === id
-  //         ? { ...article, isWishlisted: !article.isWishlisted }
-  //         : article
-  //     )
-  //   );
-  // };
+      const updatedBlog = await response.json();
+      setBlogs((prevBlogs) =>
+        prevBlogs.map((blog) =>
+          blog._id === updatedBlog._id ? updatedBlog : blog
+        )
+      );
+    } catch (error) {
+      console.error("Error liking the blog:", error);
+    }
+  };
 
-  const [blogs, setBlogs] = useState([]); // State to store blog data
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -51,6 +52,7 @@ const HomePage = () => {
           throw new Error("Failed to fetch blogs");
         }
         const data = await response.json();
+        console.log(data);
         setBlogs(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -204,13 +206,15 @@ const HomePage = () => {
                   <div className="entry__actions">
                     <FontAwesomeIcon
                       icon={faHeart}
-                    // onClick={() => handleLike(article.id)}
-                    // className={`icon like-icon ${article.isLiked ? "liked" : ""}`}
+                      onClick={() => handleLike(el._id)}
+                      style={{
+                        cursor: 'pointer',
+                        color: el.likedBy.includes(localStorage.getItem("UserId")) ? 'red' : 'black',
+                      }}
                     />
+                    <span style={{ marginLeft: '8px' }}>{el.like} Likes</span>
                     <FontAwesomeIcon
                       icon={faBookmark}
-                    // onClick={() => handleWishlist(article.id)}
-                    // className={`icon wishlist-icon ${article.isWishlisted ? "wishlisted" : ""}`}
                     />
                   </div>
                 </div>
