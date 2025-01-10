@@ -43,10 +43,6 @@ UserRouter.post("/login", async (req, res) => {
         if (!user) {
             return res.send({ msg: "User not Registered" })
         }
-        // if (user.password != password) {
-        //     return res.send({ msg: "Wrong Password" })
-        // }
-        // const token = jwt.sign({ userId: user._id, role: user.role }, "nodejs")
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
