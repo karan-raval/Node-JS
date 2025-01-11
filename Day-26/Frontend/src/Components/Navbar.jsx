@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Navbar = () => {
+  const [hoveredItem, setHoveredItem] = useState(null);
+  
+  const handleMouseEnter = (index) => {
+    setHoveredItem(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
+  };
+
   return (
     <>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -23,15 +33,18 @@ const Navbar = () => {
                 </li>
               </ul>
               <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown d-none d-lg-block">
+                <li
+                  class={`nav-item dropdown d-none d-lg-block ${hoveredItem === 'create' ? 'hover-open' : ''}`}
+                  onMouseEnter={() => handleMouseEnter('create')}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <a
                     class="nav-link btn btn-success create-new-button"
                     id="createbuttonDropdown"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    href="#"
                   >
-                    + Create New Project
+                    Create New Project
                   </a>
                   <div
                     class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -86,7 +99,11 @@ const Navbar = () => {
                     <i class="mdi mdi-view-grid"></i>
                   </a>
                 </li>
-                <li class="nav-item dropdown border-left">
+                <li
+                  class={`nav-item dropdown border-left ${hoveredItem === 'messages' ? 'hover-open' : ''}`}
+                  onMouseEnter={() => handleMouseEnter('messages')}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <a
                     class="nav-link count-indicator dropdown-toggle"
                     id="messageDropdown"
@@ -153,7 +170,11 @@ const Navbar = () => {
                     <p class="p-3 mb-0 text-center">4 new messages</p>
                   </div>
                 </li>
-                <li class="nav-item dropdown border-left">
+                <li
+                  class={`nav-item dropdown border-left ${hoveredItem === 'notifications' ? 'hover-open' : ''}`}
+                  onMouseEnter={() => handleMouseEnter('notifications')}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <a
                     class="nav-link count-indicator dropdown-toggle"
                     id="notificationDropdown"

@@ -39,9 +39,13 @@ const Login = () => {
         const decoded = jwtDecode(token); 
 
         if (decoded.role === 'admin') {
-          navigate('/admin');
+          setTimeout(() => {
+            navigate('/admin');
+          }, 3000);
         } else {
-          navigate('/products');
+          setTimeout(() => {
+            navigate('/products');
+          }, 3000);
         }
       } else {
         toast.error(result.msg);

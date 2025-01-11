@@ -11,7 +11,7 @@ const Admin = () => {
           <nav class="navbar p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
               <a class="navbar-brand brand-logo-mini" >
-                <img src="assets/images/logo-mini.svg" alt="logo" />
+                <img src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/logo-mini.svg" alt="logo" />
               </a>
             </div>
             <Navbar />
@@ -25,7 +25,7 @@ const Admin = () => {
                       <div class="row align-items-center">
                         <div class="col-4 col-sm-3 col-xl-2">
                           <img
-                            src="assets/images/dashboard/Group126@2x.png"
+                            src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/dashboard/Group126@2x.png"
                             class="gradient-corona-img img-fluid"
                           />
                         </div>
