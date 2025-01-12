@@ -4,6 +4,7 @@ import Login from '../Pages/Login'
 import Signup from '../Pages/Signup'
 import Admin from '../Pages/Admin'
 import Products from '../Pages/Products'
+import IsAdmin from './IsAdmin'
 
 const MainRoutes = () => {
   return (
@@ -11,7 +12,7 @@ const MainRoutes = () => {
         <Route path='/' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/product' element={<Products/>}/>
-        <Route path='/admin' element={<Admin/>}/>
+        <Route path='/admin' element={<IsAdmin><Admin/></IsAdmin>}/>
     </Routes>
   )
 }
