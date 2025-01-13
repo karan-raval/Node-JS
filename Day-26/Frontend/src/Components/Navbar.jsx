@@ -205,7 +205,6 @@ const Navbar = () => {
                       <div className="preview-item-content">
                         <p className="preview-subject mb-1">Event today</p>
                         <p className="text-muted ellipsis mb-0">
-                          {" "}
                           Just a reminder that you have an event today{" "}
                         </p>
                       </div>

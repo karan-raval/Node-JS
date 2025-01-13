@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 const IsAdmin = ({ children }) => {
-    const isAuthenticated = localStorage.getItem("token") || "";
+    const isAuthenticated = sessionStorage.getItem("token") || "";
 
     console.log("Token:", isAuthenticated); 
 
@@ -12,6 +12,11 @@ const IsAdmin = ({ children }) => {
     }
 
     const decoded = jwtDecode(isAuthenticated);
+    const currentTime = Date.now() / 1000;
+
+    if (decoded.exp < currentTime) {
+        return <Navigate to={"/"} />;
+    }
 
     if (decoded.role === 'admin') {
         return children;

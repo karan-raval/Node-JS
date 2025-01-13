@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -104,7 +105,7 @@ const Sidebar = () => {
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
-              <span class="menu-title">Add Category</span>
+              <span class="menu-title"><Link to={'/addcategory'} >Add Category</Link></span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">

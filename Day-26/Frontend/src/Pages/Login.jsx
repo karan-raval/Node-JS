@@ -34,7 +34,7 @@ const Login = () => {
         toast.success(result.msg);
         const token = result.token;
 
-        localStorage.setItem("token",token)
+        sessionStorage.setItem("token", token);
 
         const decoded = jwtDecode(token); 
 
