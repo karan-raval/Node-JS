@@ -112,7 +112,7 @@ const Signup = () => {
                       Google Plus
                     </button>
                   </div>
-                  <p className="sign-up text-center">Already have an Account?<Link to='/'> Sign Up</Link></p>
+                  <p className="sign-up text-center">Already have an Account?<Link to='/login'> Sign Up</Link></p>
                 </div>
               </div>
             </div>

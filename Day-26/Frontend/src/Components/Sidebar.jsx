@@ -108,16 +108,27 @@ const Sidebar = () => {
               <span className="menu-icon">
                 <i className="mdi mdi-playlist-play"></i>
               </span>
-          <Link to={'/sub-category'} className="menu-title">Add Sub-Category</Link>
+          <Link to={'/sub-category'}><span className="menu-title">Add Sub-Category</span></Link>
             </span>
           </li>
-          {/* <li className="nav-item menu-items">
-            <a className="nav-link">
+          <li className="nav-item menu-items">
+            <span className="nav-link">
               <span className="menu-icon">
                 <i className="mdi mdi-playlist-play"></i>
               </span>
-            </a>
-          </li> */}
+          <Link to={'/login'}><span className="menu-title">Login</span></Link>
+            </span>
+          </li>
+
+          <li className="nav-item menu-items">
+            <span className="nav-link">
+              <span className="menu-icon">
+                <i className="mdi mdi-playlist-play"></i>
+              </span>
+          <Link to={'/signup'}><span className="menu-title">Signup</span></Link>
+            </span>
+          </li>
+         
           <li className="nav-item menu-items">
             <a className="nav-link">
               <span className="menu-icon">
