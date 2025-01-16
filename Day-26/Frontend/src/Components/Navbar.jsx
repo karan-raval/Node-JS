@@ -16,6 +16,13 @@ const Navbar = () => {
     setIsSidebarIconOnly(!isSidebarIconOnly);
   };
 
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    setUser(null);
+    navigate("/login");
+  };
+
+
   return (
     <>
     <div className={`navbar-menu-wrapper flex-grow d-flex align-items-stretch ${isSidebarIconOnly ? 'sidebar-icon-only' : ''}`}>
@@ -283,7 +290,7 @@ const Navbar = () => {
                         </div>
                       </div>
                       <div className="preview-item-content">
-                        <p className="preview-subject mb-1">Log out</p>
+                        <p className="preview-subject mb-1" onClick={logout}>Log out</p>
                       </div>
                     </a>
                     <div className="dropdown-divider"></div>
