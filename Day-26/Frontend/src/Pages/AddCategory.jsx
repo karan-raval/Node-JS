@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Sidebar from '../Components/Sidebar';
 import Navbar from '../Components/navbar';
-import anime from 'animejs'; 
+import anime from 'animejs'; // Ensure anime.js is installed via npm or yarn
 import '../assets/style.css';
 
 const AddCategory = () => {
@@ -12,6 +12,11 @@ const AddCategory = () => {
   let current = null;
 
   useEffect(() => {
+    if (!emailRef.current  || !submitRef.current || !pathRef.current) {
+      console.error('Refs are not assigned correctly.');
+      return;
+    }
+
     const animatePath = (offsetValue, dashArrayValue) => {
       if (current) current.pause();
       current = anime({
@@ -30,14 +35,19 @@ const AddCategory = () => {
     };
 
     const emailFocusHandler = () => animatePath(0, '240 1386');
-    const passwordFocusHandler = () => animatePath(-336, '240 1386');
+    // const emailFocusHandler = () => animatePath(-336, '240 1386');
     const submitFocusHandler = () => animatePath(-730, '530 1386');
 
     emailRef.current.addEventListener('focus', emailFocusHandler);
-    passwordRef.current.addEventListener('focus', passwordFocusHandler);
+    // passwordRef.current.addEventListener('focus', passwordFocusHandler);
     submitRef.current.addEventListener('focus', submitFocusHandler);
 
-    
+    return () => {
+      // Cleanup event listeners on unmount
+      if (emailRef.current) emailRef.current.removeEventListener('focus', emailFocusHandler);
+      // if (passwordRef.current) passwordRef.current.removeEventListener('focus', passwordFocusHandler);
+      if (submitRef.current) submitRef.current.removeEventListener('focus', submitFocusHandler);
+    };
   }, []);
 
   return (
@@ -87,9 +97,8 @@ const AddCategory = () => {
                 </svg>
                 <div className="form">
                   <label htmlFor="email">Email</label>
-                  <input type="email" id="email" ref={emailRef} />
-                  <label htmlFor="password">Password</label>
-                  <input type="password" id="password" ref={passwordRef} />
+                  <input type="category" id="email" name='category' placeholder='Add Your Category' ref={emailRef} />
+                    <br /><br /><br /><br />
                   <input
                     type="submit"
                     id="submit"
