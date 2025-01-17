@@ -166,7 +166,7 @@ const Sidebar = () => {
               <span className="menu-title">User Pages</span>
               <i className="menu-arrow"></i>
             </a>
-            <div className="collapse" id="auth">
+            {/* <div className="collapse" id="auth">
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item">
                   <a className="nav-link">Blank Page</a>
@@ -184,7 +184,7 @@ const Sidebar = () => {
                   <a className="nav-link">Register</a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </li>
           <li className="nav-item menu-items">
             <a className="nav-link">
