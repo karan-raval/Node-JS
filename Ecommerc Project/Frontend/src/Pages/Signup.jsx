@@ -71,15 +71,30 @@ const Signup = () => {
               <div className="input-box">
                 <div className="single-input-fields">
                   <label>Full name</label>
-                  <input type="text" name='username' onChange={handlechange} placeholder="Enter full name" />
+                  <input
+                    type="text"
+                    name="username"
+                    onChange={handlechange}
+                    placeholder="Enter full name"
+                  />
                 </div>
                 <div className="single-input-fields">
                   <label>Email Address</label>
-                  <input type="email" name='email' onChange={handlechange} placeholder="Enter email address" />
+                  <input
+                    type="email"
+                    name="email"
+                    onChange={handlechange}
+                    placeholder="Enter email address"
+                  />
                 </div>
                 <div className="single-input-fields">
                   <label>Password</label>
-                  <input type="password" name='password' onChange={handlechange} placeholder="Enter Password" />
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={handlechange}
+                    placeholder="Enter Password"
+                  />
                 </div>
                 <div className="single-input-fields">
                   <label>Role</label>
@@ -112,7 +127,8 @@ const Signup = () => {
               </div>
               <div className="register-footer">
                 <p>
-                  Already have an account? <a href="login.html"> Login</a> here
+                  Already have an account? <Link to={"/login"}> Login</Link>{" "}
+                  here
                 </p>
                 <button className="submit-btn3">Sign Up</button>
               </div>
