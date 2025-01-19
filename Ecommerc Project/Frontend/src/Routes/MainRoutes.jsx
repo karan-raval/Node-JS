@@ -7,10 +7,12 @@ import Products from '../Pages/Products'
 import IsAdmin from './IsAdmin'
 import AddCategory from '../Pages/AddCategory'
 import AddSubCategory from '../Pages/AddSubCategory'
+import Home from '../Pages/Home'
 
 const MainRoutes = () => {
   return (
     <Routes>
+      <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/sub-category' element={<AddSubCategory/>}/>
         <Route path='/signup' element={<Signup/>}/>
