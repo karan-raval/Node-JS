@@ -615,7 +615,6 @@ hr {
   line-height: 1;
   line-height: 0;
   cursor: pointer;
-  -moz-user-select: none;
   transition: color 0.4s linear;
   position: relative;
   z-index: 1;
@@ -655,7 +654,6 @@ hr {
   background: none;
   text-transform: normal;
   padding: 17px 39px !important;
-  -moz-user-select: none;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
@@ -743,7 +741,6 @@ hr {
   line-height: 1;
   line-height: 0;
   cursor: pointer;
-  -moz-user-select: none;
   transition: color 0.4s linear;
   position: relative;
   z-index: 1;
@@ -795,7 +792,6 @@ hr {
   cursor: pointer;
   display: inline-block;
   line-height: 0;
-  -moz-user-select: none;
   cursor: pointer;
   transition: color 0.4s linear;
   position: relative;

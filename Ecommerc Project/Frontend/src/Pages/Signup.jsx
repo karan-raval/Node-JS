@@ -61,7 +61,7 @@ const Signup = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container-scroller">
+      {/* <div className="container-scroller">
         <div className="container-fluid page-body-wrapper full-page-wrapper">
           <div className="row w-100 m-0">
             <div className="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
@@ -117,11 +117,67 @@ const Signup = () => {
               </div>
             </div>
             {/* <!-- content-wrapper ends --> */}
-          </div>
+          {/* </div> */}
           {/* <!-- row ends --> */}
-        </div>
+        {/* // </div> */}
         {/* <!-- page-body-wrapper ends --> */}
-      </div>
+      {/* // </div> */} 
+
+      <main className="login-bg">
+        {/* <!-- Register Area Start --> */}
+        <div className="register-form-area">
+            <div className="register-form text-center">
+                {/* <!-- Login Heading --> */}
+                <div className="register-heading">
+                    <span>Sign Up</span>
+                    <p>Create your account to get full access</p>
+                </div>
+                {/* <!-- Single Input Fields --> */}
+                <form action="">
+                <div className="input-box">
+                    <div className="single-input-fields">
+                        <label>Full name</label>
+                        <input type="text" placeholder="Enter full name"/>
+                    </div>
+                    <div className="single-input-fields">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter email address"/>
+                    </div>
+                    <div className="single-input-fields">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter Password"/>
+                    </div>
+                    <div className="single-input-fields">
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm Password"/>
+                    </div>
+                <div className="single-input-fields">
+                      <label>Role</label>
+                      <select className="form-select" aria-label="Default select example" name='role' onChange={handlechange} required>
+                        <option value="">Select Your Role</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                    </div>
+                    <br />
+
+                    {role === 'admin' && (
+                      <div className="single-input-fields">
+                        <label>Admin Code</label>
+                        <input type="text" className="form-control p_input" name='adminCode' onChange={handlechange} required />
+                      </div>
+                    )}
+                </div>
+                {/* <!-- form Footer --> */}
+                <div className="register-footer">
+                    <p> Already have an account? <a href="login.html"> Login</a> here</p>
+                    <button className="submit-btn3">Sign Up</button>
+                </div>
+                
+                </form></div>
+        </div>
+        {/* <!-- Register Area End --> */}
+    </main>
     </>
   )
 }
