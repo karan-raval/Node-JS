@@ -60,97 +60,51 @@ const Login = () => {
   return (
     <>
       <ToastContainer />
-      {/* <div classNameName="container-scroller">
-        <div classNameName="container-fluid page-body-wrapper full-page-wrapper">
-          <div classNameName="row w-100 m-0">
-            <div classNameName="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-              <div classNameName="card col-lg-4 mx-auto">
-                <div classNameName="card-body px-5 py-5">
-                  <h3 classNameName="card-title text-left mb-3">Login</h3>
-                  <form onSubmit={handleSubmit}>
-                    <div classNameName="form-group">
-                      <label>Email *</label>
-                      <input
-                        type="text"
-                        name="email"
-                        onChange={handleChange}
-                        classNameName="form-control p_input"
-                      />
-                    </div>
-                    <div classNameName="form-group">
-                      <label>Password *</label>
-                      <input
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        classNameName="form-control p_input"
-                      />
-                    </div>
-                    <div classNameName="text-center">
-                      <button type="submit" classNameName="btn btn-primary btn-block enter-btn">
-                        Login
-                      </button>
-                    </div>
-                  </form>
-                  <p classNameName="sign-up">
-                    Don't have an Account? <Link to={'/signup'}>Sign Up</Link>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       <main className="login-bg">
-        {/* <!-- login Area Start --> */}
         <div className="login-form-area">
           <div className="login-form">
-            {/* <!-- Login Heading --> */}
             <div className="login-heading">
               <span>Login</span>
               <p>Enter Login details to get access</p>
             </div>
-            {/* <!-- Single Input Fields --> */}
-            <form  onSubmit={handleSubmit}>
-            <div className="input-box">
-              <div className="single-input-fields">
-                <label> Email Address</label>
-                <input
-                  type="text"
-                  name="email"
-                  onChange={handleChange}
-                  placeholder="Username / Email address"
-                />
+            <form onSubmit={handleSubmit}>
+              <div className="input-box">
+                <div className="single-input-fields">
+                  <label> Email Address</label>
+                  <input
+                    type="text"
+                    name="email"
+                    onChange={handleChange}
+                    placeholder="Username / Email address"
+                  />
+                </div>
+                <div className="single-input-fields">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    placeholder="Enter Password"
+                  />
+                </div>
+                <div className="single-input-fields login-check">
+                  <input type="checkbox" id="fruit1" name="keep-log" />
+                  <label>Keep me logged in</label>
+                  <a className="f-right">Forgot Password?</a>
+                </div>
               </div>
-              <div className="single-input-fields">
-                <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  placeholder="Enter Password"
-                />
+              <div className="login-footer">
+                <p>
+                  Don’t have an account? <Link to={"/signup"}>Sign Up</Link>{" "}
+                  here
+                </p>
+                <button type="submit" className="submit-btn3">
+                  Login
+                </button>
               </div>
-              <div className="single-input-fields login-check">
-                <input type="checkbox" id="fruit1" name="keep-log" />
-                <label >Keep me logged in</label>
-                <a className="f-right">
-                  Forgot Password?
-                </a>
-              </div>
-            </div>
-            {/* <!-- form Footer --> */}
-            <div className="login-footer">
-              <p>
-                Don’t have an account? <Link to={'/signup'}>Sign Up</Link> here
-              </p>
-              <button type="submit" className="submit-btn3">Login</button>
-            </div>
             </form>
           </div>
         </div>
-        {/* <!-- login Area End --> */}
       </main>
     </>
   );

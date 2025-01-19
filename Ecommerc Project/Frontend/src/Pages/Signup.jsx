@@ -1,185 +1,127 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import Icon from "@mdi/react";
 import { mdiFacebook, mdiGooglePlus } from "@mdi/js";
-import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
-  const [role, setRole] = useState('');
-  const [adminInput, setAdminInput] = useState('');
+  const [role, setRole] = useState("");
+  const [adminInput, setAdminInput] = useState("");
   const navigate = useNavigate();
 
   const [state, setState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
     role: "",
-    adminCode: '',
-  })
+    adminCode: "",
+  });
 
   const handlechange = (e) => {
-    const { name, value } = e.target
-    setState({ ...state, [name]: value })
-    if (name === 'role') {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+    if (name === "role") {
       setRole(value);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(state)
+    console.log(state);
 
-    const secretKey = role === 'admin' ? adminInput : undefined;
+    const secretKey = role === "admin" ? adminInput : undefined;
 
+    try {
+      const response = await fetch("http://localhost:5532/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
+      });
 
-      try {
-        const response = await fetch('http://localhost:5532/user/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(state),
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-          toast.success(result.msg);
-          setTimeout(() => {
-            navigate('/');
-          }, 3000);
-        } else {
-          toast.error(result.msg);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        toast.error('An error occurred while registering.');
+      const result = await response.json();
+      if (response.ok) {
+        toast.success(result.msg);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      } else {
+        toast.error(result.msg);
       }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred while registering.");
+    }
   };
 
   return (
     <>
       <ToastContainer />
-      {/* <div className="container-scroller">
-        <div className="container-fluid page-body-wrapper full-page-wrapper">
-          <div className="row w-100 m-0">
-            <div className="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-              <div className="card col-lg-4 mx-auto">
-                <div className="card-body px-5 py-5">
-                  <h3 className="card-title text-left mb-3">Register</h3>
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                      <label>Username</label>
-                      <input type="text" className="form-control p_input" name='username' onChange={handlechange} required />
-                    </div>
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input type="email" className="form-control p_input" name='email' onChange={handlechange} required />
-                    </div>
-                    <div className="form-group">
-                      <label>Password</label>
-                      <input type="password" className="form-control p_input" name='password' onChange={handlechange} required />
-                    </div>
-
-                    <div className="form-group">
-                      <label>Role</label>
-                      <select className="form-select" aria-label="Default select example" name='role' onChange={handlechange} required>
-                        <option value="">Select Role</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                      </select>
-                    </div>
-
-                    {role === 'admin' && (
-                      <div className="form-group">
-                        <label>Admin Code</label>
-                        <input type="text" className="form-control p_input" name='adminCode' onChange={handlechange} required />
-                      </div>
-                    )}
-
-                    <div className="text-center">
-                      <button type="submit" className="btn btn-primary btn-block enter-btn">Register</button>
-                    </div>
-                  </form>
-                  <div className="d-flex">
-                    <button className="btn btn-facebook me-2 col">
-                      <Icon path={mdiFacebook} size={1} className="me-2" />
-                      Facebook
-                    </button>
-                    <button className="btn btn-google col">
-                      <Icon path={mdiGooglePlus} size={1} className="me-2" />
-                      Google Plus
-                    </button>
-                  </div>
-                  <p className="sign-up text-center">Already have an Account?<Link to='/login'> Sign Up</Link></p>
-                </div>
-              </div>
-            </div>
-            {/* <!-- content-wrapper ends --> */}
-          {/* </div> */}
-          {/* <!-- row ends --> */}
-        {/* // </div> */}
-        {/* <!-- page-body-wrapper ends --> */}
-      {/* // </div> */} 
-
       <main className="login-bg">
-        {/* <!-- Register Area Start --> */}
         <div className="register-form-area">
-            <div className="register-form text-center">
-                {/* <!-- Login Heading --> */}
-                <div className="register-heading">
-                    <span>Sign Up</span>
-                    <p>Create your account to get full access</p>
-                </div>
-                {/* <!-- Single Input Fields --> */}
-                <form action="">
-                <div className="input-box">
-                    <div className="single-input-fields">
-                        <label>Full name</label>
-                        <input type="text" placeholder="Enter full name"/>
-                    </div>
-                    <div className="single-input-fields">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="Enter email address"/>
-                    </div>
-                    <div className="single-input-fields">
-                        <label>Password</label>
-                        <input type="password" placeholder="Enter Password"/>
-                    </div>
-                    <div className="single-input-fields">
-                        <label>Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password"/>
-                    </div>
+          <div className="register-form text-center">
+            <div className="register-heading">
+              <span>Sign Up</span>
+              <p>Create your account to get full access</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="input-box">
                 <div className="single-input-fields">
-                      <label>Role</label>
-                      <select className="form-select" aria-label="Default select example" name='role' onChange={handlechange} required>
-                        <option value="">Select Your Role</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                      </select>
-                    </div>
-                    <br />
+                  <label>Full name</label>
+                  <input type="text" name='username' onChange={handlechange} placeholder="Enter full name" />
+                </div>
+                <div className="single-input-fields">
+                  <label>Email Address</label>
+                  <input type="email" name='email' onChange={handlechange} placeholder="Enter email address" />
+                </div>
+                <div className="single-input-fields">
+                  <label>Password</label>
+                  <input type="password" name='password' onChange={handlechange} placeholder="Enter Password" />
+                </div>
+                <div className="single-input-fields">
+                  <label>Role</label>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    name="role"
+                    onChange={handlechange}
+                    required
+                  >
+                    <option value="">Select Your Role</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                <br />
 
-                    {role === 'admin' && (
-                      <div className="single-input-fields">
-                        <label>Admin Code</label>
-                        <input type="text" className="form-control p_input" name='adminCode' onChange={handlechange} required />
-                      </div>
-                    )}
-                </div>
-                {/* <!-- form Footer --> */}
-                <div className="register-footer">
-                    <p> Already have an account? <a href="login.html"> Login</a> here</p>
-                    <button className="submit-btn3">Sign Up</button>
-                </div>
-                
-                </form></div>
+                {role === "admin" && (
+                  <div className="single-input-fields">
+                    <label>Admin Code</label>
+                    <input
+                      type="text"
+                      className="form-control p_input"
+                      name="adminCode"
+                      onChange={handlechange}
+                      required
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="register-footer">
+                <p>
+                  Already have an account? <a href="login.html"> Login</a> here
+                </p>
+                <button className="submit-btn3">Sign Up</button>
+              </div>
+            </form>
+          </div>
         </div>
-        {/* <!-- Register Area End --> */}
-    </main>
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
