@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Sidebar from '../Components/Sidebar';
 import Navbar from '../Components/navbar';
 import anime from 'animejs'; // Ensure anime.js is installed via npm or yarn
-import '../assets/style.css';
+// import '../assets/style.css';
 
 const AddCategory = () => {
   const emailRef = useRef(null);

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  {jwtDecode}  from 'jwt-decode';
+import '../assets/css/login.css'
 
 const Login = () => {
   const [state, setState] = useState({
@@ -59,7 +60,7 @@ const Login = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container-scroller">
+      {/* <div className="container-scroller">
         <div className="container-fluid page-body-wrapper full-page-wrapper">
           <div className="row w-100 m-0">
             <div className="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
@@ -99,7 +100,42 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+
+<main class="login-bg">
+        {/* <!-- login Area Start --> */}
+        <div class="login-form-area">
+            <div class="login-form">
+                {/* <!-- Login Heading --> */}
+                <div class="login-heading">
+                    <span>Login</span>
+                    <p>Enter Login details to get access</p>
+                </div>
+                {/* <!-- Single Input Fields --> */}
+                <div class="input-box">
+                    <div class="single-input-fields">
+                        <label>Username or Email Address</label>
+                        <input type="text" placeholder="Username / Email address"/>
+                    </div>
+                    <div class="single-input-fields">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter Password"/>
+                    </div>
+                    <div class="single-input-fields login-check">
+                        <input type="checkbox" id="fruit1" name="keep-log"/>
+                        <label for="fruit1">Keep me logged in</label>
+                        <a href="#" class="f-right">Forgot Password?</a>
+                    </div>
+                </div>
+                {/* <!-- form Footer --> */}
+                <div class="login-footer">
+                    <p>Don’t have an account? <a href="register.html">Sign Up</a>  here</p>
+                    <button class="submit-btn3">Login</button>
+                </div>
+            </div>
+        </div>
+        {/* <!-- login Area End --> */}
+    </main>
     </>
   );
 };
