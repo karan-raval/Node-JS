@@ -1,113 +1,321 @@
-import React from 'react'
-import logo from '../assets/image/logo.png'
-import '../assets/css/style.css'
+import React, { useEffect } from "react";
+import logo from "../assets/image/logo.png";
+import "../assets/css/style.css";
+
 const Header = () => {
+   
   return (
     <>
-     <header>
+      <header>
         <div className="header-area">
-            <div className="header-top d-none d-sm-block">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-12">
-                            <div className="d-flex justify-content-between flex-wrap align-items-center">
-                                <div className="header-info-left">
-                                    <ul>                             
-                                        <li><a  >About Us</a></li>
-                                        <li><a  >Privacy</a></li>
-                                        <li><a  >FAQ</a></li>
-                                        <li><a  >Careers</a></li>
-                                    </ul>
-                                </div>
-                                <div className="header-info-right d-flex">
-                                    <ul className="order-list">
-                                        <li><a  >My Wishlist</a></li>
-                                        <li><a  >Track Your Order</a></li>
-                                    </ul>
-                                    <ul className="header-social">  
-                                        <li><a  ><i className="fab fa-facebook"></i></a></li>
-                                        <li> <a  ><i className="fab fa-instagram"></i></a></li>
-                                        <li><a  ><i className="fab fa-twitter"></i></a></li>
-                                        <li><a  ><i className="fab fa-linkedin-in"></i></a></li>
-                                        <li> <a  ><i className="fab fa-youtube"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+          <div className="header-top d-none d-sm-block">
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-12">
+                  <div className="d-flex justify-content-between flex-wrap align-items-center">
+                    <div className="header-info-left">
+                      <ul>
+                        <li>
+                          <a>About Us</a>
+                        </li>
+                        <li>
+                          <a>Privacy</a>
+                        </li>
+                        <li>
+                          <a>FAQ</a>
+                        </li>
+                        <li>
+                          <a>Careers</a>
+                        </li>
+                      </ul>
                     </div>
+                    <div className="header-info-right d-flex">
+                      <ul className="order-list">
+                        <li>
+                          <a>My Wishlist</a>
+                        </li>
+                        <li>
+                          <a>Track Your Order</a>
+                        </li>
+                      </ul>
+                      <ul className="header-social">
+                        <li>
+                          <a>
+                            <i className="fab fa-facebook"></i>
+                          </a>
+                        </li>
+                        <li>
+                          {" "}
+                          <a>
+                            <i className="fab fa-instagram"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a>
+                            <i className="fab fa-twitter"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a>
+                            <i className="fab fa-linkedin-in"></i>
+                          </a>
+                        </li>
+                        <li>
+                          {" "}
+                          <a>
+                            <i className="fab fa-youtube"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div className="header-mid header-sticky">
-                <div className="container">
-                    <div className="menu-wrapper">
-                        {/* <!-- Logo --> */}
-                        <div className="logo">
-                            <a href="index.html"><img src={logo} alt=""/></a>
-                        </div>
-                        {/* <!-- Main-menu --> */}
-                        <div className="main-menu d-none d-lg-block">
-                            <nav>                                                
-                                <ul id="navigation">  
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="categories.html">Men</a></li>
-                                    <li><a href="categories.html">Women</a></li>
-                                    <li className="new"><a href="categories.html">Baby Collection</a></li>
-                                    <li><a  >Pages  <i className="fas fa-angle-down"></i></a>
-                                        <ul className="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="pro-details.html">Product Details</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog</a>
-                                        <ul className="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        {/* <!-- Header Right --> */}
-                        <div className="header-right">
-                            <ul>
-                                <li>
-                                    <div className="nav-search search-switch hearer_icon">
-                                        <a id="search_1" > 
-                                            <span className="flaticon-shopping-cart"></span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li> <a href="login.html"><span className="flaticon-user"></span></a></li>
-                                <li className="cart"><a href="cart.html"><span className="flaticon-shopping-cart"></span></a> </li>
-                            </ul>
-                        </div>
+          </div>
+          <div className="header-mid header-sticky">
+            <div className="container">
+              <div className="menu-wrapper">
+                {/* <!-- Logo --> */}
+                <div className="logo">
+                  <a href="index.html">
+                    <img src={logo} alt="" />
+                  </a>
+                </div>
+                {/* <!-- Main-menu --> */}
+                <div className="main-menu d-none d-lg-block">
+                  <nav>
+                    <ul id="navigation">
+                      <li>
+                        <a href="index.html">Home</a>
+                      </li>
+                      <li>
+                        <a href="categories.html">Men</a>
+                      </li>
+                      <li>
+                        <a href="categories.html">Women</a>
+                      </li>
+                      <li className="new">
+                        <a href="categories.html">Baby Collection</a>
+                      </li>
+                      <li>
+                        <a>
+                          Pages <i className="fas fa-angle-down"></i>
+                        </a>
+                        <ul className="submenu">
+                          <li>
+                            <a href="login.html">Login</a>
+                          </li>
+                          <li>
+                            <a href="cart.html">Cart</a>
+                          </li>
+                          <li>
+                            <a href="pro-details.html">Product Details</a>
+                          </li>
+                          <li>
+                            <a href="checkout.html">Product Checkout</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="blog.html">Blog</a>
+                        <ul className="submenu">
+                          <li>
+                            <a href="blog.html">Blog</a>
+                          </li>
+                          <li>
+                            <a href="elements.html">Element</a>
+                          </li>
+                          <li>
+                            <a href="blog-details.html">Blog Details</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="contact.html">Contact</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                {/* <!-- Header Right --> */}
+                <div className="header-right">
+                  <ul>
+                    <li>
+                      <div className="nav-search search-switch hearer_icon">
+                        <a id="search_1">
+                          <i className="bi bi-search icon"></i>
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      {" "}
+                      <i className="bi bi-person icon"></i>
+                    </li>
+                    <li className="cart">
+                      <i className="bi bi-bag icon"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
-                    </div>
-                    {/* <!-- Show Search Box --> */}
-                    <div className="search_input" id="search_input_box">
-                        <form className="search-inner d-flex justify-content-between ">
-                            <input type="text" className="form-control" id="search_input" placeholder="Search Here"/>
-                            <button type="submit" className="btn"></button>
-                            <span className="ti-close" id="close_search" title="Close Search"></span>
-                        </form>
-                    </div>
-                    {/* <!-- Mobile Menu --> */}
-                    <div className="col-12">
-                        <div className="mobile_menu d-block d-lg-none"></div>
-                    </div>
+              <div className="col-12">
+                <div className="mobile_menu d-block d-lg-none">
+                  <div className="slicknav_menu">
+                    <a
+                      aria-haspopup="true"
+                      role="button"
+                      className="slicknav_btn slicknav_open"
+                      style={{outline: "none"}}
+                    >
+                      <span className="slicknav_menutxt">MENU</span>
+                      <span className="slicknav_icon">
+                        <span className="slicknav_icon-bar"></span>
+                        <span className="slicknav_icon-bar"></span>
+                        <span className="slicknav_icon-bar"></span>
+                      </span>
+                    </a>
+                    <ul
+                      className="slicknav_nav"
+                      aria-hidden="false"
+                      role="menu"
+                      style={{display: "block"}}
+                    >
+                      <li>
+                        <a href="index.html" role="menuitem" tabIndex="0">
+                          Home
+                        </a>
+                      </li>
+                      <li>
+                        <a href="categories.html" role="menuitem" tabIndex="0">
+                          Men
+                        </a>
+                      </li>
+                      <li>
+                        <a href="categories.html" role="menuitem" tabIndex="0">
+                          Women
+                        </a>
+                      </li>
+                      <li className="new">
+                        <a href="categories.html" role="menuitem" tabIndex="0">
+                          Baby Collection
+                        </a>
+                      </li>
+                      <li className="slicknav_collapsed slicknav_parent">
+                        <a
+                          
+                          role="menuitem"
+                          aria-haspopup="true"
+                          tabIndex="0"
+                          className="slicknav_item slicknav_row"
+                          style={{outline: "none"}}
+                        >
+                          <a  tabIndex="0">
+                            Pages <i className="fas fa-angle-down"></i>
+                          </a>
+                          <span className="slicknav_arrow">+</span>
+                        </a>
+                        <ul
+                          className="submenu slicknav_hidden"
+                          role="menu"
+                          aria-hidden="true"
+                          style={{display: "none"}}
+                        >
+                          <li>
+                            <a href="login.html" role="menuitem" tabIndex="0">
+                              Login
+                            </a>
+                          </li>
+                          <li>
+                            <a href="cart.html" role="menuitem" tabIndex="0">
+                              Cart
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="pro-details.html"
+                              role="menuitem"
+                              tabIndex="0"
+                            >
+                              Product Details
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="checkout.html"
+                              role="menuitem"
+                              tabIndex="0"
+                            >
+                              Product Checkout
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li className="slicknav_collapsed slicknav_parent">
+                        <a
+                          
+                          role="menuitem"
+                          aria-haspopup="true"
+                          tabIndex="0"
+                          className="slicknav_item slicknav_row"
+                          style={{outline: "none"}}
+                        >
+                          <a href="blog.html" tabIndex="0">
+                            Blog
+                          </a>
+                          <span className="slicknav_arrow">+</span>
+                        </a>
+                        <ul
+                          className="submenu slicknav_hidden"
+                          role="menu"
+                          aria-hidden="true"
+                          style={{display: "none"}}
+                        >
+                          <li>
+                            <a href="blog.html" role="menuitem" tabIndex="0">
+                              Blog
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="elements.html"
+                              role="menuitem"
+                              tabIndex="0"
+                            >
+                              Element
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="blog-details.html"
+                              role="menuitem"
+                              tabIndex="0"
+                            >
+                              Blog Details
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="contact.html" role="menuitem" tabIndex="0">
+                          Contact
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div className="header-bottom text-center">
-                <p>Sale Up To 50% Biggest Discounts. Hurry! Limited Perriod Offer  <a   className="browse-btn">Shop Now</a></p>
-            </div>
+          </div>
+          <div className="header-bottom text-center">
+            <p>
+              Sale Up To 50% Biggest Discounts. Hurry! Limited Perriod Offer{" "}
+              <a className="browse-btn">Shop Now</a>
+            </p>
+          </div>
         </div>
-    </header>
+      </header>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
