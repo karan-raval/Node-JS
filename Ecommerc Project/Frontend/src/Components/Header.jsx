@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../assets/image/logo.png'
+import '../assets/css/style.css'
 const Header = () => {
   return (
     <>
@@ -75,8 +76,8 @@ const Header = () => {
                             <ul>
                                 <li>
                                     <div className="nav-search search-switch hearer_icon">
-                                        <a id="search_1" href="javascript:void(0)"> 
-                                            <span className="flaticon-search"></span>
+                                        <a id="search_1" > 
+                                            <span className="flaticon-shopping-cart"></span>
                                         </a>
                                     </div>
                                 </li>
