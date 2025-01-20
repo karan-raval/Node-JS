@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import logo from "../assets/image/logo.png";
 import "../assets/css/style.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
    
@@ -87,7 +88,7 @@ const Header = () => {
                   <nav>
                     <ul id="navigation">
                       <li>
-                        <a href="index.html">Home</a>
+                        <Link to={'/'}>Home</Link>
                       </li>
                       <li>
                         <a href="categories.html">Men</a>
@@ -98,61 +99,23 @@ const Header = () => {
                       <li className="new">
                         <a href="categories.html">Baby Collection</a>
                       </li>
-                      <li>
-                        <a>
-                          Pages <i className="fas fa-angle-down"></i>
-                        </a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="login.html">Login</a>
-                          </li>
-                          <li>
-                            <a href="cart.html">Cart</a>
-                          </li>
-                          <li>
-                            <a href="pro-details.html">Product Details</a>
-                          </li>
-                          <li>
-                            <a href="checkout.html">Product Checkout</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="blog.html">Blog</a>
-                        <ul className="submenu">
-                          <li>
-                            <a href="blog.html">Blog</a>
-                          </li>
-                          <li>
-                            <a href="elements.html">Element</a>
-                          </li>
-                          <li>
-                            <a href="blog-details.html">Blog Details</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="contact.html">Contact</a>
+                        <li>
+                        <Link to={'/contact-us'}>Contact</Link>
                       </li>
                     </ul>
                   </nav>
                 </div>
-                {/* <!-- Header Right --> */}
                 <div className="header-right">
                   <ul>
                     <li>
-                      <div className="nav-search search-switch hearer_icon">
-                        <a id="search_1">
-                          <i className="bi bi-search icon"></i>
-                        </a>
-                      </div>
-                    </li>
-                    <li>
-                      {" "}
+                      <Link to={'/login'}>
                       <i className="bi bi-person icon"></i>
+                      </Link>
                     </li>
                     <li className="cart">
+                      <Link to={'/cart'}>
                       <i className="bi bi-bag icon"></i>
+                      </Link>
                     </li>
                   </ul>
                 </div>

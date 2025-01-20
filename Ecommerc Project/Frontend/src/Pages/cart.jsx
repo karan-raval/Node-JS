@@ -1,8 +1,11 @@
 import React from 'react'
+import Footer from '../Components/Footer'
+import Header from '../Components/Header'
 
-const cart = () => {
+const Cart = () => {
   return (
     <>
+    <Header/>
      <main>
         {/* <!-- Hero area Start--> */}
         <div class="hero-area section-bg2">
@@ -171,8 +174,9 @@ const cart = () => {
         </section>
         {/* <!--================End Cart Area =================--> */}
     </main>
+    <Footer/>
     </>
   )
 }
 
-export default cart
+export default Cart
