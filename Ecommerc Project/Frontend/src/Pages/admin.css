@@ -21607,3 +21607,8 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%;
   }
   
+  .mychart{
+    display: block;
+    width: 729px;
+    height: 320px;
+  }
