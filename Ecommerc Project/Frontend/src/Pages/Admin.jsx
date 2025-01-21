@@ -1,883 +1,722 @@
 import React from "react";
-import Sidebar from "../Components/Sidebar";
-import Navbar from "../Components/navbar";
-
+import './admin.css'
 const Admin = () => {
   return (
     <>
-      <div className="container-scroller">
-        <Sidebar />
-        <div className="container-fluid page-body-wrapper">
-          <nav className="navbar p-0 fixed-top d-flex flex-row">
-            <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a className="navbar-brand brand-logo-mini" >
-                <img src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/logo-mini.svg" alt="logo" />
-              </a>
+   {/* <body id="page-top"> */}
+
+{/* Page Wrapper */}
+<div id="wrapper">
+
+    {/* Sidebar */}
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        {/* Sidebar - Brand */}
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
             </div>
-            <Navbar />
-          </nav>
-          <div className="main-panel">
-            <div className="content-wrapper">
-              <div className="row">
-                <div className="col-12 grid-margin stretch-card">
-                  <div className="card corona-gradient-card">
-                    <div className="card-body py-0 px-0 px-sm-3">
-                      <div className="row align-items-center">
-                        <div className="col-4 col-sm-3 col-xl-2">
-                          <img
-                            src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/dashboard/Group126@2x.png"
-                            className="gradient-corona-img img-fluid"
-                          />
-                        </div>
-                        <div className="col-5 col-sm-7 col-xl-8 p-0">
-                          <h4 className="mb-1 mb-sm-0">Want even more features?</h4>
-                          <p className="mb-0 font-weight-normal d-none d-sm-block">
-                            Check out our Pro version with 5 unique layouts!
-                          </p>
-                        </div>
-                        <div className="col-3 col-sm-2 col-xl-2 ps-0 text-center">
-                          <span>
-                            <a
-                              target="_blank"
-                              className="btn btn-outline-light btn-rounded get-started-btn"
-                            >
-                              Upgrade to PRO
-                            </a>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex align-items-center align-self-start">
-                            <h3 className="mb-0">$12.34</h3>
-                            <p className="text-success ms-2 mb-0 font-weight-medium">
-                              +3.5%
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-3">
-                          <div className="icon icon-box-success ">
-                            <span className="mdi mdi-arrow-top-right icon-item"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <h6 className="text-muted font-weight-normal">
-                        Potential growth
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex align-items-center align-self-start">
-                            <h3 className="mb-0">$17.34</h3>
-                            <p className="text-success ms-2 mb-0 font-weight-medium">
-                              +11%
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-3">
-                          <div className="icon icon-box-success">
-                            <span className="mdi mdi-arrow-top-right icon-item"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <h6 className="text-muted font-weight-normal">
-                        Revenue current
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex align-items-center align-self-start">
-                            <h3 className="mb-0">$12.34</h3>
-                            <p className="text-danger ms-2 mb-0 font-weight-medium">
-                              -2.4%
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-3">
-                          <div className="icon icon-box-danger">
-                            <span className="mdi mdi-arrow-bottom-left icon-item"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <h6 className="text-muted font-weight-normal">
-                        Daily Income
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-sm-6 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex align-items-center align-self-start">
-                            <h3 className="mb-0">$31.53</h3>
-                            <p className="text-success ms-2 mb-0 font-weight-medium">
-                              +3.5%
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-3">
-                          <div className="icon icon-box-success ">
-                            <span className="mdi mdi-arrow-top-right icon-item"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <h6 className="text-muted font-weight-normal">
-                        Expense current
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-4 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <h4 className="card-title">Transaction History</h4>
-                      <canvas
-                        id="transaction-history"
-                        className="transaction-chart"
-                      ></canvas>
-                      <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                        <div className="text-md-center text-xl-left">
-                          <h6 className="mb-1">Transfer to Paypal</h6>
-                          <p className="text-muted mb-0">07 Jan 2019, 09:12AM</p>
-                        </div>
-                        <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                          <h6 className="font-weight-bold mb-0">$236</h6>
-                        </div>
-                      </div>
-                      <div className="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
-                        <div className="text-md-center text-xl-left">
-                          <h6 className="mb-1">Tranfer to Stripe</h6>
-                          <p className="text-muted mb-0">07 Jan 2019, 09:12AM</p>
-                        </div>
-                        <div className="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                          <h6 className="font-weight-bold mb-0">$593</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-8 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="d-flex flex-row justify-content-between">
-                        <h4 className="card-title mb-1">Open Projects</h4>
-                        <p className="text-muted mb-1">Your data status</p>
-                      </div>
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="preview-list">
-                            <div className="preview-item border-bottom">
-                              <div className="preview-thumbnail">
-                                <div className="preview-icon bg-primary">
-                                  <i className="mdi mdi-file-document"></i>
-                                </div>
-                              </div>
-                              <div className="preview-item-content d-sm-flex flex-grow">
-                                <div className="flex-grow">
-                                  <h6 className="preview-subject">
-                                    Admin dashboard design
-                                  </h6>
-                                  <p className="text-muted mb-0">
-                                    Broadcast web app mockup
-                                  </p>
-                                </div>
-                                <div className="me-auto text-sm-right pt-2 pt-sm-0">
-                                  <p className="text-muted">15 minutes ago</p>
-                                  <p className="text-muted mb-0">
-                                    30 tasks, 5 issues
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="preview-item border-bottom">
-                              <div className="preview-thumbnail">
-                                <div className="preview-icon bg-success">
-                                  <i className="mdi mdi-cloud-download"></i>
-                                </div>
-                              </div>
-                              <div className="preview-item-content d-sm-flex flex-grow">
-                                <div className="flex-grow">
-                                  <h6 className="preview-subject">
-                                    Wordpress Development
-                                  </h6>
-                                  <p className="text-muted mb-0">
-                                    Upload new design
-                                  </p>
-                                </div>
-                                <div className="me-auto text-sm-right pt-2 pt-sm-0">
-                                  <p className="text-muted">1 hour ago</p>
-                                  <p className="text-muted mb-0">
-                                    23 tasks, 5 issues
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="preview-item border-bottom">
-                              <div className="preview-thumbnail">
-                                <div className="preview-icon bg-info">
-                                  <i className="mdi mdi-clock"></i>
-                                </div>
-                              </div>
-                              <div className="preview-item-content d-sm-flex flex-grow">
-                                <div className="flex-grow">
-                                  <h6 className="preview-subject">
-                                    Project meeting
-                                  </h6>
-                                  <p className="text-muted mb-0">
-                                    New project discussion
-                                  </p>
-                                </div>
-                                <div className="me-auto text-sm-right pt-2 pt-sm-0">
-                                  <p className="text-muted">35 minutes ago</p>
-                                  <p className="text-muted mb-0">
-                                    15 tasks, 2 issues
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="preview-item border-bottom">
-                              <div className="preview-thumbnail">
-                                <div className="preview-icon bg-danger">
-                                  <i className="mdi mdi-email-open"></i>
-                                </div>
-                              </div>
-                              <div className="preview-item-content d-sm-flex flex-grow">
-                                <div className="flex-grow">
-                                  <h6 className="preview-subject">
-                                    Broadcast Mail
-                                  </h6>
-                                  <p className="text-muted mb-0">
-                                    Sent release details to team
-                                  </p>
-                                </div>
-                                <div className="me-auto text-sm-right pt-2 pt-sm-0">
-                                  <p className="text-muted">55 minutes ago</p>
-                                  <p className="text-muted mb-0">
-                                    35 tasks, 7 issues
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="preview-item">
-                              <div className="preview-thumbnail">
-                                <div className="preview-icon bg-warning">
-                                  <i className="mdi mdi-chart-pie"></i>
-                                </div>
-                              </div>
-                              <div className="preview-item-content d-sm-flex flex-grow">
-                                <div className="flex-grow">
-                                  <h6 className="preview-subject">UI Design</h6>
-                                  <p className="text-muted mb-0">
-                                    New application planning
-                                  </p>
-                                </div>
-                                <div className="me-auto text-sm-right pt-2 pt-sm-0">
-                                  <p className="text-muted">50 minutes ago</p>
-                                  <p className="text-muted mb-0">
-                                    27 tasks, 4 issues{" "}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-4 grid-margin">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5>Revenue</h5>
-                      <div className="row">
-                        <div className="col-8 col-sm-12 col-xl-8 my-auto">
-                          <div className="d-flex d-sm-block d-md-flex align-items-center">
-                            <h2 className="mb-0">$32123</h2>
-                            <p className="text-success ms-2 mb-0 font-weight-medium">
-                              +3.5%
-                            </p>
-                          </div>
-                          <h6 className="text-muted font-weight-normal">
-                            11.38% Since last month
-                          </h6>
-                        </div>
-                        <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                          <i className="icon-lg mdi mdi-codepen text-primary ms-auto"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4 grid-margin">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5>Sales</h5>
-                      <div className="row">
-                        <div className="col-8 col-sm-12 col-xl-8 my-auto">
-                          <div className="d-flex d-sm-block d-md-flex align-items-center">
-                            <h2 className="mb-0">$45850</h2>
-                            <p className="text-success ms-2 mb-0 font-weight-medium">
-                              +8.3%
-                            </p>
-                          </div>
-                          <h6 className="text-muted font-weight-normal">
-                            {" "}
-                            9.61% Since last month
-                          </h6>
-                        </div>
-                        <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                          <i className="icon-lg mdi mdi-wallet-travel text-danger ms-auto"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-4 grid-margin">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5>Purchase</h5>
-                      <div className="row">
-                        <div className="col-8 col-sm-12 col-xl-8 my-auto">
-                          <div className="d-flex d-sm-block d-md-flex align-items-center">
-                            <h2 className="mb-0">$2039</h2>
-                            <p className="text-danger ms-2 mb-0 font-weight-medium">
-                              -2.1%{" "}
-                            </p>
-                          </div>
-                          <h6 className="text-muted font-weight-normal">
-                            2.27% Since last month
-                          </h6>
-                        </div>
-                        <div className="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                          <i className="icon-lg mdi mdi-monitor text-success ms-auto"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row ">
-                <div className="col-12 grid-margin">
-                  <div className="card">
-                    <div className="card-body">
-                      <h4 className="card-title">Order Status</h4>
-                      <div className="table-responsive">
-                        <table className="table">
-                          <thead>
-                            <tr>
-                              <th>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </th>
-                              <th> Client Name </th>
-                              <th> Order No </th>
-                              <th> Product Cost </th>
-                              <th> Project </th>
-                              <th> Payment Mode </th>
-                              <th> Start Date </th>
-                              <th> Payment Status </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
-                                <img
-                                  src="assets/images/faces/face1.jpg"
-                                  alt="image"
-                                />
-                                <span className="ps-2">Henry Klein</span>
-                              </td>
-                              <td> 02312 </td>
-                              <td> $14,500 </td>
-                              <td> Dashboard </td>
-                              <td> Credit card </td>
-                              <td> 04 Dec 2019 </td>
-                              <td>
-                                <div className="badge badge-outline-success">
-                                  Approved
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
-                                <img
-                                  src="assets/images/faces/face2.jpg"
-                                  alt="image"
-                                />
-                                <span className="ps-2">Estella Bryan</span>
-                              </td>
-                              <td> 02312 </td>
-                              <td> $14,500 </td>
-                              <td> Website </td>
-                              <td> Cash on delivered </td>
-                              <td> 04 Dec 2019 </td>
-                              <td>
-                                <div className="badge badge-outline-warning">
-                                  Pending
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
-                                <img
-                                  src="assets/images/faces/face5.jpg"
-                                  alt="image"
-                                />
-                                <span className="ps-2">Lucy Abbott</span>
-                              </td>
-                              <td> 02312 </td>
-                              <td> $14,500 </td>
-                              <td> App design </td>
-                              <td> Credit card </td>
-                              <td> 04 Dec 2019 </td>
-                              <td>
-                                <div className="badge badge-outline-danger">
-                                  Rejected
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
-                                <img
-                                  src="assets/images/faces/face3.jpg"
-                                  alt="image"
-                                />
-                                <span className="ps-2">Peter Gill</span>
-                              </td>
-                              <td> 02312 </td>
-                              <td> $14,500 </td>
-                              <td> Development </td>
-                              <td> Online Payment </td>
-                              <td> 04 Dec 2019 </td>
-                              <td>
-                                <div className="badge badge-outline-success">
-                                  Approved
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    {/* <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    /> */}
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
-                                <img
-                                  src="assets/images/faces/face4.jpg"
-                                  alt="image"
-                                />
-                                <span className="ps-2">Sallie Reyes</span>
-                              </td>
-                              <td> 02312 </td>
-                              <td> $14,500 </td>
-                              <td> Website </td>
-                              <td> Credit card </td>
-                              <td> 04 Dec 2019 </td>
-                              <td>
-                                <div className="badge badge-outline-success">
-                                  Approved
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6 col-xl-4 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="d-flex flex-row justify-content-between">
-                        <h4 className="card-title">Messages</h4>
-                        <p className="text-muted mb-1 small">View all</p>
-                      </div>
-                      <div className="preview-list">
-                        <div className="preview-item border-bottom">
-                          <div className="preview-thumbnail">
-                            <img
-                              src="assets/images/faces/face6.jpg"
-                              alt="image"
-                              className="rounded-circle"
-                            />
-                          </div>
-                          <div className="preview-item-content d-flex flex-grow">
-                            <div className="flex-grow">
-                              <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                <h6 className="preview-subject">Leonard</h6>
-                                <p className="text-muted text-small">
-                                  5 minutes ago
-                                </p>
-                              </div>
-                              <p className="text-muted">
-                                Well, it seems to be working now.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="preview-item border-bottom">
-                          <div className="preview-thumbnail">
-                            <img
-                              src="assets/images/faces/face8.jpg"
-                              alt="image"
-                              className="rounded-circle"
-                            />
-                          </div>
-                          <div className="preview-item-content d-flex flex-grow">
-                            <div className="flex-grow">
-                              <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                <h6 className="preview-subject">Luella Mills</h6>
-                                <p className="text-muted text-small">
-                                  10 Minutes Ago
-                                </p>
-                              </div>
-                              <p className="text-muted">
-                                Well, it seems to be working now.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="preview-item border-bottom">
-                          <div className="preview-thumbnail">
-                            <img
-                              src="assets/images/faces/face9.jpg"
-                              alt="image"
-                              className="rounded-circle"
-                            />
-                          </div>
-                          <div className="preview-item-content d-flex flex-grow">
-                            <div className="flex-grow">
-                              <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                <h6 className="preview-subject">Ethel Kelly</h6>
-                                <p className="text-muted text-small">2 Hours Ago</p>
-                              </div>
-                              <p className="text-muted">
-                                Please review the tickets
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="preview-item border-bottom">
-                          <div className="preview-thumbnail">
-                            <img
-                              src="assets/images/faces/face11.jpg"
-                              alt="image"
-                              className="rounded-circle"
-                            />
-                          </div>
-                          <div className="preview-item-content d-flex flex-grow">
-                            <div className="flex-grow">
-                              <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                <h6 className="preview-subject">Herman May</h6>
-                                <p className="text-muted text-small">4 Hours Ago</p>
-                              </div>
-                              <p className="text-muted">
-                                Thanks a lot. It was easy to fix it .
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-4 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <h4 className="card-title">Portfolio Slide</h4>
-                      <div
-                        className="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel"
-                        id="owl-carousel-basic"
-                      >
-                        <div className="item">
-                          <img
-                            src="assets/images/dashboard/Rectangle.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="item">
-                          <img src="assets/images/dashboard/Img_5.jpg" alt="" />
-                        </div>
-                        <div className="item">
-                          <img src="assets/images/dashboard/img_6.jpg" alt="" />
-                        </div>
-                      </div>
-                      <div className="d-flex py-4">
-                        <div className="preview-list w-100">
-                          <div className="preview-item p-0">
-                            <div className="preview-thumbnail">
-                              <img
-                                src="assets/images/faces/face12.jpg"
-                                className="rounded-circle"
-                                alt=""
-                              />
-                            </div>
-                            <div className="preview-item-content d-flex flex-grow">
-                              <div className="flex-grow">
-                                <div className="d-flex d-md-block d-xl-flex justify-content-between">
-                                  <h6 className="preview-subject">CeeCee Bass</h6>
-                                  <p className="text-muted text-small">
-                                    4 Hours Ago
-                                  </p>
-                                </div>
-                                <p className="text-muted">
-                                  Well, it seems to be working now.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-muted">
-                        Well, it seems to be working now.{" "}
-                      </p>
-                      <div className="progress progress-md portfolio-progress">
-                        <div
-                          className="progress-bar bg-success"
-                          role="progressbar"
-                          style={{ width: 50 }}
-                          aria-valuenow="25"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 col-xl-4 grid-margin stretch-card">
-                  <div className="card">
-                    <div className="card-body">
-                      <h4 className="card-title">To do list</h4>
-                      <div className="add-items d-flex">
-                        <input
-                          type="text"
-                          className="form-control todo-list-input"
-                          placeholder="enter task.."
-                        />
-                        <button className="add btn btn-primary todo-list-add-btn">
-                          Add
-                        </button>
-                      </div>
-                      <div className="list-wrapper">
-                        <ul className="d-flex flex-column-reverse text-white todo-list todo-list-custom">
-                          <li>
-                            <div className="form-check form-check-primary">
-                              <label className="form-check-label">
-                                {/* <input className="checkbox" type="checkbox" /> */}
-                                Create invoice
-                              </label>
-                            </div>
-                            <i className="remove mdi mdi-close-box"></i>
-                          </li>
-                          <li>
-                            <div className="form-check form-check-primary">
-                              <label className="form-check-label">
-                                {/* <input className="checkbox" type="checkbox" />{" "} */}
-                                Meeting with Alita
-                              </label>
-                            </div>
-                            <i className="remove mdi mdi-close-box"></i>
-                          </li>
-                          <li className="completed">
-                            <div className="form-check form-check-primary">
-                              <label className="form-check-label">
-                                {/* <input
-                                  className="checkbox"
-                                  type="checkbox"
-                                  checked
-                                /> */}
-                                Prepare for presentation
-                              </label>
-                            </div>
-                            <i className="remove mdi mdi-close-box"></i>
-                          </li>
-                          <li>
-                            <div className="form-check form-check-primary">
-                              <label className="form-check-label">
-                                {/* <input className="checkbox" type="checkbox" /> Plan */}
-                                weekend outing
-                              </label>
-                            </div>
-                            <i className="remove mdi mdi-close-box"></i>
-                          </li>
-                          <li>
-                            <div className="form-check form-check-primary">
-                              <label className="form-check-label">
-                                {/* <input className="checkbox" type="checkbox" /> Pick */}
-                                up kids from school{" "}
-                              </label>
-                            </div>
-                            <i className="remove mdi mdi-close-box"></i>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <div className="card">
-                    <div className="card-body">
-                      <h4 className="card-title">Visitors by Countries</h4>
-                      <div className="row">
-                        <div className="col-md-5">
-                          <div className="table-responsive">
-                            <table className="table">
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-us"></i>
-                                  </td>
-                                  <td>USA</td>
-                                  <td className="text-right"> 1500 </td>
-                                  <td className="text-right font-weight-medium">
-                                    56.35%
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-de"></i>
-                                  </td>
-                                  <td>Germany</td>
-                                  <td className="text-right"> 800 </td>
-                                  <td className="text-right font-weight-medium">
-                                    33.25%
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-au"></i>
-                                  </td>
-                                  <td>Australia</td>
-                                  <td className="text-right"> 760 </td>
-                                  <td className="text-right font-weight-medium">
-                                    15.45%
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-gb"></i>
-                                  </td>
-                                  <td>United Kingdom</td>
-                                  <td className="text-right"> 450 </td>
-                                  <td className="text-right font-weight-medium">
-                                    25.00%
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-ro"></i>
-                                  </td>
-                                  <td>Romania</td>
-                                  <td className="text-right"> 620 </td>
-                                  <td className="text-right font-weight-medium">
-                                    10.25%
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <i className="flag-icon flag-icon-br"></i>
-                                  </td>
-                                  <td>Brasil</td>
-                                  <td className="text-right"> 230 </td>
-                                  <td className="text-right font-weight-medium">
-                                    75.00%
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                        <div className="col-md-7">
-                          <div id="audience-map" className="vector-map"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        </a>
+
+        {/* Divider */}
+        <hr class="sidebar-divider my-0"/>
+
+        {/* Nav Item - Dashboard */}
+        <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        {/* Divider */}
+        <hr class="sidebar-divider"/>
+
+        {/* Heading */}
+        <div class="sidebar-heading">
+            Interface
         </div>
-      </div>
+
+        {/* Nav Item - Pages Collapse Menu */}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Components</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+
+        {/* Nav Item - Utilities Collapse Menu */}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Utilities</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+        </li>
+
+        {/* Divider */}
+        <hr class="sidebar-divider"/>
+
+        {/* Heading */}
+        <div class="sidebar-heading">
+            Addons
+        </div>
+
+        {/* Nav Item - Pages Collapse Menu */}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                </div>
+            </div>
+        </li>
+
+        {/* Nav Item - Charts */}
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li>
+
+        {/* Nav Item - Tables */}
+        <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li>
+
+        {/* Divider */}
+        <hr class="sidebar-divider d-none d-md-block"/>
+
+        {/* Sidebar Toggler (Sidebar) */}
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+        {/* Sidebar Message */}
+        <div class="sidebar-card d-none d-lg-flex">
+            <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..."/>
+            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+        </div>
+
+    </ul>
+    {/* End of Sidebar */}
+
+    {/* Content Wrapper */}
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        {/* Main Content */}
+        <div id="content">
+
+            {/* Topbar */}
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                {/* Sidebar Toggle (Topbar) */}
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                {/* Topbar Search */}
+                <form
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                {/* Topbar Navbar */}
+                <ul class="navbar-nav ml-auto">
+
+                    {/* Nav Item - Search Dropdown (Visible Only XS) */}
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        {/* Dropdown - Messages */}
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                        placeholder="Search for..." aria-label="Search"
+                                        aria-describedby="basic-addon2"/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    {/* Nav Item - Alerts */}
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            {/* Counter - Alerts */}
+                            <span class="badge badge-danger badge-counter">3+</span>
+                        </a>
+                        {/* Dropdown - Alerts */}
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alerts Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 12, 2019</div>
+                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 7, 2019</div>
+                                    $290.29 has been deposited into your account!
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 2, 2019</div>
+                                    Spending Alert: We've noticed unusually high spending for your account.
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        </div>
+                    </li>
+
+                    {/* Nav Item - Messages */}
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            {/* Counter - Messages */}
+                            <span class="badge badge-danger badge-counter">7</span>
+                        </a>
+                        {/* Dropdown - Messages */}
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                Message Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        alt="..."/>
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div class="font-weight-bold">
+                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                        problem I've been having.</div>
+                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        alt="..."/>
+                                    <div class="status-indicator"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">I have the photos that you ordered last month, how
+                                        would you like them sent to you?</div>
+                                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        alt="..."/>
+                                    <div class="status-indicator bg-warning"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Last month's report looks great, I am very happy with
+                                        the progress so far, keep up the good work!</div>
+                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                        alt="..."/>
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                        </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    {/* Nav Item - User Information */}
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                            <img class="img-profile rounded-circle"
+                                src="img/undraw_profile.svg"/>
+                        </a>
+                        {/* Dropdown - User Information */}
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            {/* End of Topbar */}
+
+            {/* Begin Page Content */}
+            <div class="container-fluid">
+
+                {/* Page Heading */}
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </div>
+
+                {/* Content Row */}
+                <div class="row">
+
+                    {/* Earnings (Monthly) Card Example */}
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Earnings (Monthly)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Earnings (Monthly) Card Example */}
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Earnings (Annual)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Earnings (Monthly) Card Example */}
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="progress progress-sm mr-2">
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style={{width: 50}} aria-valuenow="50" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Pending Requests Card Example */}
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Pending Requests</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* {/* Content Row */}
+
+                <div class="row">
+
+                    {/* {/* Area Chart */}
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            {/* {/* Card Header - Dropdown */}
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* {/* Card Body */}
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="myAreaChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* {/* Pie Chart */}
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            {/* {/* Card Header - Dropdown */}
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* {/* Card Body */}
+                            <div class="card-body">
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="myPieChart"></canvas>
+                                </div>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-primary"></i> Direct
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-success"></i> Social
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-info"></i> Referral
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* {/* Content Row */}
+                <div class="row">
+
+                    {/* {/* Content Column */}
+                    <div class="col-lg-6 mb-4">
+
+                        {/* {/* Project Card Example */}
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="small font-weight-bold">Server Migration <span
+                                        class="float-right">20%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-danger" role="progressbar" style={{width: 20}}
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Sales Tracking <span
+                                        class="float-right">40%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning" role="progressbar" style={{width: 40}}
+                                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Customer Database <span
+                                        class="float-right">60%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar" role="progressbar" style={{width: 60}}
+                                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Payout Details <span
+                                        class="float-right">80%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-info" role="progressbar" style={{width: 80}}
+                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h4 class="small font-weight-bold">Account Setup <span
+                                        class="float-right">Complete!</span></h4>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style={{width: 100}}
+                                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* {/* Color System */}
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-primary text-white shadow">
+                                    <div class="card-body">
+                                        Primary
+                                        <div class="text-white-50 small">#4e73df</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-success text-white shadow">
+                                    <div class="card-body">
+                                        Success
+                                        <div class="text-white-50 small">#1cc88a</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-info text-white shadow">
+                                    <div class="card-body">
+                                        Info
+                                        <div class="text-white-50 small">#36b9cc</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-warning text-white shadow">
+                                    <div class="card-body">
+                                        Warning
+                                        <div class="text-white-50 small">#f6c23e</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-danger text-white shadow">
+                                    <div class="card-body">
+                                        Danger
+                                        <div class="text-white-50 small">#e74a3b</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-secondary text-white shadow">
+                                    <div class="card-body">
+                                        Secondary
+                                        <div class="text-white-50 small">#858796</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-light text-black shadow">
+                                    <div class="card-body">
+                                        Light
+                                        <div class="text-black-50 small">#f8f9fc</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-dark text-white shadow">
+                                    <div class="card-body">
+                                        Dark
+                                        <div class="text-white-50 small">#5a5c69</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+
+                        {/* {/* Illustrations */}
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}}
+                                        src="img/undraw_posting_photo.svg" alt="..."/>
+                                </div>
+                                <p>Add some quality, svg illustrations to your project courtesy of <a
+                                        target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                                    constantly updated collection of beautiful svg images that you can use
+                                    completely free and without attribution!</p>
+                                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                                    unDraw &rarr;</a>
+                            </div>
+                        </div>
+
+                        {/* {/* Approach */}
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                    CSS bloat and poor page performance. Custom CSS classes are used to create
+                                    custom components and custom utility classes.</p>
+                                <p class="mb-0">Before working with this theme, you should become familiar with the
+                                    Bootstrap framework, especially the utility classes.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            {/* {/* /.container-fluid */}
+
+        </div>
+        {/* {/* End of Main Content */}
+
+        {/* {/* Footer */}
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2021</span>
+                </div>
+            </div>
+        </footer>
+        {/* {/* End of Footer */}
+
+    </div>
+    {/* {/* End of Content Wrapper */}
+
+</div>
+{/* {/* End of Page Wrapper */}
+
+{/* {/* Scroll to Top Button*/}
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{/* {/* Logout Modal*/}
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
     </>
   );
 };
