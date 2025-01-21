@@ -1,9 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
+import $ from "jquery";
 import "./admin.css";
 import EarningsOverviewChart from "../Components/EarningsOverviewChart";
 import RevenueSourcesCard from "../Components/RevenueSourcesCard";
 
 const Admin = () => {
+  useEffect(() => {
+    // Sidebar toggle logic
+    $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
+      $("body").toggleClass("sidebar-toggled");
+      $(".sidebar").toggleClass("toggled");
+      if ($(".sidebar").hasClass("toggled")) {
+        $(".sidebar .collapse").collapse("hide");
+      }
+    });
+
+    // Collapse sidebar on window resize
+    $(window).resize(function () {
+      if ($(window).width() < 768) {
+        $(".sidebar .collapse").collapse("hide");
+      }
+      if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+        $("body").addClass("sidebar-toggled");
+        $(".sidebar").addClass("toggled");
+        $(".sidebar .collapse").collapse("hide");
+      }
+    });
+
+    // Prevent scrolling when the sidebar is hovered
+    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (e) {
+      if ($(window).width() > 768) {
+        const o = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+        this.scrollTop += 30 * (o < 0 ? 1 : -1);
+        e.preventDefault();
+      }
+    });
+
+    // Scroll to top button
+    $(document).on("scroll", function () {
+      if ($(this).scrollTop() > 100) {
+        $(".scroll-to-top").fadeIn();
+      } else {
+        $(".scroll-to-top").fadeOut();
+      }
+    });
+
+    // Smooth scrolling
+    $(document).on("click", "a.scroll-to-top", function (e) {
+      const target = $(this).attr("href");
+      $("html, body").animate(
+        { scrollTop: $(target).offset().top },
+        1000,
+        "easeInOutExpo"
+      );
+      e.preventDefault();
+    });
+
+    return () => {
+      // Cleanup event listeners
+      $("#sidebarToggle, #sidebarToggleTop").off("click");
+      $(window).off("resize");
+      $("body.fixed-nav .sidebar").off("mousewheel DOMMouseScroll wheel");
+      $(document).off("scroll click");
+    };
+  }, []);
+
   return (
     <>
       {/* <body id="page-top"> */}
@@ -183,25 +244,6 @@ const Admin = () => {
           {/* Sidebar Toggler (Sidebar) */}
           <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
-          </div>
-
-          {/* Sidebar Message */}
-          <div class="sidebar-card d-none d-lg-flex">
-            <img
-              class="sidebar-card-illustration mb-2"
-              src="img/undraw_rocket.svg"
-              alt="..."
-            />
-            <p class="text-center mb-2">
-              <strong>SB Admin Pro</strong> is packed with premium features,
-              components, and more!
-            </p>
-            <a
-              class="btn btn-success btn-sm"
-              href="https://startbootstrap.com/theme/sb-admin-pro"
-            >
-              Upgrade to Pro!
-            </a>
           </div>
         </ul>
         {/* End of Sidebar */}
