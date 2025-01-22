@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import $ from "jquery";
+import "jquery-nice-select";
+import "jquery-nice-select/css/nice-select.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "../assets/css/login.css";
 
 const MensPro = () => {
+    useEffect(() => {
+        if (typeof $.fn.niceSelect === "undefined") {
+          console.error("niceSelect is not loaded");
+          return;
+        }
+      
+        // Initialize the plugin
+        $("select").niceSelect();
+      
+        // Cleanup on component unmount
+        return () => {
+          $("select").niceSelect("destroy");
+        };
+      }, []);
+     
   return (
     <>
       <Header />
