@@ -178,9 +178,9 @@ const Home = () => {
                   </div>
                   <div className="items-details">
                     <h4>
-                      <a href="pro-details.html">Men's Fashion</a>
+                      <a  >Men's Fashion</a>
                     </h4>
-                    <a href="pro-details.html" className="browse-btn">
+                    <a   className="browse-btn">
                       Shop Now
                     </a>
                   </div>
@@ -193,9 +193,9 @@ const Home = () => {
                   </div>
                   <div className="items-details">
                     <h4>
-                      <a href="pro-details.html">Women's Fashion</a>
+                      <a  >Women's Fashion</a>
                     </h4>
-                    <a href="pro-details.html" className="browse-btn">
+                    <a   className="browse-btn">
                       Shop Now
                     </a>
                   </div>
@@ -208,9 +208,9 @@ const Home = () => {
                   </div>
                   <div className="items-details">
                     <h4>
-                      <a href="pro-details.html">Baby Fashion</a>
+                      <a >Baby Fashion</a>
                     </h4>
-                    <a href="pro-details.html" className="browse-btn">
+                    <a  className="browse-btn">
                       Shop Now
                     </a>
                   </div>
@@ -233,14 +233,14 @@ const Home = () => {
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="single-blogs mb-30">
                   <div className="blog-img">
-                    <a href="pro-details.html">
+                    <a>
                       <img src="https://preview.colorlib.com/theme/capitalshop/assets/img/gallery/blog1.jpg.webp" alt="" />
                     </a>
                   </div>
                   <div className="blogs-cap">
                     <span>Fashion Tips</span>
                     <h5>
-                      <a href="pro-details.html">
+                      <a>
                         What Curling Irons Are The Best Ones
                       </a>
                     </h5>
@@ -248,7 +248,7 @@ const Home = () => {
                       Consectetur adipisicing elit. Laborum fuga incidunt
                       laboriosam voluptas iure, delectus..
                     </p>
-                    <a href="pro-details.html" className="red-btn">
+                    <a className="red-btn">
                       Read More
                     </a>
                   </div>
@@ -257,14 +257,14 @@ const Home = () => {
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="single-blogs mb-30">
                   <div className="blog-img">
-                    <a href="pro-details.html">
+                    <a>
                       <img src="https://preview.colorlib.com/theme/capitalshop/assets/img/gallery/blog2.jpg.webp" alt="" />
                     </a>
                   </div>
                   <div className="blogs-cap">
                     <span>Fashion Tips</span>
                     <h5>
-                      <a href="pro-details.html">
+                      <a>
                         Vogue's Ultimate Guide To Autumn/ Winter 2019 Shoes
                       </a>
                     </h5>
@@ -272,7 +272,7 @@ const Home = () => {
                       Consectetur adipisicing elit. Laborum fuga incidunt
                       laboriosam voluptas iure, delectus..
                     </p>
-                    <a href="pro-details.html" className="red-btn">
+                    <a className="red-btn">
                       Read More
                     </a>
                   </div>
@@ -281,14 +281,14 @@ const Home = () => {
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="single-blogs mb-30">
                   <div className="blog-img">
-                    <a href="pro-details.html">
+                    <a >
                       <img src="https://preview.colorlib.com/theme/capitalshop/assets/img/gallery/blog3.jpg.webp" alt="" />
                     </a>
                   </div>
                   <div className="blogs-cap">
                     <span>Fashion Tips</span>
                     <h5>
-                      <a href="pro-details.html">
+                      <a  >
                         What Curling Irons Are The Best Ones
                       </a>
                     </h5>
@@ -296,7 +296,7 @@ const Home = () => {
                       Consectetur adipisicing elit. Laborum fuga incidunt
                       laboriosam voluptas iure, delectus..
                     </p>
-                    <a href="pro-details.html" className="red-btn">
+                    <a   className="red-btn">
                       Read More
                     </a>
                   </div>
