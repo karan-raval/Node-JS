@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import $ from "jquery";
+import React, { useEffect, useState } from "react";
 import "jquery-nice-select";
 import "jquery-nice-select/css/nice-select.css";
 import Header from "../Components/Header";
@@ -7,671 +6,332 @@ import Footer from "../Components/Footer";
 import "../assets/css/login.css";
 
 const MensPro = () => {
+    const [openDropdown, setOpenDropdown] = useState(null);
+
     useEffect(() => {
-        if (typeof $.fn.niceSelect === "undefined") {
-          console.error("niceSelect is not loaded");
-          return;
-        }
-      
-        // Initialize the plugin
-        $("select").niceSelect();
-      
-        // Cleanup on component unmount
-        return () => {
-          $("select").niceSelect("destroy");
+        const handleClickOutside = (event) => {
+            if (!event.target.closest(".nice-select")) {
+                setOpenDropdown(null);
+            }
         };
-      }, []);
-     
-  return (
-    <>
-      <Header />
-      <div class="hero-area section-bg2">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12">
-              <div class="slider-area">
-                <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
-                  <div class="hero-caption hero-caption2">
-                    <h2>Category</h2>
-                    <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item">
-                          <a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                          <a href="#">Category</a>
-                        </li>
-                      </ol>
-                    </nav>
-                  </div>
+
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, []);
+
+    const toggleDropdown = (dropdownId) => {
+        setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
+    };
+
+    return (
+        <>
+            <Header />
+            <div className="hero-area section-bg2">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-12">
+                            <div className="slider-area">
+                                <div className="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
+                                    <div className="hero-caption hero-caption2">
+                                        <h2>Category</h2>
+                                        <nav aria-label="breadcrumb">
+                                            <ol className="breadcrumb justify-content-center">
+                                                <li className="breadcrumb-item">
+                                                    <a href="index.html">Home</a>
+                                                </li>
+                                                <li className="breadcrumb-item">
+                                                    <a>Category</a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      {/* Hero area End */}
-      {/*listing Area Start */}
-      <div class="listing-area pt-50 pb-50">
-        <div class="container">
-          <div class="row">
-            {/* Left content */}
-            <div class="col-xl-3 col-lg-4 col-md-4">
-              {/* <!-- Job Category Listing start --> */}
-              <div class="category-listing mb-50">
-                {/* <!-- single one --> */}
-                <div class="single-listing">
-                  {/* <!-- select-Categories  --> */}
-                  <div class="select-Categories pb-30">
-                    <div class="select-job-items2 mb-30">
-                      <div class="col-xl-12">
-                        <select name="select2" style={{display: 'none'}}>
-                          <option value="">Category</option>
-                          <option value="">Category 1</option>
-                          <option value="">Category 2</option>
-                          <option value="">Category 3</option>
-                          <option value="">Category 4</option>
-                        </select>
-                        <div class="nice-select" tabindex="0">
-                          <span class="current">Category</span>
-                          <ul class="list">
-                            <li data-value="" class="option selected">
-                              Category
-                            </li>
-                            <li data-value="" class="option">
-                              Category 1
-                            </li>
-                            <li data-value="" class="option">
-                              Category 2
-                            </li>
-                            <li data-value="" class="option">
-                              Category 3
-                            </li>
-                            <li data-value="" class="option">
-                              Category 4
-                            </li>
-                          </ul>
+            {/* Hero area End */}
+            {/* Listing Area Start */}
+            <div className="listing-area pt-50 pb-50">
+                <div className="container">
+                    <div className="row">
+                        {/* Left content */}
+                        <div className="col-xl-3 col-lg-4 col-md-4">
+                            {/* Job Category Listing start */}
+                            <div className="category-listing mb-50">
+                                {/* Single Listing */}
+                                <div className="single-listing">
+                                    {/* Select Categories */}
+                                    <div className="select-Categories pb-30">
+                                        {/* Dropdown for Category */}
+                                        <div className="select-job-items2 mb-30">
+                                            <div className="col-xl-12">
+                                                <select name="select2" style={{ display: 'none' }}>
+                                                    <option value="">Category</option>
+                                                    <option value="">Category 1</option>
+                                                    <option value="">Category 2</option>
+                                                    <option value="">Category 3</option>
+                                                    <option value="">Category 4</option>
+                                                </select>
+                                                <div
+                                                    className={`nice-select ${openDropdown === "category" ? "open" : ""}`}
+                                                    onClick={() => toggleDropdown("category")}
+                                                    tabIndex="0"
+                                                >
+                                                    <span className="current">Category</span>
+                                                    <ul className="list">
+                                                        <li data-value="" className="option selected">Category</li>
+                                                        <li data-value="" className="option">Category 1</li>
+                                                        <li data-value="" className="option">Category 2</li>
+                                                        <li data-value="" className="option">Category 3</li>
+                                                        <li data-value="" className="option">Category 4</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Dropdown for Type */}
+                                        <div className="select-job-items2 mb-30">
+                                            <div className="col-xl-12">
+                                                <select name="select2" style={{ display: 'none' }}>
+                                                    <option value="">Type</option>
+                                                    <option value="">Type 1</option>
+                                                    <option value="">Type 2</option>
+                                                    <option value="">Type 3</option>
+                                                    <option value="">Type 4</option>
+                                                </select>
+                                                <div
+                                                    className={`nice-select ${openDropdown === "type" ? "open" : ""}`}
+                                                    onClick={() => toggleDropdown("type")}
+                                                    tabIndex="0"
+                                                >
+                                                    <span className="current">Type</span>
+                                                    <ul className="list">
+                                                        <li data-value="" className="option selected">Type</li>
+                                                        <li data-value="" className="option">Type 1</li>
+                                                        <li data-value="" className="option">Type 2</li>
+                                                        <li data-value="" className="option">Type 3</li>
+                                                        <li data-value="" className="option">Type 4</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Dropdown for Size */}
+                                        <div className="select-job-items2 mb-30">
+                                            <div className="col-xl-12">
+                                                <select name="select2" style={{ display: 'none' }}>
+                                                    <option value="">Size</option>
+                                                    <option value="">XXL</option>
+                                                    <option value="">XL</option>
+                                                    <option value="">LG</option>
+                                                    <option value="">M</option>
+                                                    <option value="">sm</option>
+                                                </select>
+                                                <div
+                                                    className={`nice-select ${openDropdown === "size" ? "open" : ""}`}
+                                                    onClick={() => toggleDropdown("size")}
+                                                    tabIndex="0"
+                                                >
+                                                    <span className="current">Size</span>
+                                                    <ul className="list">
+                                                        <li data-value="" className="option selected">Size</li>
+                                                        <li data-value="" className="option">XXL</li>
+                                                        <li data-value="" className="option">XL</li>
+                                                        <li data-value="" className="option">LG</li>
+                                                        <li data-value="" className="option">M</li>
+                                                        <li data-value="" className="option">sm</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Dropdown for Color */}
+                                        <div className="select-job-items2 mb-30">
+                                            <div className="col-xl-12">
+                                                <select name="select2" style={{ display: 'none' }}>
+                                                    <option value="">Color</option>
+                                                    <option value="">Red</option>
+                                                    <option value="">Green</option>
+                                                    <option value="">Blue</option>
+                                                    <option value="">Skyblue</option>
+                                                </select>
+                                                <div
+                                                    className={`nice-select ${openDropdown === "color" ? "open" : ""}`}
+                                                    onClick={() => toggleDropdown("color")}
+                                                    tabIndex="0"
+                                                >
+                                                    <span className="current">Color</span>
+                                                    <ul className="list">
+                                                        <li data-value="" className="option selected">Color</li>
+                                                        <li data-value="" className="option">Red</li>
+                                                        <li data-value="" className="option">Green</li>
+                                                        <li data-value="" className="option">Blue</li>
+                                                        <li data-value="" className="option">Skyblue</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Select Categories End */}
+                                    {/* Range Slider Start */}
+                                    <aside className="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
+                                        <div className="small-tittle">
+                                            <h4>Filter by Price</h4>
+                                        </div>
+                                        <div className="widgets_inner">
+                                            <div className="range_item">
+                                                <span className="irs js-irs-0">
+                                                    <span className="irs">
+                                                        <span className="irs-line" tabIndex="-1">
+                                                            <span className="irs-line-left"></span>
+                                                            <span className="irs-line-mid"></span>
+                                                            <span className="irs-line-right"></span>
+                                                        </span>
+                                                        <span className="irs-min" style={{ visibility: "hidden" }}>$ 0</span>
+                                                        <span className="irs-max" style={{ visibility: "visible" }}>$ 1,000</span>
+                                                        <span className="irs-from" style={{ visibility: "visible", left: 0 }}>$ 0</span>
+                                                        <span className="irs-to" style={{ visibility: "visible", left: 45.1724 }}>$ 500</span>
+                                                        <span className="irs-single" style={{ visibility: "hidden", left: "18.3333" }}>$ 0 - $ 500</span>
+                                                    </span>
+                                                    <span className="irs-grid"></span>
+                                                    <span className="irs-bar" style={{ left: 1.72414, width: "48.2759px" }}></span>
+                                                    <span className="irs-shadow shadow-from" style={{ display: 'none' }}></span>
+                                                    <span className="irs-shadow shadow-to" style={{ display: 'none' }}></span>
+                                                    <span className="irs-slider from" style={{ left: 0 }}></span>
+                                                    <span className="irs-slider to type_last" style={{ left: 48.2759 }}></span>
+                                                </span>
+                                                <input type="text" className="js-range-slider irs-hidden-input" value="" readOnly />
+                                                <div className="d-flex align-items-center">
+                                                    <div className="price_value d-flex justify-content-center">
+                                                        <input type="text" className="js-input-from" id="amount" readOnly />
+                                                        <span>to</span>
+                                                        <input type="text" className="js-input-to" id="amount" readOnly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                    {/* Range end */}
+                                    {/* Select Categories */}
+                                    <div className="select-Categories pb-30">
+                                        <div className="small-tittle mb-20">
+                                            <h4>Filter by Genres</h4>
+                                        </div>
+                                        <label className="container">
+                                            History
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Horror - Thriller
+                                            <input type="checkbox" checked="checked" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Love Stories
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Science Fiction
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Biography
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    {/* Select Categories End */}
+                                    {/* Select Categories start */}
+                                    <div className="select-Categories pb-20">
+                                        <div className="small-tittle mb-20">
+                                            <h4>Filter by Brand</h4>
+                                        </div>
+                                        <label className="container">
+                                            Green Publications
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Anondo Publications
+                                            <input type="checkbox" checked="checked" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Rinku Publications
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Sheba Publications
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                        <label className="container">
+                                            Red Publications
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    {/* Select Categories End */}
+                                </div>
+                            </div>
+                            {/* Job Category Listing End */}
                         </div>
-                      </div>
-                    </div>
-                    <div class="select-job-items2 mb-30">
-                      <div class="col-xl-12">
-                        <select name="select2" style={{display: 'none'}}>
-                          <option value="">Type</option>
-                          <option value="">Type 1</option>
-                          <option value="">Type 2</option>
-                          <option value="">Type 3</option>
-                          <option value="">Type 4</option>
-                        </select>
-                        <div class="nice-select" tabindex="0">
-                          <span class="current">Type</span>
-                          <ul class="list">
-                            <li data-value="" class="option selected">
-                              Type
-                            </li>
-                            <li data-value="" class="option">
-                              Type 1
-                            </li>
-                            <li data-value="" class="option">
-                              Type 2
-                            </li>
-                            <li data-value="" class="option">
-                              Type 3
-                            </li>
-                            <li data-value="" class="option">
-                              Type 4
-                            </li>
-                          </ul>
+                        {/* Right content */}
+                        <div className="col-xl-9 col-lg-8 col-md-8">
+                            <div className="latest-items latest-items2">
+                                <div className="row">
+                                    {/* Product Cards */}
+                                    {/* Repeat this block for each product */}
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                        <div className="properties pb-30">
+                                            <div className="properties-card">
+                                                <div className="properties-img">
+                                                    <a href="pro-details.html">
+                                                        <img src="https://preview.colorlib.com/theme/capitalshop/assets/img/gallery/latest8.jpg.webp" alt="" />
+                                                    </a>
+                                                    <div className="socal_icon">
+                                                        <a>
+                                                            <i className="ti-shopping-cart"></i>
+                                                        </a>
+                                                        <a>
+                                                            <i className="ti-heart"></i>
+                                                        </a>
+                                                        <a>
+                                                            <i className="ti-zoom-in"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="properties-caption properties-caption2">
+                                                    <h3>
+                                                        <a href="pro-details.html">Cashmere Tank + Bag</a>
+                                                    </h3>
+                                                    <div className="properties-footer">
+                                                        <div className="price">
+                                                            <span>
+                                                                $98.00 <span>$120.00</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Repeat for other products */}
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    <div class="select-job-items2 mb-30">
-                      <div class="col-xl-12">
-                        <select name="select2" style={{display: 'none'}}>
-                          <option value="">Size</option>
-                          <option value="">XXL</option>
-                          <option value="">XL</option>
-                          <option value="">LG</option>
-                          <option value="">M</option>
-                          <option value="">sm</option>
-                        </select>
-                        <div class="nice-select" tabindex="0">
-                          <span class="current">Size</span>
-                          <ul class="list">
-                            <li data-value="" class="option selected">
-                              Size
-                            </li>
-                            <li data-value="" class="option">
-                              XXL
-                            </li>
-                            <li data-value="" class="option">
-                              XL
-                            </li>
-                            <li data-value="" class="option">
-                              LG
-                            </li>
-                            <li data-value="" class="option">
-                              M
-                            </li>
-                            <li data-value="" class="option">
-                              sm
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="select-job-items2 mb-30">
-                      <div class="col-xl-12">
-                        <select name="select2" style={{display: 'none'}}>
-                          <option value="">Color</option>
-                          <option value="">Read</option>
-                          <option value="">Green</option>
-                          <option value="">Blue</option>
-                          <option value="">skyblue</option>
-                        </select>
-                        <div class="nice-select" tabindex="0">
-                          <span class="current">Color</span>
-                          <ul class="list">
-                            <li data-value="" class="option selected">
-                              Color
-                            </li>
-                            <li data-value="" class="option">
-                              Read
-                            </li>
-                            <li data-value="" class="option">
-                              Green
-                            </li>
-                            <li data-value="" class="option">
-                              Blue
-                            </li>
-                            <li data-value="" class="option">
-                              skyblue
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <!-- select-Categories End --> */}
-                  {/* <!-- Range Slider Start --> */}
-                  <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
-                    <div class="small-tittle">
-                      <h4>Filter by Price</h4>
-                    </div>
-                    <div class="widgets_inner">
-                      <div class="range_item">
-                        <span class="irs js-irs-0">
-                          <span class="irs">
-                            <span class="irs-line" tabindex="-1">
-                              <span class="irs-line-left"></span>
-                              <span class="irs-line-mid"></span>
-                              <span class="irs-line-right"></span>
-                            </span>
-                            <span class="irs-min"
-                             style={{visibility: "hidden"}}
-                            >
-                              $ 0
-                            </span>
-                            <span class="irs-max" 
-                            style={{visibility: "visible"}}
-                            >
-                              $ 1.000
-                            </span>
-                            <span
-                              class="irs-from"
-                              style={{visibility: "visible", left: 0}}
-                            >
-                              $ 0
-                            </span>
-                            <span
-                              class="irs-to"
-                              style={{visibility: "visible", left: 45.1724}}
-                            >
-                              $ 500
-                            </span>
-                            <span
-                              class="irs-single"
-                              style={{visibility: "hidden", left: "18.3333"}}
-                            >
-                              $ 0 - $ 500
-                            </span>
-                          </span>
-                          <span class="irs-grid"></span>
-                          <span
-                            class="irs-bar"
-                            style={{left: 1.72414, width: "48.2759px"}}
-                          ></span>
-                          <span
-                            class="irs-shadow shadow-from"
-                            style={{display: 'none'}}
-                          ></span>
-                          <span
-                            class="irs-shadow shadow-to"
-                            style={{display: 'none'}}
-                          ></span>
-                          <span
-                            class="irs-slider from"
-                            style={{left: 0}}
-                          ></span>
-                          <span
-                            class="irs-slider to type_last"
-                            style={{left: 48.2759}}
-                          ></span>
-                        </span>
-                        <input
-                          type="text"
-                          class="js-range-slider irs-hidden-input"
-                          value=""
-                          readonly=""
-                        />
-                        <div class="d-flex align-items-center">
-                          <div class="price_value d-flex justify-content-center">
-                            <input
-                              type="text"
-                              class="js-input-from"
-                              id="amount"
-                              readonly=""
-                            />
-                            <span>to</span>
-                            <input
-                              type="text"
-                              class="js-input-to"
-                              id="amount"
-                              readonly=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </aside>
-                  {/* <!-- range end --> */}
-                  {/* <!-- select-Categories  --> */}
-                  <div class="select-Categories pb-30">
-                    <div class="small-tittle mb-20">
-                      <h4>Filter by Genres</h4>
-                    </div>
-                    <label class="container">
-                      History
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Horror - Thriller
-                      <input type="checkbox" checked="checked active" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Love Stories
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Science Fiction
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Biography
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  {/* <!-- select-Categories End --> */}
-                  {/* <!-- select-Categories start --> */}
-                  <div class="select-Categories pb-20">
-                    <div class="small-tittle mb-20">
-                      <h4>Filter by Brand</h4>
-                    </div>
-                    <label class="container">
-                      Green Publications
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Anondo Publications
-                      <input type="checkbox" checked="checked active" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Rinku Publications
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Sheba Publications
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                    <label class="container">
-                      Red Publications
-                      <input type="checkbox" />
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  {/* <!-- select-Categories End --> */}
                 </div>
-              </div>
-              {/* <!-- Job Category Listing End --> */}
             </div>
-            {/*?  Right content */}
-            <div class="col-xl-9 col-lg-8 col-md-8">
-              <div class="latest-items latest-items2">
-                <div class="row">
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest5.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest6.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest7.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest8.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest6.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest1.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest2.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest3.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="pro-details.html">
-                            <img src="assets/img/gallery/latest4.jpg" alt="" />
-                          </a>
-                          <div class="socal_icon">
-                            <a href="#">
-                              <i class="ti-shopping-cart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-heart"></i>
-                            </a>
-                            <a href="#">
-                              <i class="ti-zoom-in"></i>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3>
-                            <a href="pro-details.html">Cashmere Tank + Bag</a>
-                          </h3>
-                          <div class="properties-footer">
-                            <div class="price">
-                              <span>
-                                $98.00 <span>$120.00</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    );
 };
 
 export default MensPro;
