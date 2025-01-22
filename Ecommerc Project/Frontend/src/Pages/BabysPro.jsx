@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
-const Products = ()=>{
-    return(
-        <>
-        <Header/>
+const BabysPro = () => {
+  return (
+    <>
+    <Header/>
         <div class="hero-area section-bg2">
             <div class="container">
                 <div class="row">
@@ -374,9 +374,8 @@ const Products = ()=>{
             </div>
         </div>
 <Footer/>
-
-        </>
-    )
+    </>
+  )
 }
 
-export default Products
+export default BabysPro

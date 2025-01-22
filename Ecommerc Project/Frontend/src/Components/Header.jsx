@@ -91,13 +91,13 @@ const Header = () => {
                         <Link to={'/'}>Home</Link>
                       </li>
                       <li>
-                        <a href="categories.html">Men</a>
+                        <Link to={'/Men-Product'}>Men</Link>
                       </li>
                       <li>
-                        <a href="categories.html">Women</a>
+                        <Link to={'/women-product'}>Women</Link>
                       </li>
                       <li className="new">
-                        <a href="categories.html">Baby Collection</a>
+                        <Link to={'/baby-product'}>Baby Collection</Link>
                       </li>
                         <li>
                         <Link to={'/contact-us'}>Contact</Link>
