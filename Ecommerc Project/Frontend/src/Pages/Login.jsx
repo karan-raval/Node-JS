@@ -90,7 +90,7 @@ const Login = () => {
                 <div className="single-input-fields login-check">
                   <input type="checkbox" id="fruit1" name="keep-log" />
                   <label>Keep me logged in</label>
-                  <a className="f-right">Forgot Password?</a>
+                  <Link to={'/forgotpassword'} className="f-right">Forgot Password?</Link>
                 </div>
               </div>
               <div className="login-footer">

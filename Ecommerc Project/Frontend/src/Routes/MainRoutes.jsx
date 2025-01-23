@@ -11,6 +11,7 @@ import Cart from '../Pages/Cart'
 import Contact from '../Pages/Contact'
 import MensPro from '../Pages/MensPro'
 import NotFound from '../Pages/NotFound'
+import ForgotPass from '../Pages/ForgotPass'
 
 const MainRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const MainRoutes = () => {
         <Route path='/contact-us' element={<Contact/>}/>
         <Route path='/sub-category' element={<AddSubCategory/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/forgotpassword' element={<ForgotPass/>}/>
         <Route path='/Men-Product' element={<MensPro/>}/>
         <Route path='/admin' element={<IsAdmin><Admin/></IsAdmin>}/>
         <Route path='/addcategory' element={<AddCategory/>}/>

@@ -63,5 +63,40 @@ UserRouter.post("/login", async (req, res) => {
     }
 })
 
+UserRouter.post("/forgotPassword", async (req, res) => {
+    const { email } = req.body;
+    try {
+      let user = await UserModel.findOne({ email });
+      if (user) {
+        let otp = Math.round(Math.random() * 10000);
+        otpStore[email] = otp;
+        console.log(otpStore);
+  
+        const transpoter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.gmail,
+            pass: process.env.passkey,
+          },
+        });
+        let mailOption = {
+          from: process.env.gmail,
+          to: email,
+          subject: "OTP for Password Reset",
+          text: `Your otp for password reset is ${otp}`,
+        };
+  
+        transpoter.sendMail(mailOption, (error, info) => {
+          if (error) {
+            return res.status(400).send({ msg: "unable to send OTP" });
+          }
+          res.status(200).send({ msg: "OTP Sended Successfully" });
+        });
+      } else {
+        res.status(500).send({ msg: "Email Not Registered" });
+      }
+    } catch (error) {}
+  });
+
 
 module.exports = UserRouter
