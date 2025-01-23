@@ -95,7 +95,9 @@ UserRouter.post("/forgotPassword", async (req, res) => {
       } else {
         res.status(500).send({ msg: "Email Not Registered" });
       }
-    } catch (error) {}
+    } catch (error) {
+        res.status(501).send({ msg: error.message });
+    }
   });
 
 
