@@ -3,6 +3,7 @@ import $ from "jquery";
 import "./admin.css";
 import EarningsOverviewChart from "../Components/EarningsOverviewChart";
 import RevenueSourcesCard from "../Components/RevenueSourcesCard";
+import Sidebar from "../Components/Sidebar";
 
 const Admin = () => {
   useEffect(() => {
@@ -75,79 +76,7 @@ const Admin = () => {
       {/* Page Wrapper */}
       <div id="wrapper">
         {/* Sidebar */}
-        <ul
-          class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-          id="accordionSidebar"
-        >
-          {/* Sidebar - Brand */}
-          <a class="sidebar-brand d-flex align-items-center justify-content-center">
-            <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-laugh-wink"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">
-              SB Admin <sup>2</sup>
-            </div>
-          </a>
-
-          {/* Divider */}
-          <hr class="sidebar-divider my-0" />
-
-          {/* Nav Item - Dashboard */}
-          <li class="nav-item active">
-            <a class="nav-link">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-
-          {/* Divider */}
-          <hr class="sidebar-divider" />
-
-          {/* Divider */}
-          {/* <hr class="sidebar-divider" /> */}
-
-          {/* Heading */}
-          <div class="sidebar-heading">Addons</div>
-
-          {/* Nav Item - Pages Collapse Menu */}
-          <li class="nav-item">
-            <a
-              class="nav-link collapsed"
-              data-toggle="collapse"
-              data-target="#collapsePages"
-              aria-expanded="true"
-              aria-controls="collapsePages"
-            >
-              <i class="fas fa-fw fa-folder"></i>
-              <span>Pages</span>
-            </a>
-            <div
-              id="collapsePages"
-              class="collapse"
-              aria-labelledby="headingPages"
-              data-parent="#accordionSidebar"
-            >
-              <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item">Login</a>
-                <a class="collapse-item">Register</a>
-                <a class="collapse-item">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item">404 Page</a>
-              </div>
-            </div>
-          </li>
-
-          {/* Divider */}
-          <hr class="sidebar-divider d-none d-md-block" />
-
-          {/* Sidebar Toggler (Sidebar) */}
-          <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-          </div>
-        </ul>
-        {/* End of Sidebar */}
+        <Sidebar/>
 
         {/* Content Wrapper */}
         <div id="content-wrapper" class="d-flex flex-column">
@@ -648,8 +577,6 @@ const Admin = () => {
                       </div>
                     </div>
                   </div>
-
-                  
                 </div>
 
                 <div class="col-lg-6 mb-4">

@@ -10,6 +10,7 @@ import Home from '../Pages/Home'
 import Cart from '../Pages/Cart'
 import Contact from '../Pages/Contact'
 import MensPro from '../Pages/MensPro'
+import NotFound from '../Pages/NotFound'
 
 const MainRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const MainRoutes = () => {
         <Route path='/Men-Product' element={<MensPro/>}/>
         <Route path='/admin' element={<IsAdmin><Admin/></IsAdmin>}/>
         <Route path='/addcategory' element={<AddCategory/>}/>
+        <Route path='*' element={<NotFound/>}/>
     </Routes>
   )
 }
