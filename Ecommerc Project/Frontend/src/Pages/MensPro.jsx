@@ -6,22 +6,34 @@ import Footer from "../Components/Footer";
 import "../assets/css/login.css";
 
 const MensPro = () => {
-    const [openDropdown, setOpenDropdown] = useState(null);
+    const [openDropdown, setOpenDropdown] = useState(null); // Track open dropdown
+    const [selectedCategory, setSelectedCategory] = useState(""); // Track selected value
+    const [selectedType, setSelectedType] = useState("");
 
+    // Close dropdown on outside click
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (!event.target.closest(".nice-select")) {
-                setOpenDropdown(null);
-            }
-        };
-
-        document.addEventListener("click", handleClickOutside);
-        return () => document.removeEventListener("click", handleClickOutside);
+      const handleClickOutside = (event) => {
+        if (!event.target.closest(".nice-select")) {
+          setOpenDropdown(null);
+        }
+      };
+  
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
     }, []);
-
+  
     const toggleDropdown = (dropdownId) => {
-        setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
+      setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
     };
+  
+     const handleSelect = (dropdownId, value) => {
+    if (dropdownId === "category") {
+      setSelectedCategory(value);
+    } else if (dropdownId === "type") {
+      setSelectedType(value);
+    }
+    setOpenDropdown(null); // Close the dropdown after selection
+  };
 
     return (
         <>
@@ -66,57 +78,123 @@ const MensPro = () => {
                                     <div className="select-Categories pb-30">
                                         {/* Dropdown for Category */}
                                         <div className="select-job-items2 mb-30">
-                                            <div className="col-xl-12">
-                                                <select name="select2" style={{ display: 'none' }}>
-                                                    <option value="">Category</option>
-                                                    <option value="">Category 1</option>
-                                                    <option value="">Category 2</option>
-                                                    <option value="">Category 3</option>
-                                                    <option value="">Category 4</option>
-                                                </select>
-                                                <div
-                                                    className={`nice-select ${openDropdown === "category" ? "open" : ""}`}
-                                                    onClick={() => toggleDropdown("category")}
-                                                    tabIndex="0"
-                                                >
-                                                    <span className="current">Category</span>
-                                                    <ul className="list">
-                                                        <li data-value="" className="option selected">Category</li>
-                                                        <li data-value="" className="option">Category 1</li>
-                                                        <li data-value="" className="option">Category 2</li>
-                                                        <li data-value="" className="option">Category 3</li>
-                                                        <li data-value="" className="option">Category 4</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div className="col-xl-12">
+      {/* Hidden Select Element */}
+      <select name="select2" value={selectedCategory} onChange={() => {}} style={{ display: "none" }}>
+        <option value="">Category</option>
+        <option value="Category 1">Category 1</option>
+        <option value="Category 2">Category 2</option>
+        <option value="Category 3">Category 3</option>
+        <option value="Category 4">Category 4</option>
+      </select>
+
+      {/* Custom Dropdown */}
+      <div
+        className={`nice-select ${openDropdown === "category" ? "open" : ""}`}
+        onClick={() => toggleDropdown("category")}
+        tabIndex="0"
+      >
+        <span className="current">{selectedCategory || "Category"}</span>
+        <ul className="list">
+          <li
+            data-value=""
+            className={`option ${selectedCategory === "" ? "selected" : ""}`}
+            onClick={() => handleCategorySelect("")}
+          >
+            Category
+          </li>
+          <li
+            data-value="Category 1"
+            className={`option ${selectedCategory === "Category 1" ? "selected" : ""}`}
+            onClick={() => handleCategorySelect("Category 1")}
+          >
+            Category 1
+          </li>
+          <li
+            data-value="Category 2"
+            className={`option ${selectedCategory === "Category 2" ? "selected" : ""}`}
+            onClick={() => handleCategorySelect("Category 2")}
+          >
+            Category 2
+          </li>
+          <li
+            data-value="Category 3"
+            className={`option ${selectedCategory === "Category 3" ? "selected" : ""}`}
+            onClick={() => handleCategorySelect("Category 3")}
+          >
+            Category 3
+          </li>
+          <li
+            data-value="Category 4"
+            className={`option ${selectedCategory === "Category 4" ? "selected" : ""}`}
+            onClick={() => handleCategorySelect("Category 4")}
+          >
+            Category 4
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
 
                                         {/* Dropdown for Type */}
-                                        <div className="select-job-items2 mb-30">
-                                            <div className="col-xl-12">
-                                                <select name="select2" style={{ display: 'none' }}>
-                                                    <option value="">Type</option>
-                                                    <option value="">Type 1</option>
-                                                    <option value="">Type 2</option>
-                                                    <option value="">Type 3</option>
-                                                    <option value="">Type 4</option>
-                                                </select>
-                                                <div
-                                                    className={`nice-select ${openDropdown === "type" ? "open" : ""}`}
-                                                    onClick={() => toggleDropdown("type")}
-                                                    tabIndex="0"
-                                                >
-                                                    <span className="current">Type</span>
-                                                    <ul className="list">
-                                                        <li data-value="" className="option selected">Type</li>
-                                                        <li data-value="" className="option">Type 1</li>
-                                                        <li data-value="" className="option">Type 2</li>
-                                                        <li data-value="" className="option">Type 3</li>
-                                                        <li data-value="" className="option">Type 4</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                         <div className="select-job-items2 mb-30">
+        <div className="col-xl-12">
+          {/* Hidden Select */}
+          <select name="select2" value={selectedType} onChange={() => {}} style={{ display: "none" }}>
+            <option value="">Type</option>
+            <option value="Type 1">Type 1</option>
+            <option value="Type 2">Type 2</option>
+            <option value="Type 3">Type 3</option>
+            <option value="Type 4">Type 4</option>
+          </select>
+
+          {/* Custom Dropdown */}
+          <div
+            className={`nice-select ${openDropdown === "type" ? "open" : ""}`}
+            onClick={() => toggleDropdown("type")}
+            tabIndex="0"
+          >
+            <span className="current">{selectedType || "Type"}</span>
+            <ul className="list">
+              <li
+                data-value=""
+                className={`option ${selectedType === "" ? "selected" : ""}`}
+                onClick={() => handleSelect("type", "")}
+              >
+                Type
+              </li>
+              <li
+                data-value="Type 1"
+                className={`option ${selectedType === "Type 1" ? "selected" : ""}`}
+                onClick={() => handleSelect("type", "Type 1")}
+              >
+                Type 1
+              </li>
+              <li
+                data-value="Type 2"
+                className={`option ${selectedType === "Type 2" ? "selected" : ""}`}
+                onClick={() => handleSelect("type", "Type 2")}
+              >
+                Type 2
+              </li>
+              <li
+                data-value="Type 3"
+                className={`option ${selectedType === "Type 3" ? "selected" : ""}`}
+                onClick={() => handleSelect("type", "Type 3")}
+              >
+                Type 3
+              </li>
+              <li
+                data-value="Type 4"
+                className={`option ${selectedType === "Type 4" ? "selected" : ""}`}
+                onClick={() => handleSelect("type", "Type 4")}
+              >
+                Type 4
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
 
                                         {/* Dropdown for Size */}
                                         <div className="select-job-items2 mb-30">
