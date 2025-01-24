@@ -34,13 +34,13 @@ const ForgotPass = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5532/user/forgotPassword", {
+      const response = await axios.post("http://localhost:5532/user/resetPassword", {
         email: formData.email,
         otp: formData.otp,
         newpassword: formData.newpassword,
       });
       toast.success(response.data.message);
-      navigate("/login");
+      navigate("/login"); 
     } catch (error) {
       console.error("Reset Submit Error:", error.response || error);
       setErrorMessage(error.response?.data?.message || "Error resetting password. Please check your details and try again.");

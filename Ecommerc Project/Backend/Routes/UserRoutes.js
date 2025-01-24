@@ -3,8 +3,10 @@ const jwt = require("jsonwebtoken")
 const UserModel = require("../Model/UserModel")
 const bcrypt = require("bcrypt");
 require('dotenv').config()
+const nodemailer = require("nodemailer");
 const UserRouter = Router()
 
+let otpStore = {};
 
 UserRouter.get("/all", async (req, res) => {
     let data = await UserModel.find()
@@ -70,7 +72,7 @@ UserRouter.post("/forgotPassword", async (req, res) => {
       if (user) {
         let otp = Math.round(Math.random() * 10000);
         otpStore[email] = otp;
-        console.log(otpStore);
+        // console.log(otpStore);
   
         const transpoter = nodemailer.createTransport({
           service: "gmail",
@@ -100,5 +102,24 @@ UserRouter.post("/forgotPassword", async (req, res) => {
     }
   });
 
+  UserRouter.post("/resetPassword", async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+    console.log(otpStore);
+    try {
+      if (otpStore[email] == otp) {
+        let hashedPassword = await bcrypt.hash(newPassword, 10);
+        let data = await UserModel.findOneAndUpdate(
+          { email: email },
+          { password: hashedPassword }
+        );
+        otpStore[email] = "";
+        res.send({ msg: "Password Changed Successfully", data });
+      } else {
+        res.send({ msg: "OTP Incorrect" });
+      }
+    } catch (error) {
+      res.status(501).send({ msg: error.message });
+    }
+  });
 
 module.exports = UserRouter
