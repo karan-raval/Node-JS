@@ -232,7 +232,6 @@ const MensPro = () => {
                       </div>
                     </div>
 
-                    {/* Dropdown for Size */}
                     <div className="select-job-items2 mb-30">
                       <div className="col-xl-12">
                         <select name="select2" style={{ display: "none" }}>
@@ -275,7 +274,6 @@ const MensPro = () => {
                       </div>
                     </div>
 
-                    {/* Dropdown for Color */}
                     <div className="select-job-items2 mb-30">
                       <div className="col-xl-12">
                         <select name="select2" style={{ display: "none" }}>
@@ -314,8 +312,6 @@ const MensPro = () => {
                       </div>
                     </div>
                   </div>
-                  {/* Select Categories End */}
-                  {/* Range Slider Start */}
                   <aside className="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
                     <div className="small-tittle">
                       <h4>Filter by Price</h4>
@@ -408,8 +404,6 @@ const MensPro = () => {
                       </div>
                     </div>
                   </aside>
-                  {/* Range end */}
-                  {/* Select Categories */}
                   <div className="select-Categories pb-30">
                     <div className="small-tittle mb-20">
                       <h4>Filter by Genres</h4>
@@ -440,8 +434,6 @@ const MensPro = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                  {/* Select Categories End */}
-                  {/* Select Categories start */}
                   <div className="select-Categories pb-20">
                     <div className="small-tittle mb-20">
                       <h4>Filter by Brand</h4>
@@ -472,17 +464,12 @@ const MensPro = () => {
                       <span className="checkmark"></span>
                     </label>
                   </div>
-                  {/* Select Categories End */}
                 </div>
               </div>
-              {/* Job Category Listing End */}
             </div>
-            {/* Right content */}
             <div className="col-xl-9 col-lg-8 col-md-8">
               <div className="latest-items latest-items2">
                 <div className="row">
-                  {/* Product Cards */}
-                  {/* Repeat this block for each product */}
                   <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                     <div className="properties pb-30">
                       <div className="properties-card">
@@ -520,7 +507,6 @@ const MensPro = () => {
                       </div>
                     </div>
                   </div>
-                  {/* Repeat for other products */}
                 </div>
               </div>
             </div>
