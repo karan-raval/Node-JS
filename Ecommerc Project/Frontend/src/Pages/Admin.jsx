@@ -7,7 +7,6 @@ import Sidebar from "../Components/Sidebar";
 
 const Admin = () => {
   useEffect(() => {
-    // Sidebar toggle logic
     $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
       $("body").toggleClass("sidebar-toggled");
       $(".sidebar").toggleClass("toggled");
@@ -16,7 +15,6 @@ const Admin = () => {
       }
     });
 
-    // Collapse sidebar on window resize
     $(window).resize(function () {
       if ($(window).width() < 768) {
         $(".sidebar .collapse").collapse("hide");
@@ -40,7 +38,6 @@ const Admin = () => {
       }
     );
 
-    // Scroll to top button
     $(document).on("scroll", function () {
       if ($(this).scrollTop() > 100) {
         $(".scroll-to-top").fadeIn();
@@ -49,7 +46,6 @@ const Admin = () => {
       }
     });
 
-    // Smooth scrolling
     $(document).on("click", "a.scroll-to-top", function (e) {
       const target = $(this).attr("href");
       $("html, body").animate(
