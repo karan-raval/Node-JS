@@ -6,11 +6,10 @@ import Footer from "../Components/Footer";
 import "../assets/css/login.css";
 
 const MensPro = () => {
-  const [openDropdown, setOpenDropdown] = useState(null); // Track open dropdown
-  const [selectedCategory, setSelectedCategory] = useState(""); // Track selected value
+  const [openDropdown, setOpenDropdown] = useState(null); 
+  const [selectedCategory, setSelectedCategory] = useState(""); 
   const [selectedType, setSelectedType] = useState("");
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest(".nice-select")) {
