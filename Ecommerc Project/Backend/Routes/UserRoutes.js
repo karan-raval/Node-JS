@@ -70,7 +70,7 @@ UserRouter.post("/forgotPassword", async (req, res) => {
     try {
       let user = await UserModel.findOne({ email });
       if (user) {
-        let otp = Math.round(Math.random() * 10000);
+        let otp = Math.round(123594+Math.random() * 10000);
         otpStore[email] = otp;
         // console.log(otpStore);
   
