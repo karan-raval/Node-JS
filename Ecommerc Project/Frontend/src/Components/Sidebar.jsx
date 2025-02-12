@@ -5,75 +5,75 @@ const Sidebar = () => {
   return (
     <>
      <ul
-          class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+          className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
           id="accordionSidebar"
         >
           {/* Sidebar - Brand */}
-          <a class="sidebar-brand d-flex align-items-center justify-content-center">
-            <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-laugh-wink"></i>
+          <a className="sidebar-brand d-flex align-items-center justify-content-center">
+            <div className="sidebar-brand-icon rotate-n-15">
+              <i className="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">
+            <div className="sidebar-brand-text mx-3">
               SB Admin <sup>2</sup>
             </div>
           </a>
 
           {/* Divider */}
-          <hr class="sidebar-divider my-0" />
+          <hr className="sidebar-divider my-0" />
 
           {/* Nav Item - Dashboard */}
-          <li class="nav-item active">
-            <Link to={'/admin'} class="nav-link">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
+          <li className="nav-item active">
+            <Link to={'/admin'} className="nav-link">
+              <i className="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </Link>
           </li>
 
           {/* Divider */}
-          <hr class="sidebar-divider" />
+          <hr className="sidebar-divider" />
 
           {/* Divider */}
-          {/* <hr class="sidebar-divider" /> */}
+          {/* <hr className="sidebar-divider" /> */}
 
           {/* Heading */}
-          <div class="sidebar-heading">Addons</div>
+          <div className="sidebar-heading">Addons</div>
 
           {/* Nav Item - Pages Collapse Menu */}
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link collapsed"
+              className="nav-link collapsed"
               data-toggle="collapse"
               data-target="#collapsePages"
               aria-expanded="true"
               aria-controls="collapsePages"
             >
-              <i class="fas fa-fw fa-folder"></i>
+              <i className="fas fa-fw fa-folder"></i>
               <span>Pages</span>
             </a>
             <div
               id="collapsePages"
-              class="collapse"
+              className="collapse"
               aria-labelledby="headingPages"
               data-parent="#accordionSidebar"
             >
-              <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Screens:</h6>
-                <Link to={'/login'} class="collapse-item">Login</Link>
-                <Link to={'/signup'} class="collapse-item">Register</Link>
-                <Link to={'/forgotpassword'} class="collapse-item">Forgot Password</Link>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Other Pages:</h6> 
-                <Link to={'/*'} class="collapse-item">404 Page</Link>
+              <div className="bg-white py-2 collapse-inner rounded">
+                <h6 className="collapse-header">Screens:</h6>
+                <Link to={'/login'} className="collapse-item">Login</Link>
+                <Link to={'/signup'} className="collapse-item">Register</Link>
+                <Link to={'/forgotpassword'} className="collapse-item">Forgot Password</Link>
+                <div className="collapse-divider"></div>
+                <h6 className="collapse-header">Other Pages:</h6> 
+                <Link to={'/*'} className="collapse-item">404 Page</Link>
               </div>
             </div>
           </li>
 
           {/* Divider */}
-          <hr class="sidebar-divider d-none d-md-block" />
+          <hr className="sidebar-divider d-none d-md-block" />
 
           {/* Sidebar Toggler (Sidebar) */}
-          <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          <div className="text-center d-none d-md-inline">
+            <button className="rounded-circle border-0" id="sidebarToggle"></button>
           </div>
         </ul>
         {/* End of Sidebar */}
