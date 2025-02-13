@@ -1,134 +1,159 @@
-import React, { useEffect, useRef } from 'react';
-import Sidebar from '../Components/Sidebar';
-import Navbar from '../Components/navbar';
-import anime from 'animejs'; // Ensure anime.js is installed via npm or yarn
-// import '../assets/style.css';
+import React, { useEffect, useState } from "react";
+import Sidebar from "../Components/Sidebar";
+import axios from "axios";
+import "./admin.css";
+import AdminHeader from "../Components/AdminHeader";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddCategory = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const submitRef = useRef(null);
-  const pathRef = useRef(null);
-  let current = null;
+  useEffect(() => {
+    $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
+      $("body").toggleclassName("sidebar-toggled");
+      $(".sidebar").toggleclassName("toggled");
+      if ($(".sidebar").hasclassName("toggled")) {
+        $(".sidebar .collapse").collapse("hide");
+      }
+    });
 
-  const handlesubmit=async (e)=>{
-    e.preventDefault()
+    $(window).resize(function () {
+      if ($(window).width() < 768) {
+        $(".sidebar .collapse").collapse("hide");
+      }
+      if ($(window).width() < 480 && !$(".sidebar").hasclassName("toggled")) {
+        $("body").addclassName("sidebar-toggled");
+        $(".sidebar").addclassName("toggled");
+        $(".sidebar .collapse").collapse("hide");
+      }
+    });
+
+    // Prevent scrolling when the sidebar is hovered
+    $("body.fixed-nav .sidebar").on(
+      "mousewheel DOMMouseScroll wheel",
+      function (e) {
+        if ($(window).width() > 768) {
+          const o = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+          this.scrollTop += 30 * (o < 0 ? 1 : -1);
+          e.preventDefault();
+        }
+      }
+    );
+
+    $(document).on("scroll", function () {
+      if ($(this).scrollTop() > 100) {
+        $(".scroll-to-top").fadeIn();
+      } else {
+        $(".scroll-to-top").fadeOut();
+      }
+    });
+
+    $(document).on("click", "a.scroll-to-top", function (e) {
+      const target = $(this).attr("href");
+      $("html, body").animate(
+        { scrollTop: $(target).offset().top },
+        1000,
+        "easeInOutExpo"
+      );
+      e.preventDefault();
+    });
+
+    return () => {
+      // Cleanup event listeners
+      $("#sidebarToggle, #sidebarToggleTop").off("click");
+      $(window).off("resize");
+      $("body.fixed-nav .sidebar").off("mousewheel DOMMouseScroll wheel");
+      $(document).off("scroll click");
+    };
+  }, []);
+  const [name, setName] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const token = sessionStorage.getItem('token');
-      await axios.post('http://localhost:8080/category/add', 
+      const token = sessionStorage.getItem("token");
+      await axios.post(
+        "http://localhost:5532/category/add",
         { name },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setSuccess('Category added successfully');
-      setName('');
-      setError('');
+      setSuccess("Category added successfully");
+      setName("");
+      setError("");
     } catch (error) {
-      setError(error.response?.data?.message || 'Failed to add category');
-      setSuccess('');
+      setError(error.response?.data?.message || "Failed to add category");
+      setSuccess("");
     }
-
-  }
-
-  useEffect(() => {
-    if (!emailRef.current  || !submitRef.current || !pathRef.current) {
-      console.error('Refs are not assigned correctly.');
-      return;
-    }
-
-    const animatePath = (offsetValue, dashArrayValue) => {
-      if (current) current.pause();
-      current = anime({
-        targets: pathRef.current,
-        strokeDashoffset: {
-          value: offsetValue,
-          duration: 700,
-          easing: 'easeOutQuart',
-        },
-        strokeDasharray: {
-          value: dashArrayValue,
-          duration: 700,
-          easing: 'easeOutQuart',
-        },
-      });
-    };
-
-    const emailFocusHandler = () => animatePath(0, '240 1386');
-    // const emailFocusHandler = () => animatePath(-336, '240 1386');
-    const submitFocusHandler = () => animatePath(-730, '530 1386');
-
-    emailRef.current.addEventListener('focus', emailFocusHandler);
-    // passwordRef.current.addEventListener('focus', passwordFocusHandler);
-    submitRef.current.addEventListener('focus', submitFocusHandler);
-
-    return () => {
-      // Cleanup event listeners on unmount
-      if (emailRef.current) emailRef.current.removeEventListener('focus', emailFocusHandler);
-      // if (passwordRef.current) passwordRef.current.removeEventListener('focus', passwordFocusHandler);
-      if (submitRef.current) submitRef.current.removeEventListener('focus', submitFocusHandler);
-    };
-  }, []);
+  };
 
   return (
     <>
-      <div className="container-scroller">
+      {/* <body id="page-top"> */}
+
+      {/* Page Wrapper */}
+      <div id="wrapper">
+        {/* Sidebar */}
         <Sidebar />
-        <div className="container-fluid page-body-wrapper">
-          <nav className="navbar p-0 fixed-top d-flex flex-row">
-            <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a className="navbar-brand brand-logo-mini">
-                <img
-                  src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/logo-mini.svg"
-                  alt="logo"
-                />
-              </a>
-            </div>
-            <Navbar />
-          </nav>
-          <div className="page">
-            <div className="container">
-              <div className="left">
-                <div className="login">Login</div>
-                <div className="eula">
-                  By logging in you agree to the ridiculously long terms that
-                  you didn't bother to read
+
+        {/* Content Wrapper */}
+        <div id="content-wrapper" className="d-flex flex-column">
+          {/* Main Content */}
+          <div id="content">
+            {/* Topbar */}
+            <AdminHeader />
+            {/* End of Topbar */}
+
+            {/* */}
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                  <div className="container mt-5">
+                    <div className="row justify-content-center">
+                      <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+                        <div className="card shadow-lg p-4">
+                          <h3 className="text-center mb-4">Add Category</h3>
+                          {success && (
+                            <div className="alert alert-success">{success}</div>
+                          )}
+                          {error && (
+                            <div className="alert alert-danger">{error}</div>
+                          )}
+                          <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                              <label htmlFor="category" className="form-label">
+                                Category Name
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="category"
+                                placeholder="Enter category name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                              />
+                            </div>
+                            <button
+                              type="submit"
+                              className="btn btn-primary w-100"
+                            >
+                              Submit
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="right">
-                <svg viewBox="0 0 320 300">
-                  <defs>
-                    <linearGradient
-                      id="linearGradient"
-                      x1="13"
-                      y1="193.49992"
-                      x2="307"
-                      y2="193.49992"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop style={{ stopColor: '#ff00ff' }} offset="0" />
-                      <stop style={{ stopColor: '#ff0000' }} offset="1" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    ref={pathRef}
-                    d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143"
-                  />
-                </svg>
-                <form className="form" onSubmit={handlesubmit}>
-                  <label htmlFor="email">Email</label>
-                  <input type="category" id="email" name='category' placeholder='Add Your Category' ref={emailRef} />
-                    <br /><br /><br /><br />
-                  <input
-                    type="submit"
-                    id="submit"
-                    value="Submit"
-                    ref={submitRef}
-                  />
-                </form>
-              </div>
             </div>
+            {/*  */}
           </div>
         </div>
       </div>
+      <a className="scroll-to-top rounded" href="#page-top">
+        <i className="fas fa-angle-up"></i>
+      </a>
     </>
   );
 };

@@ -25,7 +25,7 @@ const MainRoutes = () => {
         <Route path='/forgotpassword' element={<ForgotPass/>}/>
         <Route path='/Men-Product' element={<MensPro/>}/>
         <Route path='/admin' element={<IsAdmin><Admin/></IsAdmin>}/>
-        <Route path='/addcategory' element={<AddCategory/>}/>
+        <Route path='/addcategory' element={<IsAdmin><AddCategory/></IsAdmin>}/>
         <Route path='*' element={<NotFound/>}/>
     </Routes>
   )
