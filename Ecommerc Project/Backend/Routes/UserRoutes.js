@@ -112,6 +112,7 @@ UserRouter.post("/forgotPassword", async (req, res) => {
           { email: email },
           { password: hashedPassword }
         );
+        console.log(hashedPassword)
         otpStore[email] = "";
         res.send({ msg: "Password Changed Successfully", data });
       } else {
