@@ -1,7 +1,7 @@
 const express = require("express");
 const connection = require("./Config/server");
 const UserRouter = require("./Routes/UserRoutes");
-const ProductCategoryRoute = require("./Routes/ProductCategoryRoutes");
+const CategoryRoute = require("./Routes/CategoryRoutes");
 require('dotenv').config()
 const cors=require('cors')
 
@@ -11,7 +11,8 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/user",UserRouter)
-app.use("/category", ProductCategoryRoute)
+app.use("/", CategoryRoute)
+app.use("/",SubCategoryRoutes)
 
 app.listen(process.env.port,()=>{
     console.log(`Port Running on ${process.env.port}`);

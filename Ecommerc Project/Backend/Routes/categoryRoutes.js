@@ -1,12 +1,12 @@
 const {Router} = require("express")
-const ProductCategoryModel = require("../Model/ProductCategoryModel")
+const CategoryModel = require("../Model/CategoryModel")
 const isAdmin = require("../Middleware/isAdmin")
 
-const ProductCategoryRoute = Router()
+const CategoryRoute = Router()
 
-ProductCategoryRoute.post("/add",isAdmin,async(req,res)=>{
+CategoryRoute.post("/category",isAdmin,async(req,res)=>{
     try {
-        let data = await ProductCategoryModel.create(req.body)
+        let data = await CategoryModel.create(req.body)
         console.log(data)
         res.status(200).send({msg : "Category added Successfully", data})
     } catch (error) {
@@ -14,4 +14,4 @@ ProductCategoryRoute.post("/add",isAdmin,async(req,res)=>{
     }
 })
 
-module.exports = ProductCategoryRoute
+module.exports = CategoryRoute

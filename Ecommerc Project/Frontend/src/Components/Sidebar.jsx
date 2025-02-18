@@ -62,6 +62,7 @@ const Sidebar = () => {
                 <Link to={'/signup'} className="collapse-item">Register</Link>
                 <Link to={'/forgotpassword'} className="collapse-item">Forgot Password</Link>
                 <Link to={'/addcategory'} className="collapse-item">Add Category</Link>
+                <Link to={'/add-sub-category'} className="collapse-item">Add Sub Category</Link>
                 <div className="collapse-divider"></div>
                 <h6 className="collapse-header">Other Pages:</h6> 
                 <Link to={'/*'} className="collapse-item">404 Page</Link>
