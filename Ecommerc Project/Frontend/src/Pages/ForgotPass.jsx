@@ -9,7 +9,7 @@ const ForgotPass = () => {
   const [formData, setFormData] = useState({
     email: "",
     otp: "",
-    newpassword: "",
+    newPassword: "",
   });
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -49,11 +49,16 @@ const ForgotPass = () => {
         {
           email: formData.email,
           otp: formData.otp,
-          newpassword: formData.newpassword,
+          newPassword: formData.newPassword,
         }
       );
-      toast.success(response.data.message);
-      navigate("/login");
+      console.log("Reset Response:", response.data);
+
+      toast.success(response.data.msg || response.data.message || "Password reset successful!");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 4000);
     } catch (error) {
       console.error("Reset Submit Error:", error.response || error);
       setErrorMessage(
@@ -119,17 +124,17 @@ const ForgotPass = () => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="newpassword" className="form-label">
+                <label htmlFor="newPassword" className="form-label">
                   New Password
                 </label>
                 <input
-                  id="newpassword"
+                  id="newassword"
                   type="password"
                   className="form-control"
                   placeholder="Enter your new password"
-                  value={formData.newpassword}
+                  value={formData.newPassword}
                   onChange={(e) =>
-                    setFormData({ ...formData, newpassword: e.target.value })
+                    setFormData({ ...formData, newPassword: e.target.value })
                   }
                   required
                 />

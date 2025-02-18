@@ -3,14 +3,14 @@ import Sidebar from "../Components/Sidebar";
 import axios from "axios";
 import "./admin.css";
 import AdminHeader from "../Components/AdminHeader";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from "jquery"; // Ensure jQuery is imported
 
 const AddCategory = () => {
   useEffect(() => {
-    $("#sidebarToggle, #sidebarToggleTop").on("click", function (e) {
-      $("body").toggleclassName("sidebar-toggled");
-      $(".sidebar").toggleclassName("toggled");
-      if ($(".sidebar").hasclassName("toggled")) {
+    $("#sidebarToggle, #sidebarToggleTop").on("click", function () {
+      $("body").toggleClass("sidebar-toggled");
+      $(".sidebar").toggleClass("toggled");
+      if ($(".sidebar").hasClass("toggled")) {
         $(".sidebar .collapse").collapse("hide");
       }
     });
@@ -19,9 +19,9 @@ const AddCategory = () => {
       if ($(window).width() < 768) {
         $(".sidebar .collapse").collapse("hide");
       }
-      if ($(window).width() < 480 && !$(".sidebar").hasclassName("toggled")) {
-        $("body").addclassName("sidebar-toggled");
-        $(".sidebar").addclassName("toggled");
+      if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+        $("body").addClass("sidebar-toggled");
+        $(".sidebar").addClass("toggled");
         $(".sidebar .collapse").collapse("hide");
       }
     });
@@ -64,7 +64,7 @@ const AddCategory = () => {
       $(document).off("scroll click");
     };
   }, []);
-  const [name, setName] = useState("");
+  const [category, setcategory] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -74,12 +74,13 @@ const AddCategory = () => {
       const token = sessionStorage.getItem("token");
       await axios.post(
         "http://localhost:5532/category/add",
-        { name },
+        { category },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSuccess("Category added successfully");
       setName("");
       setError("");
+      console.log(category)
     } catch (error) {
       setError(error.response?.data?.message || "Failed to add category");
       setSuccess("");
@@ -127,9 +128,10 @@ const AddCategory = () => {
                                 type="text"
                                 className="form-control"
                                 id="category"
+                                name="category"
                                 placeholder="Enter category name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                value={category}
+                                onChange={(e) => setcategory(e.target.value)}
                                 required
                               />
                             </div>

@@ -103,24 +103,24 @@ UserRouter.post("/forgotPassword", async (req, res) => {
   });
 
   UserRouter.post("/resetPassword", async (req, res) => {
-    const { email, otp, newPassword } = req.body;
-    console.log(otpStore);
-    try {
-      if (otpStore[email] == otp) {
-        let hashedPassword = await bcrypt.hash(newPassword, 10);
-        let data = await UserModel.findOneAndUpdate(
-          { email: email },
-          { password: hashedPassword }
-        );
-        console.log(hashedPassword)
-        otpStore[email] = "";
-        res.send({ msg: "Password Changed Successfully", data });
-      } else {
-        res.send({ msg: "OTP Incorrect" });
-      }
-    } catch (error) {
-      res.status(501).send({ msg: error.message });
+  const { email, otp, newPassword } = req.body;
+  console.log(otpStore,email,otp,newPassword);
+  try {
+    if (otpStore[email] == otp) {
+      let hashedPassword = await bcrypt.hash(newPassword, 10);
+      let data = await UserModel.findOneAndUpdate(
+        { email: email },
+        { password: hashedPassword }
+      );
+      otpStore[email] = "";
+      res.send({ msg: "Password Changed Successfully", data });
+    } else {
+      res.send({ msg: "OTP Incorrect" });
     }
-  });
+  } catch (error) {
+    res.status(501).send({ msg: error.message });
+  }
+});
+
 
 module.exports = UserRouter
