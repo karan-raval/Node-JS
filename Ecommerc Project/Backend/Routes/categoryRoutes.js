@@ -2,6 +2,7 @@ const {Router} = require("express")
 const CategoryModel = require("../Model/CategoryModel")
 const isAdmin = require("../Middleware/isAdmin")
 
+
 const CategoryRoute = Router()
 
 CategoryRoute.post("/category",isAdmin,async(req,res)=>{
