@@ -4,6 +4,8 @@ import axios from "axios";
 import "./admin.css";
 import AdminHeader from "../Components/AdminHeader";
 import $ from "jquery"; // Ensure jQuery is imported
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddSubCategory = () => {
   useEffect(() => {
@@ -26,7 +28,6 @@ const AddSubCategory = () => {
       }
     });
 
-    // Prevent scrolling when the sidebar is hovered
     $("body.fixed-nav .sidebar").on(
       "mousewheel DOMMouseScroll wheel",
       function (e) {
@@ -57,13 +58,13 @@ const AddSubCategory = () => {
     });
 
     return () => {
-      // Cleanup event listeners
       $("#sidebarToggle, #sidebarToggleTop").off("click");
       $(window).off("resize");
       $("body.fixed-nav .sidebar").off("mousewheel DOMMouseScroll wheel");
       $(document).off("scroll click");
     };
   }, []);
+
   const [category, setcategory] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -73,36 +74,26 @@ const AddSubCategory = () => {
     try {
       const token = sessionStorage.getItem("token");
       await axios.post(
-        "http://localhost:5532/category/add",
+        "http://localhost:5532/SubCategory",
         { category },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSuccess("Category added successfully");
-      setName("");
+      toast.success("Category added successfully");
+      setcategory(""); // Fixed the typo from setName("")
       setError("");
-      console.log(category)
     } catch (error) {
-      setError(error.response?.data?.message || "Failed to add category");
+      const errorMsg = error.response?.data?.message || "Failed to add category";
+      setError(errorMsg);
+      toast.error(errorMsg);
       setSuccess("");
     }
   };
+
   return (
     <>
-    {/* <div className="container-scroller">
-        <Sidebar />
-        <div className="container-fluid page-body-wrapper">
-          <nav className="navbar p-0 fixed-top d-flex flex-row">
-            <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a className="navbar-brand brand-logo-mini" >
-                <img src="https://demo.bootstrapdash.com/corona-free/jquery/template/assets/images/logo-mini.svg" alt="logo" />
-              </a>
-            </div>
-            <Navbar />
-          </nav>
-          </div>
-          </div> */}
-
-            {/* <body id="page-top"> */}
+      {/* Toast Notifications */}
+      <ToastContainer />
 
       {/* Page Wrapper */}
       <div id="wrapper">
@@ -117,7 +108,6 @@ const AddSubCategory = () => {
             <AdminHeader />
             {/* End of Topbar */}
 
-            {/* */}
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -126,12 +116,10 @@ const AddSubCategory = () => {
                       <div className="col-12 col-sm-10 col-md-8 col-lg-6">
                         <div className="card shadow-lg p-4">
                           <h3 className="text-center mb-4">Add Sub Category</h3>
-                          {success && (
-                            <div className="alert alert-success">{success}</div>
-                          )}
-                          {error && (
-                            <div className="alert alert-danger">{error}</div>
-                          )}
+
+                          {success && <div className="alert alert-success">{success}</div>}
+                          {error && <div className="alert alert-danger">{error}</div>}
+
                           <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                               <label htmlFor="category" className="form-label">
@@ -148,10 +136,7 @@ const AddSubCategory = () => {
                                 required
                               />
                             </div>
-                            <button
-                              type="submit"
-                              className="btn btn-primary w-100"
-                            >
+                            <button type="submit" className="btn btn-primary w-100">
                               Submit
                             </button>
                           </form>
@@ -162,15 +147,16 @@ const AddSubCategory = () => {
                 </div>
               </div>
             </div>
-            {/*  */}
+
           </div>
         </div>
       </div>
+
       <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
       </a>
     </>
-  )
-}
+  );
+};
 
-export default AddSubCategory
+export default AddSubCategory;

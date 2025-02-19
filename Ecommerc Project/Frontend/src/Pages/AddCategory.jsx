@@ -3,7 +3,10 @@ import Sidebar from "../Components/Sidebar";
 import axios from "axios";
 import "./admin.css";
 import AdminHeader from "../Components/AdminHeader";
-import $ from "jquery"; // Ensure jQuery is imported
+import $ from "jquery";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const AddCategory = () => {
   useEffect(() => {
@@ -26,17 +29,13 @@ const AddCategory = () => {
       }
     });
 
-    // Prevent scrolling when the sidebar is hovered
-    $("body.fixed-nav .sidebar").on(
-      "mousewheel DOMMouseScroll wheel",
-      function (e) {
-        if ($(window).width() > 768) {
-          const o = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-          this.scrollTop += 30 * (o < 0 ? 1 : -1);
-          e.preventDefault();
-        }
+    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (e) {
+      if ($(window).width() > 768) {
+        const o = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+        this.scrollTop += 30 * (o < 0 ? 1 : -1);
+        e.preventDefault();
       }
-    );
+    });
 
     $(document).on("scroll", function () {
       if ($(this).scrollTop() > 100) {
@@ -48,63 +47,56 @@ const AddCategory = () => {
 
     $(document).on("click", "a.scroll-to-top", function (e) {
       const target = $(this).attr("href");
-      $("html, body").animate(
-        { scrollTop: $(target).offset().top },
-        1000,
-        "easeInOutExpo"
-      );
+      $("html, body").animate({ scrollTop: $(target).offset().top }, 1000, "easeInOutExpo");
       e.preventDefault();
     });
 
     return () => {
-      // Cleanup event listeners
       $("#sidebarToggle, #sidebarToggleTop").off("click");
       $(window).off("resize");
       $("body.fixed-nav .sidebar").off("mousewheel DOMMouseScroll wheel");
       $(document).off("scroll click");
     };
   }, []);
+
   const [category, setcategory] = useState("");
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = sessionStorage.getItem("token");
-      await axios.post(
-        "http://localhost:5532/category/add",
+      const response = await axios.post(
+        "http://localhost:5532/category",
         { category },
         { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setSuccess("Category added successfully");
-      setName("");
-      setError("");
-      console.log(category)
+      ); 
+
+      console.log("API Response:", response);
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Category added successfully");
+        setcategory(""); // Clear input field after success
+      } else {
+        throw new Error("Unexpected API response");
+      }
     } catch (error) {
-      setError(error.response?.data?.message || "Failed to add category");
-      setSuccess("");
+      console.error("API Error:", error);
+
+      const errorMsg = error.response?.data?.message || "Failed to add category";
+      toast.error(errorMsg);
     }
   };
 
   return (
     <>
-      {/* <body id="page-top"> */}
-
-      {/* Page Wrapper */}
+    <ToastContainer />
       <div id="wrapper">
-        {/* Sidebar */}
         <Sidebar />
 
-        {/* Content Wrapper */}
         <div id="content-wrapper" className="d-flex flex-column">
-          {/* Main Content */}
           <div id="content">
-            {/* Topbar */}
             <AdminHeader />
-            {/* End of Topbar */}
 
-            {/* */}
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -113,12 +105,7 @@ const AddCategory = () => {
                       <div className="col-12 col-sm-10 col-md-8 col-lg-6">
                         <div className="card shadow-lg p-4">
                           <h3 className="text-center mb-4">Add Category</h3>
-                          {success && (
-                            <div className="alert alert-success">{success}</div>
-                          )}
-                          {error && (
-                            <div className="alert alert-danger">{error}</div>
-                          )}
+
                           <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                               <label htmlFor="category" className="form-label">
@@ -135,10 +122,7 @@ const AddCategory = () => {
                                 required
                               />
                             </div>
-                            <button
-                              type="submit"
-                              className="btn btn-primary w-100"
-                            >
+                            <button type="submit" className="btn btn-primary w-100">
                               Submit
                             </button>
                           </form>
@@ -149,10 +133,11 @@ const AddCategory = () => {
                 </div>
               </div>
             </div>
-            {/*  */}
+
           </div>
         </div>
       </div>
+
       <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
       </a>
