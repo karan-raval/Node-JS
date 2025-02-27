@@ -185,9 +185,9 @@ const HomePage = () => {
 
                 <div className="entry__text">
                 <div>
-    <h3 style={{ fontWeight: "bold", color: "#555" }}>
+    <span style={{ fontWeight: "bold", color: "#555" }}>
       Written by: {el.userId?.username || "Unknown"}
-    </h3>
+    </span>
   </div>
   <br />
                   <div className="entry__header">
