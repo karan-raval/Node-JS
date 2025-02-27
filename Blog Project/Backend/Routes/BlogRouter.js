@@ -135,26 +135,24 @@ BlogRouter.patch("/:blogId/like", async (req, res) => {
       return res.status(404).json({ msg: "Blog not found" });
     }
 
-    const likedIndex = blog.likedBy.indexOf(userId);
-
-    if (likedIndex === -1) {
-      // If not liked yet, add the user to likedBy and increment likes
-      blog.likedBy.push(userId);
-      blog.like += 1;
-    } else {
-      // If already liked, remove the user and decrement likes
-      blog.likedBy.splice(likedIndex, 1);
+    if (blog.likedBy.includes(userId)) {
       blog.like -= 1;
+      blog.likedBy = blog.likedBy.filter((id) => id !== userId);
+    } else {
+      blog.like += 1;
+      blog.likedBy.push(userId);
     }
 
     await blog.save();
-    res.json(blog);
+
+    // Re-fetch the blog with populated userId
+    const populatedBlog = await BlogModel.findById(blogId).populate("userId", "name");
+
+    res.json(populatedBlog);
   } catch (error) {
-    console.error("Error liking/unliking the blog:", error);
+    console.error("Error liking the blog:", error);
     res.status(500).json({ msg: "Server error" });
   }
 });
-
-
 
 module.exports = BlogRouter;

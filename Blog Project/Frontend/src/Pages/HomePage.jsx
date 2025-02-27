@@ -25,23 +25,23 @@ const HomePage = () => {
         },
         body: JSON.stringify({ userId: localStorage.getItem("UserId") }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         alert(errorData.msg);
         return;
       }
-
-      const updatedBlog = await response.json();
-      setBlogs((prevBlogs) =>
-        prevBlogs.map((blog) =>
-          blog._id === updatedBlog._id ? updatedBlog : blog
-        )
-      );
+  
+      // Instead of updating a single blog, refetch all blogs to ensure full data
+      const allBlogsResponse = await fetch("http://localhost:5010/allBlogs");
+      const allBlogs = await allBlogsResponse.json();
+      setBlogs(allBlogs);
+  
     } catch (error) {
       console.error("Error liking the blog:", error);
     }
   };
+  
 
 
   useEffect(() => {
@@ -186,7 +186,7 @@ const HomePage = () => {
                 <div className="entry__text">
                 <div>
     <span style={{ fontWeight: "bold", color: "#555" }}>
-      Written by: {el.userId?.username || "Unknown"}
+      Written by: {el.userId?.username}
     </span>
   </div>
   <br />
