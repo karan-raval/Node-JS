@@ -3,9 +3,9 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "../assets/css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import Popover from "./Popover";
 import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -38,17 +38,19 @@ const Login = () => {
         const userId = result.userId;
   
         localStorage.setItem("Token", token);
-        toast.success("Login Successful!");
+        toast.success("Login Successful!")
+alert("Login Successful!")
+        
         setTimeout(() => {
           navigate("/");
-        }, 4000); // Increased delay to ensure toast is visible
+        }, 4000); 
       } else {
         const errorData = await response.json();
-        toast.error(errorData.msg);
+        alert(errorData.msg);
       }
     } catch (error) {
       console.error("Error during login:", error);
-      toast.error("Error during login!");
+      alert("Error during login!");
     }
   };
   

@@ -123,25 +123,35 @@ BlogRouter.patch("/editblog", isAuth, async (req, res) => {
   }
 });
 
-BlogRouter.patch("/:id/like", isAuth, async (req, res) => {
+// Like/Unlike a blog
+BlogRouter.patch("/:blogId/like", async (req, res) => {
+  const { blogId } = req.params;
+  const { userId } = req.body;
+
   try {
-    const blog = await BlogModel.findById(req.params.id);
+    const blog = await BlogModel.findById(blogId);
+
     if (!blog) {
       return res.status(404).json({ msg: "Blog not found" });
     }
 
-    // Check if user has already liked the blog
-    if (blog.likedBy.includes(req.body.userId)) {
-      return res.status(400).json({ msg: "You have already liked this blog" });
+    const likedIndex = blog.likedBy.indexOf(userId);
+
+    if (likedIndex === -1) {
+      // If not liked yet, add the user to likedBy and increment likes
+      blog.likedBy.push(userId);
+      blog.like += 1;
+    } else {
+      // If already liked, remove the user and decrement likes
+      blog.likedBy.splice(likedIndex, 1);
+      blog.like -= 1;
     }
 
-    blog.like += 1;
-    blog.likedBy.push(req.body.userId); // Add user to likedBy
     await blog.save();
-
-    res.status(200).json(blog);
+    res.json(blog);
   } catch (error) {
-    res.status(500).json({ msg: error.message });
+    console.error("Error liking/unliking the blog:", error);
+    res.status(500).json({ msg: "Server error" });
   }
 });
 
