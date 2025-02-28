@@ -13,7 +13,7 @@ import { Flex, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  const [blogs, setBlogs] = useState([]); 
+  const [blogs, setBlogs] = useState([]);
 
   const handleLike = async (blogId) => {
     try {
@@ -25,23 +25,23 @@ const HomePage = () => {
         },
         body: JSON.stringify({ userId: localStorage.getItem("UserId") }),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         alert(errorData.msg);
         return;
       }
-  
+
       // Instead of updating a single blog, refetch all blogs to ensure full data
       const allBlogsResponse = await fetch("http://localhost:5010/allBlogs");
       const allBlogs = await allBlogsResponse.json();
       setBlogs(allBlogs);
-  
+
     } catch (error) {
       console.error("Error liking the blog:", error);
     }
   };
-  
+
 
 
   useEffect(() => {
@@ -167,31 +167,31 @@ const HomePage = () => {
                 data-aos="fade-up"
                 id={`sy${el.id}`}
               >
-               <div className="entry__thumb" style={{ width: "100%", height: "200px", overflow: "hidden" }}>
-  <Link to={`/allblogs/${el._id}`} className="entry__thumb-link">
-    <img 
-      src={el.image} 
-      alt="" 
-      style={{ 
-        width: "100%", 
-        height: "100%", 
-        objectFit: "cover", 
-        borderRadius: "8px" 
-      }} 
-    />
-  </Link>
-</div>
+                <div className="entry__thumb" style={{ width: "100%", height: "200px", overflow: "hidden" }}>
+                  <Link to={`/allblogs/${el._id}`} className="entry__thumb-link">
+                    <img
+                      src={el.image}
+                      alt=""
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        borderRadius: "8px"
+                      }}
+                    />
+                  </Link>
+                </div>
 
 
                 <div className="entry__text">
-                <div>
-    <span style={{ fontWeight: "bold", color: "#555" }}>
-      Written by: {el.userId?.username}
-    </span>
-  </div>
-  <br />
+                  <div>
+                    <span style={{ fontWeight: "bold", color: "#555" }}>
+                      Written by: {el.userId?.username}
+                    </span>
+                  </div>
+                  <br />
                   <div className="entry__header">
-                    
+
                     <div className="entry__date">
                       <a>{el.date}</a>
                     </div>
@@ -221,46 +221,46 @@ const HomePage = () => {
                   </div>
                   <br /><br />
                   <div className="entry__actions" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-  <div 
-    onClick={() => handleLike(el._id)} 
-    style={{ 
-      cursor: "pointer", 
-      display: "flex", 
-      alignItems: "center", 
-      gap: "5px",
-      transition: "transform 0.1s",
-    }}
-    onMouseDown={(e) => e.currentTarget.style.transform = "scale(0.9)"}
-    onMouseUp={(e) => e.currentTarget.style.transform = "scale(1)"}
-  >
-    <FontAwesomeIcon
-      icon={faHeart}
-      style={{
-        color: el.likedBy.includes(localStorage.getItem("UserId"))
-          ? "red"
-          : "gray",
-        fontSize: "1.5rem",
-      }}
-    />
-    <span 
-      style={{ 
-        fontWeight: "bold", 
-        color: "#ff6b6b", 
-        fontSize: "1.2rem", 
-        backgroundColor: "#ffe6e6", 
-        padding: "2px 8px", 
-        borderRadius: "12px" 
-      }}
-    >
-      {el.like} Likes
-    </span>
-  </div>
+                    <div
+                      onClick={() => handleLike(el._id)}
+                      style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                        transition: "transform 0.1s",
+                      }}
+                      onMouseDown={(e) => e.currentTarget.style.transform = "scale(0.9)"}
+                      onMouseUp={(e) => e.currentTarget.style.transform = "scale(1)"}
+                    >
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        style={{
+                          color: el.likedBy.includes(localStorage.getItem("UserId"))
+                            ? "red"
+                            : "gray",
+                          fontSize: "1.5rem",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontWeight: "bold",
+                          color: "#ff6b6b",
+                          fontSize: "1.2rem",
+                          backgroundColor: "#ffe6e6",
+                          padding: "2px 8px",
+                          borderRadius: "12px"
+                        }}
+                      >
+                        {el.like} Likes
+                      </span>
+                    </div>
 
-  <FontAwesomeIcon
-    icon={faBookmark}
-    style={{ fontSize: "1.5rem", cursor: "pointer", color: "gray" }}
-  />
-</div>
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      style={{ fontSize: "1.5rem", cursor: "pointer", color: "gray" }}
+                    />
+                  </div>
                 </div>
               </article>
             ))}
