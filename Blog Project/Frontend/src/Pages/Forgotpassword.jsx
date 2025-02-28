@@ -46,7 +46,7 @@ const Forgotpassword = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("http://localhost:5010/forgotPassword", state);
+      const response = await axios.post("https://blog-project-backend-6kzr.onrender.com//forgotPassword", state);
       console.log("Response:", response);
   
       if (response.status === 200) {
