@@ -9470,7 +9470,7 @@ a:focus {
 .sidebar .nav-item .collapse {
   position: absolute;
   left: calc(6.5rem + 1.5rem / 2);
-  z-index: 1;
+  z-index: 2;
   top: 2px;
 }
 .sidebar .nav-item .collapse .collapse-inner {
@@ -9609,7 +9609,7 @@ a:focus {
   .sidebar .nav-item .collapse {
     position: relative;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     -webkit-animation: none;
     animation: none;
@@ -9670,7 +9670,7 @@ a:focus {
   .sidebar.toggled .nav-item .collapse {
     position: absolute;
     left: calc(6.5rem + 1.5rem / 2);
-    z-index: 1;
+    z-index: 2;
     top: 2px;
     -webkit-animation-name: growIn;
     animation-name: growIn;
@@ -20675,7 +20675,7 @@ body.sidebar-toggled footer.sticky-footer {
   .sidebar .nav-item .collapse {
     position: absolute;
     left: calc(6.5rem + 1.5rem / 2);
-    z-index: 1;
+    z-index: 2;
     top: 2px;
   }
   
@@ -20839,7 +20839,7 @@ body.sidebar-toggled footer.sticky-footer {
     .sidebar .nav-item .collapse {
       position: relative;
       left: 0;
-      z-index: 1;
+      z-index: 2;
       top: 0;
       -webkit-animation: none;
       animation: none;
