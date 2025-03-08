@@ -1,17 +1,28 @@
-const {Router} = require("express")
-const CategoryModel = require("../Model/CategoryModel")
-const isAdmin = require("../Middleware/isAdmin")
+const { Router } = require("express");
+const {
+    addCategory,
+    getAllCategories,
+    getCategoriesByAdmin,
+    updateCategory,
+    deleteCategory
+} = require("../Controller/CategoryController");
+const isAdmin = require("../Middleware/isAdmin");
 
-const CategoryRoute = Router()
+const CategoryRoute = Router();
 
-CategoryRoute.post("/category",isAdmin,async(req,res)=>{
-    try {
-        let data = await CategoryModel.create(req.body)
-        console.log(data)
-        res.status(200).send({msg : "Category added Successfully", data})
-    } catch (error) {
-        res.status(501).send({msg : error.message})
-    }
-})
+// Add a category (Admin only)
+CategoryRoute.post("/category", isAdmin, addCategory);
 
-module.exports = CategoryRoute
+// Get all categories (Public)
+CategoryRoute.get("/categories", getAllCategories);
+
+// Get categories added by logged-in admin
+CategoryRoute.get("/categoriesByAdmin", isAdmin, getCategoriesByAdmin);
+
+// Update a category (Only admin who created it)
+CategoryRoute.put("/category/:id", isAdmin, updateCategory);
+
+// Delete a category (Only admin who created it)
+CategoryRoute.delete("/category/:id", isAdmin, deleteCategory);
+
+module.exports = CategoryRoute;
