@@ -5,11 +5,16 @@ const SubCategorySchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique:true
+        unique: true
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
+        required: true
+    },
+    createdBy: {  // Store the admin (user) who created the subcategory
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",  // Reference to the User model
         required: true
     }
 }, {
@@ -17,7 +22,7 @@ const SubCategorySchema = mongoose.Schema({
 
 })
 
-const SubCategoryModel = mongoose.model("Sub-Category",SubCategorySchema)
+const SubCategoryModel = mongoose.model("Sub-Category", SubCategorySchema)
 
 
 module.exports = SubCategoryModel

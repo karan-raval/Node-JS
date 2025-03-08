@@ -31,7 +31,7 @@ SubCategoryRoute.get("/subCategories",isAdmin,async (req, res) => {
     }
 })
 
-SSubCategoryRoute.get("/subCategory/:categoryId",isAdmin,async (req, res) => {
+SubCategoryRoute.get("/subCategory/:categoryId",isAdmin,async (req, res) => {
     try {
         const { id } = req.params;
         const { name, category } = req.body;
