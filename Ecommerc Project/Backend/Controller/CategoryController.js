@@ -9,9 +9,9 @@ const addCategory = async (req, res) => {
             return res.status(400).json({ message: "Category already exists" });
         }
 
-        const category = await CategoryModel.create({ 
-            name, 
-            createdBy: req.user.id  
+        const category = await CategoryModel.create({
+            name,
+            createdBy: req.user.id
         });
 
         res.status(201).json({ message: "Category created successfully", category });
@@ -23,7 +23,7 @@ const addCategory = async (req, res) => {
 const getAllCategories = async (req, res) => {
     try {
         const categories = await CategoryModel.find()
-            .populate("createdBy", "name email"); 
+            .populate("createdBy", "name email");
 
         res.status(200).json(categories);
     } catch (error) {
