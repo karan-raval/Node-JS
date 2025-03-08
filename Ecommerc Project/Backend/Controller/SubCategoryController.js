@@ -1,22 +1,19 @@
 const SubCategoryModel = require("../Model/SubCategoryModel");
 
-// ✅ Add a new subcategory (Admin only)
 const addSubCategory = async (req, res) => {
     try {
         const { name, category } = req.body;
 
-        // Check if the subcategory already exists in the given category
         const existingSubCategory = await SubCategoryModel.findOne({ name, category });
 
         if (existingSubCategory) {
             return res.status(400).json({ message: "Subcategory already exists in this category" });
         }
 
-        // Create subcategory and store admin's ID
         const subCategory = await SubCategoryModel.create({
             name,
             category,
-            createdBy: req.user.id // Store admin's ID
+            createdBy: req.user.id 
         });
 
         res.status(201).json({ message: "Subcategory created successfully", subCategory });
@@ -25,12 +22,11 @@ const addSubCategory = async (req, res) => {
     }
 };
 
-// ✅ Get all subcategories (with category & admin details)
 const getAllSubCategories = async (req, res) => {
     try {
         const subCategories = await SubCategoryModel.find()
-            .populate("category", "name") // Populate category details
-            .populate("createdBy", "name email"); // Populate admin details
+            .populate("category", "name") 
+            .populate("createdBy", "name email");
 
         res.status(200).json(subCategories);
     } catch (error) {
@@ -38,7 +34,6 @@ const getAllSubCategories = async (req, res) => {
     }
 };
 
-// ✅ Get subcategories by category ID
 const getSubCategoriesByCategory = async (req, res) => {
     try {
         const { categoryId } = req.params;
@@ -50,7 +45,6 @@ const getSubCategoriesByCategory = async (req, res) => {
     }
 };
 
-// ✅ Get subcategories added by the logged-in admin
 const getSubCategoriesByAdmin = async (req, res) => {
     try {
         const subCategories = await SubCategoryModel.find({ createdBy: req.user.id })
@@ -62,20 +56,17 @@ const getSubCategoriesByAdmin = async (req, res) => {
     }
 };
 
-// ✅ Update a subcategory (Only creator admin)
 const updateSubCategory = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, category } = req.body;
 
-        // Find the subcategory and check if the logged-in admin created it
         const subCategory = await SubCategoryModel.findOne({ _id: id, createdBy: req.user.id });
 
         if (!subCategory) {
             return res.status(404).json({ message: "Subcategory not found or not authorized" });
         }
 
-        // Update subcategory details
         subCategory.name = name;
         subCategory.category = category;
         await subCategory.save();
@@ -104,7 +95,6 @@ const deleteSubCategory = async (req, res) => {
     }
 };
 
-// ✅ Export all functions
 module.exports = {
     addSubCategory,
     getAllSubCategories,

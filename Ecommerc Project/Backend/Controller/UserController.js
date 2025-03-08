@@ -6,13 +6,11 @@ const nodemailer = require("nodemailer");
 
 let otpStore = {};
 
-// ✅ Get all users
 const getAllUsers = async (req, res) => {
     let data = await UserModel.find();
     res.send(data);
 };
 
-// ✅ Register a new user
 const registerUser = async (req, res) => {
     const { username, email, password, role, adminCode } = req.body;
     try {
@@ -37,7 +35,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-// ✅ Login user
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;

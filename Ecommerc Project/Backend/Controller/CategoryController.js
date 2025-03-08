@@ -1,20 +1,17 @@
 const CategoryModel = require("../Model/CategoryModel");
 
-// ✅ Add a new category (Admin only)
 const addCategory = async (req, res) => {
     try {
         const { name } = req.body;
 
-        // Check if category already exists
         const existingCategory = await CategoryModel.findOne({ name });
         if (existingCategory) {
             return res.status(400).json({ message: "Category already exists" });
         }
 
-        // Create category and store admin's ID
         const category = await CategoryModel.create({ 
             name, 
-            createdBy: req.user.id // Store admin's ID 
+            createdBy: req.user.id  
         });
 
         res.status(201).json({ message: "Category created successfully", category });
@@ -23,11 +20,10 @@ const addCategory = async (req, res) => {
     }
 };
 
-// ✅ Get all categories (with admin info)
 const getAllCategories = async (req, res) => {
     try {
         const categories = await CategoryModel.find()
-            .populate("createdBy", "name email"); // Populate admin details
+            .populate("createdBy", "name email"); 
 
         res.status(200).json(categories);
     } catch (error) {
@@ -35,7 +31,6 @@ const getAllCategories = async (req, res) => {
     }
 };
 
-// ✅ Get categories added by the logged-in admin
 const getCategoriesByAdmin = async (req, res) => {
     try {
         const categories = await CategoryModel.find({ createdBy: req.user.id });
@@ -46,20 +41,17 @@ const getCategoriesByAdmin = async (req, res) => {
     }
 };
 
-// ✅ Update a category (Only admin who created it)
 const updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
         const { name } = req.body;
 
-        // Find the category and check if the logged-in admin created it
         const category = await CategoryModel.findOne({ _id: id, createdBy: req.user.id });
 
         if (!category) {
             return res.status(404).json({ message: "Category not found or not authorized" });
         }
 
-        // Update category name
         category.name = name;
         await category.save();
 
@@ -69,12 +61,10 @@ const updateCategory = async (req, res) => {
     }
 };
 
-// ✅ Delete a category (Only admin who created it)
 const deleteCategory = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Find the category and check if the logged-in admin created it
         const category = await CategoryModel.findOneAndDelete({ _id: id, createdBy: req.user.id });
 
         if (!category) {
