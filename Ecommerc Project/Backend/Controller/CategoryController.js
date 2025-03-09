@@ -2,19 +2,20 @@ const CategoryModel = require("../Model/CategoryModel");
 
 const addCategory = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { category } = req.body;
 
-        const existingCategory = await CategoryModel.findOne({ name });
+        const existingCategory = await CategoryModel.findOne({ category });
+        console.log(category)
         if (existingCategory) {
             return res.status(400).json({ message: "Category already exists" });
         }
 
-        const category = await CategoryModel.create({
-            name,
+        const categoryy = await CategoryModel.create({
+            category,
             createdBy: req.user.id
         });
 
-        res.status(201).json({ message: "Category created successfully", category });
+        res.status(201).json({ message: "Category created successfully", categoryy });
     } catch (error) {
         res.status(500).json({ message: "Error creating category", error: error.message });
     }
@@ -31,15 +32,15 @@ const getAllCategories = async (req, res) => {
     }
 };
 
-const getCategoriesByAdmin = async (req, res) => {
-    try {
-        const categories = await CategoryModel.find({ createdBy: req.user.id });
+// const getCategoriesByAdmin = async (req, res) => {
+//     try {
+//         const categories = await CategoryModel.find({ createdBy: req.user.id });
 
-        res.status(200).json(categories);
-    } catch (error) {
-        res.status(500).json({ message: "Error fetching categories", error: error.message });
-    }
-};
+//         res.status(200).json(categories);
+//     } catch (error) {
+//         res.status(500).json({ message: "Error fetching categories", error: error.message });
+//     }
+// };
 
 const updateCategory = async (req, res) => {
     try {
@@ -80,7 +81,7 @@ const deleteCategory = async (req, res) => {
 module.exports = {
     addCategory,
     getAllCategories,
-    getCategoriesByAdmin,
+    // getCategoriesByAdmin,
     updateCategory,
     deleteCategory
 };

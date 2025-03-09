@@ -1,65 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import axios from "axios";
-import "./admin.css";
 import AdminHeader from "../Components/AdminHeader";
-import $ from "jquery";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
-const AddCategory = () => {
+const ManageCategory = () => {
+  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [editCategory, setEditCategory] = useState(null);
+  const [newCategoryName, setNewCategoryName] = useState("");
+
   useEffect(() => {
-    $("#sidebarToggle, #sidebarToggleTop").on("click", function () {
-      $("body").toggleClass("sidebar-toggled");
-      $(".sidebar").toggleClass("toggled");
-      if ($(".sidebar").hasClass("toggled")) {
-        $(".sidebar .collapse").collapse("hide");
-      }
-    });
-
-    $(window).resize(function () {
-      if ($(window).width() < 768) {
-        $(".sidebar .collapse").collapse("hide");
-      }
-      if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-        $("body").addClass("sidebar-toggled");
-        $(".sidebar").addClass("toggled");
-        $(".sidebar .collapse").collapse("hide");
-      }
-    });
-
-    $("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function (e) {
-      if ($(window).width() > 768) {
-        const o = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-        this.scrollTop += 30 * (o < 0 ? 1 : -1);
-        e.preventDefault();
-      }
-    });
-
-    $(document).on("scroll", function () {
-      if ($(this).scrollTop() > 100) {
-        $(".scroll-to-top").fadeIn();
-      } else {
-        $(".scroll-to-top").fadeOut();
-      }
-    });
-
-    $(document).on("click", "a.scroll-to-top", function (e) {
-      const target = $(this).attr("href");
-      $("html, body").animate({ scrollTop: $(target).offset().top }, 1000, "easeInOutExpo");
-      e.preventDefault();
-    });
-
-    return () => {
-      $("#sidebarToggle, #sidebarToggleTop").off("click");
-      $(window).off("resize");
-      $("body.fixed-nav .sidebar").off("mousewheel DOMMouseScroll wheel");
-      $(document).off("scroll click");
-    };
+    fetchCategories();
   }, []);
 
-  const [category, setcategory] = useState("");
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:5532/categories");
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      toast.error("Failed to fetch categories");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,27 +33,60 @@ const AddCategory = () => {
         "http://localhost:5532/category",
         { category },
         { headers: { Authorization: `Bearer ${token}` } }
-      ); 
-
-      console.log("API Response:", response);
+      );
 
       if (response.status === 200 || response.status === 201) {
         toast.success("Category added successfully");
-        setcategory(""); // Clear input field after success
+        setCategory("");
+        fetchCategories();
       } else {
         throw new Error("Unexpected API response");
       }
     } catch (error) {
       console.error("API Error:", error);
-
       const errorMsg = error.response?.data?.message || "Failed to add category";
       toast.error(errorMsg);
     }
   };
 
+  const handleEdit = async () => {
+    if (!editCategory) return;
+
+    try {
+      const token = sessionStorage.getItem("token");
+      await axios.put(
+        `http://localhost:5532/category/${editCategory._id}`,
+        { category: newCategoryName },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      toast.success("Category updated successfully");
+      setEditCategory(null);
+      fetchCategories();
+    } catch (error) {
+      console.error("Error updating category:", error);
+      toast.error("Failed to update category");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const token = sessionStorage.getItem("token");
+      await axios.delete(`http://localhost:5532/category/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("Category deleted successfully");
+      fetchCategories();
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      toast.error("Failed to delete category");
+    }
+  };
+
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <div id="wrapper">
         <Sidebar />
 
@@ -105,28 +102,81 @@ const AddCategory = () => {
                       <div className="col-12 col-sm-10 col-md-8 col-lg-6">
                         <div className="card shadow-lg p-4">
                           <h3 className="text-center mb-4">Add Category</h3>
-
                           <form onSubmit={handleSubmit}>
                             <div className="mb-3">
-                              <label htmlFor="category" className="form-label">
-                                Category Name
-                              </label>
+                              <label htmlFor="category" className="form-label">Category Name</label>
                               <input
                                 type="text"
                                 className="form-control"
                                 id="category"
-                                name="category"
                                 placeholder="Enter category name"
                                 value={category}
-                                onChange={(e) => setcategory(e.target.value)}
+                                onChange={(e) => setCategory(e.target.value)}
                                 required
+                                name="category"
                               />
                             </div>
-                            <button type="submit" className="btn btn-primary w-100">
-                              Submit
-                            </button>
+                            <button type="submit" className="btn btn-primary w-100">Submit</button>
                           </form>
                         </div>
+
+                        {/* Category Table */}
+                        <div className="mt-4">
+                          <h4>Manage Categories</h4>
+                          <table className="table table-bordered">
+                            <thead className="table-dark">
+                              <tr>
+                                <th>#</th>
+                                <th>Category Name</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {categories.map((cat, index) => (
+                                <tr key={cat._id}>
+                                  <td>{index + 1}</td>
+                                  <td>{cat.category}</td>
+                                  <td>
+                                    <button className="btn btn-warning me-2" onClick={() => { 
+                                      setEditCategory(cat); 
+                                      setNewCategoryName(cat.category);
+                                    }}>Edit</button>
+                                    <button className="btn btn-danger" onClick={() => handleDelete(cat._id)}>Delete</button>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        {/* Edit Modal */}
+                        {editCategory && (
+                          <div className="modal show d-block" tabIndex="-1" role="dialog">
+                            <div className="modal-dialog" role="document">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <h5 className="modal-title">Edit Category</h5>
+                                  <button type="button" className="close" onClick={() => setEditCategory(null)}>
+                                    <span>&times;</span>
+                                  </button>
+                                </div>
+                                <div className="modal-body">
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    value={newCategoryName}
+                                    onChange={(e) => setNewCategoryName(e.target.value)}
+                                  />
+                                </div>
+                                <div className="modal-footer">
+                                  <button type="button" className="btn btn-secondary" onClick={() => setEditCategory(null)}>Cancel</button>
+                                  <button type="button" className="btn btn-primary" onClick={handleEdit}>Save Changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                       </div>
                     </div>
                   </div>
@@ -137,12 +187,8 @@ const AddCategory = () => {
           </div>
         </div>
       </div>
-
-      <a className="scroll-to-top rounded" href="#page-top">
-        <i className="fas fa-angle-up"></i>
-      </a>
     </>
   );
 };
 
-export default AddCategory;
+export default ManageCategory;
