@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
-import axios from "axios";
 import AdminHeader from "../Components/AdminHeader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,50 +14,72 @@ const ManageCategory = () => {
     fetchCategories();
   }, []);
 
+  // Fetch Categories
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5532/categories");
-      setCategories(response.data);
+      const response = await fetch("http://localhost:5532/categories");
+      if (!response.ok) throw new Error("Failed to fetch categories");
+
+      const data = await response.json();
+      setCategories(data);
     } catch (error) {
       console.error("Error fetching categories:", error);
       toast.error("Failed to fetch categories");
     }
   };
 
+  // Add Category
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const token = sessionStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:5532/category",
-        { category },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    
+    const token = sessionStorage.getItem("token");  // Fetch token from localStorage
+    console.log("Token being sent:", token);      // Debugging
 
-      if (response.status === 200 || response.status === 201) {
-        toast.success("Category added successfully");
-        setCategory("");
-        fetchCategories();
-      } else {
-        throw new Error("Unexpected API response");
-      }
-    } catch (error) {
-      console.error("API Error:", error);
-      const errorMsg = error.response?.data?.message || "Failed to add category";
-      toast.error(errorMsg);
+    if (!token) {
+        console.error("No token found!");
+        return alert("You must be logged in to add a category.");
     }
-  };
 
+    try {
+        const response = await fetch("http://localhost:5532/category", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // Ensure token is prefixed with 'Bearer '
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: "New Category" })
+        });
+
+        const data = await response.json();
+        console.log("Response Data:", data);
+
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to add category");
+        }
+
+        alert("Category added successfully!");
+    } catch (error) {
+        console.error("API Error:", error);
+        alert(error.message);
+    }
+};
+
+  // Edit Category
   const handleEdit = async () => {
     if (!editCategory) return;
 
     try {
       const token = sessionStorage.getItem("token");
-      await axios.put(
-        `http://localhost:5532/category/${editCategory._id}`,
-        { category: newCategoryName },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await fetch(`http://localhost:5532/category/${editCategory._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ category: newCategoryName }),
+      });
+
+      if (!response.ok) throw new Error("Failed to update category");
 
       toast.success("Category updated successfully");
       setEditCategory(null);
@@ -69,12 +90,18 @@ const ManageCategory = () => {
     }
   };
 
+  // Delete Category
   const handleDelete = async (id) => {
     try {
       const token = sessionStorage.getItem("token");
-      await axios.delete(`http://localhost:5532/category/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await fetch(`http://localhost:5532/category/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
+      if (!response.ok) throw new Error("Failed to delete category");
 
       toast.success("Category deleted successfully");
       fetchCategories();
@@ -110,10 +137,9 @@ const ManageCategory = () => {
                                 className="form-control"
                                 id="category"
                                 placeholder="Enter category name"
-                                value={category}
+                                name="category"
                                 onChange={(e) => setCategory(e.target.value)}
                                 required
-                                name="category"
                               />
                             </div>
                             <button type="submit" className="btn btn-primary w-100">Submit</button>
@@ -137,11 +163,21 @@ const ManageCategory = () => {
                                   <td>{index + 1}</td>
                                   <td>{cat.category}</td>
                                   <td>
-                                    <button className="btn btn-warning me-2" onClick={() => { 
-                                      setEditCategory(cat); 
-                                      setNewCategoryName(cat.category);
-                                    }}>Edit</button>
-                                    <button className="btn btn-danger" onClick={() => handleDelete(cat._id)}>Delete</button>
+                                    <button
+                                      className="btn btn-warning me-2"
+                                      onClick={() => {
+                                        setEditCategory(cat);
+                                        setNewCategoryName(cat.category);
+                                      }}
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      className="btn btn-danger"
+                                      onClick={() => handleDelete(cat._id)}
+                                    >
+                                      Delete
+                                    </button>
                                   </td>
                                 </tr>
                               ))}
@@ -169,14 +205,17 @@ const ManageCategory = () => {
                                   />
                                 </div>
                                 <div className="modal-footer">
-                                  <button type="button" className="btn btn-secondary" onClick={() => setEditCategory(null)}>Cancel</button>
-                                  <button type="button" className="btn btn-primary" onClick={handleEdit}>Save Changes</button>
+                                  <button type="button" className="btn btn-secondary" onClick={() => setEditCategory(null)}>
+                                    Cancel
+                                  </button>
+                                  <button type="button" className="btn btn-primary" onClick={handleEdit}>
+                                    Save Changes
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
                         )}
-
                       </div>
                     </div>
                   </div>

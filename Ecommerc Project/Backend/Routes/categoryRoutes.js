@@ -2,7 +2,6 @@ const { Router } = require("express");
 const {
     addCategory,
     getAllCategories,
-    // getCategoriesByAdmin,
     updateCategory,
     deleteCategory
 } = require("../Controller/CategoryController");
@@ -13,8 +12,6 @@ const CategoryRoute = Router();
 CategoryRoute.post("/category", isAdmin, addCategory);
 
 CategoryRoute.get("/categories", getAllCategories);
-
-// CategoryRoute.get("/categoriesByAdmin", isAdmin, getCategoriesByAdmin);
 
 CategoryRoute.put("/category/:id", isAdmin, updateCategory);
 

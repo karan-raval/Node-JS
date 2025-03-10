@@ -3,13 +3,13 @@ const CategoryModel = require("../Model/CategoryModel");
 const addCategory = async (req, res) => {
     try {
         const { category } = req.body;
-
+        
         const existingCategory = await CategoryModel.findOne({ category });
-        console.log(category)
         if (existingCategory) {
             return res.status(400).json({ message: "Category already exists" });
         }
-
+        
+        console.log(category)
         const categoryy = await CategoryModel.create({
             category,
             createdBy: req.user.id

@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import Icon from "@mdi/react";
-import { mdiFacebook, mdiGooglePlus } from "@mdi/js";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [role, setRole] = useState("");
-  const [adminInput, setAdminInput] = useState("");
-  const navigate = useNavigate();
-
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -18,20 +13,35 @@ const Signup = () => {
     adminCode: "",
   });
 
-  const handlechange = (e) => {
+  const navigate = useNavigate();
+
+  // Handle Input Change
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
+
     if (name === "role") {
       setRole(value);
     }
   };
 
+  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(state);
+    // Debugging Role
+    console.log("Selected Role:", state.role);
 
-    const secretKey = role === "admin" ? adminInput : undefined;
+    // Basic Validation
+    if (!state.username || !state.email || !state.password || !state.role) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    if (state.role === "admin" && !state.adminCode) {
+      toast.error("Admin Code is required for Admin role!");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5532/user/register", {
@@ -43,10 +53,16 @@ const Signup = () => {
       });
 
       const result = await response.json();
+
       if (response.ok) {
         toast.success(result.msg);
+        
         setTimeout(() => {
-          navigate("/");
+          if (state.role === "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/"); 
+          }
         }, 3000);
       } else {
         toast.error(result.msg);
@@ -70,11 +86,11 @@ const Signup = () => {
             <form onSubmit={handleSubmit}>
               <div className="input-box">
                 <div className="single-input-fields">
-                  <label>Full name</label>
+                  <label>Full Name</label>
                   <input
                     type="text"
                     name="username"
-                    onChange={handlechange}
+                    onChange={handleChange}
                     placeholder="Enter full name"
                   />
                 </div>
@@ -83,7 +99,7 @@ const Signup = () => {
                   <input
                     type="email"
                     name="email"
-                    onChange={handlechange}
+                    onChange={handleChange}
                     placeholder="Enter email address"
                   />
                 </div>
@@ -92,17 +108,16 @@ const Signup = () => {
                   <input
                     type="password"
                     name="password"
-                    onChange={handlechange}
-                    placeholder="Enter Password"
+                    onChange={handleChange}
+                    placeholder="Enter password"
                   />
                 </div>
                 <div className="single-input-fields">
                   <label>Role</label>
                   <select
                     className="form-select"
-                    aria-label="Default select example"
                     name="role"
-                    onChange={handlechange}
+                    onChange={handleChange}
                     required
                   >
                     <option value="">Select Your Role</option>
@@ -110,16 +125,15 @@ const Signup = () => {
                     <option value="admin">Admin</option>
                   </select>
                 </div>
-                <br />
 
                 {role === "admin" && (
                   <div className="single-input-fields">
                     <label>Admin Code</label>
                     <input
                       type="text"
-                      className="form-control p_input"
                       name="adminCode"
-                      onChange={handlechange}
+                      onChange={handleChange}
+                      placeholder="Enter Admin Code"
                       required
                     />
                   </div>
@@ -127,8 +141,7 @@ const Signup = () => {
               </div>
               <div className="register-footer">
                 <p>
-                  Already have an account? <Link to={"/login"}> Login</Link>{" "}
-                  here
+                  Already have an account? <Link to="/login">Login</Link> here
                 </p>
                 <button className="submit-btn3">Sign Up</button>
               </div>
